@@ -120,7 +120,7 @@
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-fg]'); if (!b) return;
     window.KG_FIT.open(p, { mode: b.getAttribute('data-fg'), onSize: function (size, label) {
-      if (applySize(size, label, true)) { status.textContent = 'Size set. Add to cart when you\'re ready.'; form.querySelector('[type=submit]').focus(); }
+      if (applySize(size, label, true)) { status.textContent = 'Size set. Add to cart when you\'re ready.'; status.classList.add('ok'); form.querySelector('[type=submit]').focus(); }
     } });
   });
 
@@ -132,7 +132,7 @@
 
   form.addEventListener('change', function (e) {
     if (e.target.name === 'color') colorName.textContent = S.COLORS[e.target.value].name;
-    status.textContent = '';
+    status.textContent = ''; status.classList.remove('ok');
   });
   form.addEventListener('submit', function (e) {
     e.preventDefault();

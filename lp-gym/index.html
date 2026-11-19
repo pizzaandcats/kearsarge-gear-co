@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kearsarge | Short. Built. Finally fits.</title>
+<meta name="description" content="The training tee for men 5'3&quot; to 5'8&quot; who lift, ruck and do the work. Join the list for launch pricing.">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<script src="../assets/kg-config.js?v=2"></script>
+<style>
+:root {
+  --bg: #0b0b0c; --panel: #151517; --line: #2a2a2d;
+  --text: #f1f1f1; --muted: #a3a3a8; --hot: #ff5a1f; --hot-dark: #e0470f;
+  --display: "Oswald", Impact, sans-serif; --sans: "Inter", system-ui, sans-serif; --script: "Pinyon Script", cursive;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 18px; line-height: 1.5; }
+img { display: block; max-width: 100%; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: .01em; line-height: .95; color: #fff; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+.site-header { display: flex; justify-content: center; padding: 22px 0 16px; border-bottom: 1px solid var(--line); }
+.logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
+.logo-script { font-family: var(--script); font-size: 52px; line-height: 1.05; padding: 0 6px; color: #fff; position: relative; z-index: 2; filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000); }
+.logo-swash { width: 168px; height: 13px; margin-top: -16px; fill: var(--hot); }
+
+/* Hero: text left, shirt photo right */
+.hero { display: grid; grid-template-columns: 1.05fr .95fr; min-height: min(92vh, 860px); }
+.hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 48px 64px max(24px, calc((100vw - 1160px) / 2 + 24px)); }
+.hero-img { position: relative; overflow: hidden; }
+.hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: contrast(1.08); }
+.hero-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(11,11,12,0) 22%); }
+.hero h1 { font-size: clamp(60px, 8.4vw, 132px); }
+.hero h1 span { color: var(--hot); }
+.hero .sub { margin-top: 18px; font-size: clamp(18px, 2vw, 22px); color: #d6d6d9; max-width: 30ch; }
+
+.signup { margin-top: 26px; max-width: 540px; }
+.signup-row { display: flex; gap: 0; }
+.signup input[type=email] { flex: 1; min-width: 0; min-height: 56px; padding: 0 18px; border: 2px solid #fff; border-right: 0; background: rgba(0,0,0,.55); color: #fff; font: 500 17px var(--sans); border-radius: 0; }
+.signup input::placeholder { color: #9a9aa0; }
+.btn { min-height: 56px; padding: 0 26px; border: 2px solid var(--hot); background: var(--hot); color: #0b0b0c; font: 700 18px var(--display); text-transform: uppercase; letter-spacing: .06em; cursor: pointer; white-space: nowrap; border-radius: 0; }
+.btn:hover { background: var(--hot-dark); border-color: var(--hot-dark); }
+.btn:focus-visible, input:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; }
+.signup .note { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.signup .note strong { color: #fff; }
+.signup .status { min-height: 1.3em; margin-top: 6px; font-size: 15px; color: var(--hot); }
+
+/* The problem, in three lines */
+.verdict { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.verdict .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
+.verdict div { padding: 40px 0; text-align: center; border-right: 1px solid var(--line); }
+.verdict div:last-child { border-right: 0; }
+.verdict b { display: block; font-family: var(--display); font-size: clamp(34px, 4.6vw, 56px); text-transform: uppercase; line-height: 1; }
+.verdict small { display: block; margin-top: 8px; font-size: 16px; color: var(--muted); }
+.verdict .win b { color: var(--hot); }
+
+/* Built for the work */
+.work { padding: 96px 0; }
+.work h2 { font-size: clamp(48px, 7vw, 88px); }
+.work-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.card { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--panel); }
+.card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.5) contrast(1.1); }
+.card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.85)); }
+.card h3 { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; font-size: clamp(26px, 2.6vw, 34px); }
+.card h3 span { display: block; font-family: var(--sans); font-weight: 500; text-transform: none; font-size: 16px; color: #cfcfd3; margin-top: 8px; letter-spacing: 0; line-height: 1.35; }
+
+/* Moat: two numbers */
+.moat { background: var(--panel); padding: 96px 0; }
+.moat .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.moat h2 { font-size: clamp(48px, 7vw, 88px); }
+.moat h2 span { color: var(--hot); }
+.moat p.sub { margin-top: 16px; font-size: 20px; color: #d6d6d9; max-width: 30ch; }
+.matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--line); border: 2px solid var(--line); }
+.matrix div { background: var(--bg); padding: 26px 20px; }
+.matrix b { display: block; font-family: var(--display); font-size: 30px; text-transform: uppercase; }
+.matrix small { color: var(--muted); font-size: 15px; }
+
+/* Close */
+.close { padding: 110px 0; text-align: center; }
+.close .wrap { display: flex; flex-direction: column; align-items: center; }
+.close h2 { font-size: clamp(56px, 9vw, 120px); }
+.close .signup { width: 100%; }
+.close .signup input[type=email] { background: var(--panel); }
+
+.foot { padding: 28px 0 40px; text-align: center; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .logo-script { font-size: 44px; } .logo-swash { width: 142px; margin-top: -14px; }
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .hero-img { order: -1; aspect-ratio: 4 / 3; }
+  .hero-img::after { background: linear-gradient(180deg, rgba(11,11,12,0) 60%, var(--bg) 100%); }
+  .hero-text { padding: 8px 24px 48px; }
+  .signup-row { flex-direction: column; gap: 8px; }
+  .signup input[type=email] { border-right: 2px solid #fff; }
+  .verdict .wrap { grid-template-columns: 1fr; }
+  .verdict div { border-right: 0; border-bottom: 1px solid var(--line); padding: 26px 0; }
+  .verdict div:last-child { border-bottom: 0; }
+  .work-grid { grid-template-columns: 1fr; }
+  .card { aspect-ratio: 4 / 3; }
+  .moat .wrap { grid-template-columns: 1fr; gap: 32px; }
+  .work, .moat { padding: 64px 0; }
+}
+</style>
+</head>
+<body data-page="gym">
+
+<header class="site-header">
+  <a class="logo" href="./" aria-label="Kearsarge">
+    <span class="logo-script">Kearsarge</span>
+    <svg class="logo-swash" viewBox="0 0 360 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C60,4 120,4 180,16 C240,28 300,26 360,8 C300,30 240,32 180,20 C120,8 60,8 2,20 Z"/></svg>
+  </a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Short. Built.<br><span>Finally fits.</span></h1>
+      <p class="sub">The training tee for men 5'3" to 5'8" who lift, ruck and do the work.</p>
+      <form class="signup js-signup" method="post" novalidate>
+        <div class="signup-row">
+          <input type="email" name="email_address" aria-label="Email" autocomplete="email" placeholder="Your email" required>
+          <input type="hidden" name="fields[kg_variant]" class="js-variant" value="gym">
+          <button class="btn" type="submit">Get in</button>
+        </div>
+        <p class="note">Launch price <strong class="js-price">$48</strong>. First run is small.</p>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1604897391146-c98ab268e252?auto=format&fit=crop&w=1400&q=75" alt="A man in a fitted black t-shirt looking straight at the camera">
+    </div>
+  </section>
+
+  <section class="verdict" aria-label="The problem">
+    <div class="wrap">
+      <div><b>XS</b><small>Too tight.</small></div>
+      <div><b>S</b><small>Too long.</small></div>
+      <div class="win"><b>Kearsarge</b><small>Right.</small></div>
+    </div>
+  </section>
+
+  <section class="work">
+    <div class="wrap">
+      <h2>Built for the work.</h2>
+      <div class="work-grid">
+        <div class="card"><img src="https://images.unsplash.com/photo-1677165733273-dcc3724c00e8?auto=format&fit=crop&w=900&q=75" alt="A man doing pull-ups in a dark gym, seen from behind" loading="lazy"><h3>Pull-ups<span>Room in the lats. Hem stays down.</span></h3></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1763386840769-8484a2a02442?auto=format&fit=crop&w=900&q=75" alt="A man rucking with a pack through desert scrub toward red rocks" loading="lazy"><h3>Rucks<span>No extra length bunching under the pack.</span></h3></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=75" alt="A man setting up a heavy deadlift in a dark gym" loading="lazy"><h3>Lifts<span>Room in the chest and arms. Collar holds its shape.</span></h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="moat">
+    <div class="wrap">
+      <div>
+        <h2>Two numbers.<br><span>One fit.</span></h2>
+        <p class="sub">Your height plus your build. No more sizing down and squeezing in.</p>
+      </div>
+      <div class="matrix" aria-label="Sizes by height and build">
+        <div><b>5'3"–5'5"</b><small>Lean</small></div>
+        <div><b>5'3"–5'5"</b><small>Built</small></div>
+        <div><b>5'6"–5'8"</b><small>Lean</small></div>
+        <div><b>5'6"–5'8"</b><small>Built</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close" id="join">
+    <div class="wrap">
+      <h2>Get on the list.</h2>
+      <form class="signup js-signup" method="post" novalidate>
+        <div class="signup-row">
+          <input type="email" name="email_address" aria-label="Email" autocomplete="email" placeholder="Your email" required>
+          <input type="hidden" name="fields[kg_variant]" class="js-variant" value="gym">
+          <button class="btn" type="submit">Get in</button>
+        </div>
+        <p class="note">Launch price <strong class="js-price">$48</strong>. No spam.</p>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">&copy; 2026 Kearsarge. Los Angeles, California.</footer>
+<script src="../assets/kg-signup.js?v=1"></script>
+</body>
+</html>

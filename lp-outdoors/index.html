@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kearsarge | The sun hoodie, cut short</title>
+<meta name="description" content="A sun hoodie cut for men 5'3&quot; to 5'8&quot;. Sleeves that end at your wrist. Join the list for launch pricing.">
+<meta name="theme-color" content="#f6efe3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<script src="../assets/kg-config.js?v=2"></script>
+<style>
+:root {
+  --bone: #f6efe3; --sand: #e9d9bf; --dune: #d9b98c;
+  --sun: #d9622b; --sun-dark: #b44c1c;
+  --sea: #1f5568; --ink: #2a2119; --ink-2: #4d4033;
+  --display: "Fraunces", Georgia, serif; --sans: "DM Sans", system-ui, sans-serif; --script: "Pinyon Script", cursive;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bone); color: var(--ink-2); font-family: var(--sans); font-size: 18px; line-height: 1.5; }
+img { display: block; max-width: 100%; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: var(--display); color: var(--ink); font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Logo: Kearsarge + flourish, centered */
+.site-header { display: flex; justify-content: center; padding: 22px 0 18px; background: var(--bone); }
+.logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
+.logo-script { font-family: var(--script); font-size: 52px; line-height: 1.05; padding: 0 6px; color: var(--ink); position: relative; z-index: 2; filter: drop-shadow(0 0 1px var(--bone)) drop-shadow(0 0 1px var(--bone)); }
+.logo-swash { width: 168px; height: 13px; margin-top: -16px; fill: var(--sun); }
+
+/* Hero */
+.hero { position: relative; min-height: min(88vh, 820px); display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31,85,104,0) 35%, rgba(30,24,18,.72) 100%); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 56px; }
+.hero h1 { color: #fff; font-size: clamp(54px, 9vw, 120px); max-width: 9ch; }
+.hero .sub { margin-top: 16px; font-size: clamp(18px, 2vw, 22px); max-width: 30ch; color: #fff6ea; }
+
+/* Signup */
+.signup { margin-top: 26px; max-width: 520px; }
+.signup-row { display: flex; gap: 8px; }
+.signup input[type=email] { flex: 1; min-width: 0; min-height: 54px; padding: 0 18px; border: 0; border-radius: 999px; font: 500 17px var(--sans); color: var(--ink); background: #fff; }
+.btn { min-height: 54px; padding: 0 26px; border: 0; border-radius: 999px; background: var(--sun); color: #fff; font: 700 17px var(--sans); cursor: pointer; white-space: nowrap; }
+.btn:hover { background: var(--sun-dark); }
+.btn:focus-visible, input:focus-visible { outline: 3px solid var(--sand); outline-offset: 3px; }
+.signup .note { margin-top: 10px; font-size: 15px; color: #fff6ea; }
+.signup .note strong { color: #fff; }
+.signup .status { min-height: 1.3em; margin-top: 6px; font-size: 15px; font-weight: 500; color: #ffd9c2; }
+
+/* Where it goes */
+.places { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.place { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.place img { width: 100%; height: 100%; object-fit: cover; }
+.place span { position: absolute; left: 20px; bottom: 18px; font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4vw, 48px); color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.35); }
+
+/* Fixes */
+.fixes { padding: 88px 0; }
+.fixes h2 { font-size: clamp(40px, 6vw, 72px); max-width: 12ch; }
+.fix-grid { margin-top: 44px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+.fix-grid img { border-radius: 18px; aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+.fix-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.fix-list li { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 2.6vw, 32px); color: var(--ink); line-height: 1.15; padding-left: 40px; position: relative; }
+.fix-list li::before { content: ""; position: absolute; left: 0; top: .32em; width: 22px; height: 22px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 6px rgba(217,98,43,.18); }
+
+/* Moat: sized by height */
+.moat { background: var(--sea); color: #eaf2f1; padding: 88px 0; }
+.moat h2 { color: #fff; font-size: clamp(40px, 6vw, 72px); max-width: 13ch; }
+.moat p.sub { margin-top: 14px; font-size: 20px; max-width: 36ch; }
+.sizes { margin-top: 36px; display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 12px; }
+.size { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.25); border-radius: 14px; padding: 18px 20px; }
+.size b { display: block; font-family: var(--display); font-size: 28px; color: #fff; }
+.size small { font-size: 15px; color: #cfe0de; }
+
+/* Close */
+.close { position: relative; padding: 120px 0; color: #fff; overflow: hidden; text-align: center; }
+.close img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.close::after { content: ""; position: absolute; inset: 0; background: rgba(42,33,25,.55); }
+.close .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.close h2 { color: #fff; font-size: clamp(48px, 8vw, 96px); }
+.close .signup { width: 100%; }
+
+.foot { padding: 28px 0 40px; text-align: center; font-size: 14px; color: var(--ink-2); }
+
+@media (max-width: 760px) {
+  .logo-script { font-size: 44px; } .logo-swash { width: 142px; margin-top: -14px; }
+  .hero { min-height: 82vh; }
+  .signup-row { flex-direction: column; }
+  .places { grid-template-columns: 1fr 1fr; }
+  .places .place:last-child { display: none; }
+  .fix-grid { grid-template-columns: 1fr; gap: 32px; }
+  .fixes, .moat { padding: 64px 0; }
+  .sizes { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body data-page="outdoors">
+
+<header class="site-header">
+  <a class="logo" href="./" aria-label="Kearsarge">
+    <span class="logo-script">Kearsarge</span>
+    <svg class="logo-swash" viewBox="0 0 360 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C60,4 120,4 180,16 C240,28 300,26 360,8 C300,30 240,32 180,20 C120,8 60,8 2,20 Z"/></svg>
+  </a>
+</header>
+
+<main>
+  <section class="hero">
+    <img src="https://images.unsplash.com/photo-1791779992382-a02b7b5afde7?auto=format&fit=crop&w=2000&q=75" alt="A man in a hooded sun shirt fishing from the shore at golden hour">
+    <div class="wrap">
+      <h1>The sun hoodie, cut short.</h1>
+      <p class="sub">For men 5'3" to 5'8". Sleeves that end at your wrist.</p>
+      <form class="signup js-signup" method="post" novalidate>
+        <div class="signup-row">
+          <input type="email" name="email_address" aria-label="Email" autocomplete="email" placeholder="Your email" required>
+          <input type="hidden" name="fields[kg_variant]" class="js-variant" value="outdoors">
+          <button class="btn" type="submit">Get launch price</button>
+        </div>
+        <p class="note">Launch price <strong class="js-price">$88</strong>. First run is small.</p>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="places" aria-label="Where it goes">
+    <div class="place"><img src="https://images.unsplash.com/photo-1505782388-8632b3423dbb?auto=format&fit=crop&w=900&q=75" alt="A lone hiker crossing pale sand dunes" loading="lazy"><span>Desert.</span></div>
+    <div class="place"><img src="https://images.unsplash.com/photo-1506527115643-b3b387978fad?auto=format&fit=crop&w=900&q=75" alt="A sailor in a long-sleeve top on a small sailboat" loading="lazy"><span>Water.</span></div>
+    <div class="place"><img src="https://images.unsplash.com/photo-1553593155-9e0dc045405c?auto=format&fit=crop&w=900&q=75" alt="A man running along the shore at sunset" loading="lazy"><span>Shore.</span></div>
+  </section>
+
+  <section class="fixes">
+    <div class="wrap">
+      <h2>Fits like it was made for you.</h2>
+      <div class="fix-grid">
+        <img src="https://images.unsplash.com/photo-1695187101014-d34735a4a951?auto=format&fit=crop&w=1000&q=75" alt="Close-up of a man in a light hooded sun shirt holding a fishing rod" loading="lazy">
+        <ul class="fix-list">
+          <li>Sleeves end at your wrist.</li>
+          <li>Thumbholes land on your hand.</li>
+          <li>Hem stays at your waist.</li>
+          <li>Hood turns with your head.</li>
+          <li>Zipper stays off your neck.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="moat">
+    <div class="wrap">
+      <h2>Sized by height. Not just chest.</h2>
+      <p class="sub">Pick your height. Pick your build. That's your size.</p>
+      <div class="sizes">
+        <div class="size"><b>5'3"–5'5"</b><small>Lean or built</small></div>
+        <div class="size"><b>5'6"–5'8"</b><small>Lean or built</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close" id="join">
+    <img src="https://images.unsplash.com/photo-1582394895085-82cd4fd55141?auto=format&fit=crop&w=2000&q=75" alt="A man in a light hoodie standing on a rock against a bright sky" loading="lazy">
+    <div class="wrap">
+      <h2>Get first dibs.</h2>
+      <form class="signup js-signup" method="post" novalidate>
+        <div class="signup-row">
+          <input type="email" name="email_address" aria-label="Email" autocomplete="email" placeholder="Your email" required>
+          <input type="hidden" name="fields[kg_variant]" class="js-variant" value="outdoors">
+          <button class="btn" type="submit">Get launch price</button>
+        </div>
+        <p class="note">Launch price <strong class="js-price">$88</strong>. No spam.</p>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">&copy; 2026 Kearsarge. Los Angeles, California.</footer>
+<script src="../assets/kg-signup.js?v=1"></script>
+</body>
+</html>

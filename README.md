@@ -11,7 +11,17 @@ assets/kearsarge.css  Shared styles
 
 The `assets/img`, `assets/fonts` and `assets/site.css` files are left over from Mountain Retro and aren't used by these pages.
 
-## Test versions (one link per ad)
+## Three directions (one page each)
+
+| Page | Product | Theme | Moat being tested |
+|---|---|---|---|
+| `/lp-outdoors/` | Sun hoodie | Desert, water, shore | Sized by height, plus fixes (sleeves, thumbholes, hood, zipper) |
+| `/lp-gym/` | Training tee | Dark, performance | Sized by height and build ("Short. Built.") |
+| `/lp-fitness/` | Everyday tee | Dark, refined activewear | Lifetime replacement guarantee |
+
+Prices are `PRICE.outdoors`, `PRICE.gym` and `PRICE.fitness` in `assets/kg-config.js`. Each page sends its name to Kit (`kg_variant`) and to the survey. Photos are hotlinked from Unsplash (free license) and should be swapped for your own before ads run.
+
+## Test versions on the main page (one link per ad)
 
 | Link | Product | Pitch |
 |---|---|---|
@@ -45,7 +55,7 @@ const COLS = ['submitted_at','email','variant','utm_source','utm_campaign','utm_
 function doPost(e) {
   let d = {};
   try { d = JSON.parse(e.postData.contents); } catch (err) {}
-  if (!/^(hoodie|tee)-(short|lift)$/.test(d.variant || '')) {
+  if (!/^((hoodie|tee)-(short|lift)|outdoors|gym|fitness)$/.test(d.variant || '')) {
     return ContentService.createTextOutput(JSON.stringify({ ok: false })).setMimeType(ContentService.MimeType.JSON);
   }
   const row = COLS.map(k => String(d[k] == null ? '' : d[k]).slice(0, 300));

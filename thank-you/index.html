@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're on the list | Mountain Retro</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f2a44">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="preload" href="../assets/fonts/jost-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=7">
+<script>
+  /* ---------------------------------------------------------------
+     POLL STORAGE
+     Paste the URL of the endpoint that saves votes (for example the
+     Google Apps Script web app described in README.md). Until this is
+     set, the page says plainly that votes are NOT being saved.
+     --------------------------------------------------------------- */
+  window.MR_POLL_ENDPOINT = "https://script.google.com/macros/s/AKfycbyuEu_ULR9PY1YsqTiw3uSt2c7VTjY5VEg5aHToPqflirYzflvzITsJSUspZycbG3fU/exec";
+</script>
+<style>
+.setup-note { display: none; background: var(--sock-red); color: #fff; }
+.setup-note.show { display: block; }
+.setup-note .wrap { padding-top: 10px; padding-bottom: 10px; font-size: 14px; }
+.setup-note code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; }
+
+.poll-page { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; background: var(--navy); }
+.poll-page .masthead { background: var(--cream); }
+.social-head { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; font-weight: 500; text-decoration: none; color: var(--navy); }
+.social-head svg { color: var(--orange); }
+.social-head:hover span { text-decoration: underline; }
+.poll-page main { flex: 1; display: flex; }
+.poll { background: var(--navy); color: var(--cream); flex: 1; display: flex; align-items: center; }
+.poll .wrap { width: 100%; }
+.poll .wrap { padding-top: clamp(24px, 3vh, 48px); padding-bottom: clamp(24px, 3vh, 48px); }
+.poll-head { margin-bottom: 22px; }
+.poll-head p { margin: 8px 0 0; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.45; max-width: 720px; }
+.poll-head .ask { margin-top: 20px; border-top: 2px solid rgba(243, 234, 216, .3); padding-top: 18px; }
+.poll h2 { margin: 0; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; font-weight: 700; color: var(--gold-on-navy); }
+.poll-page .foot .wrap { padding-top: 22px; padding-bottom: 22px; border-top: 1px solid rgba(243, 234, 216, .2); }
+.poll h1 { margin: 0; font-size: clamp(40px, 4.4vw, 60px); line-height: .95; font-weight: 700; letter-spacing: -.02em; }
+
+.ballot { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.ballot legend { position: absolute; left: -9999px; }
+.opt { position: relative; }
+.opt input { position: absolute; opacity: 0; top: 24px; left: 24px; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.opt label {
+  display: grid; grid-template-rows: auto 1fr auto; gap: 12px; height: 100%;
+  padding: 16px 16px 14px;
+  border: 2px solid var(--cream); cursor: pointer;
+  transition: background .12s ease, color .12s ease;
+}
+.opt svg { width: 40px; height: 40px; }
+.opt .name { font-size: 22px; font-weight: 700; line-height: 1.05; }
+.opt .desc { font-size: 15px; line-height: 1.45; display: block; margin-top: 8px; font-weight: 400; }
+.opt .box { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding-top: 10px; border-top: 1px dotted rgba(243, 234, 216, .45); }
+.opt input:checked + label .box { border-top-color: rgba(31, 42, 68, .35); }
+.opt input:checked + label svg { color: var(--orange); }
+.opt .box::before { content: ""; width: 20px; height: 20px; border: 2px solid currentColor; flex: none; }
+.opt label:hover { background: rgba(243, 234, 216, .08); }
+.opt input:focus-visible + label { outline: 3px solid var(--gold-on-navy); outline-offset: 3px; }
+.opt input:checked + label { background: var(--cream); color: var(--navy); }
+.opt input:checked + label .box::before { background: var(--navy); box-shadow: inset 0 0 0 3px var(--cream); }
+.opt input:disabled + label { cursor: default; }
+
+.poll-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 22px; }
+.poll .btn { background: var(--orange); color: var(--cream); border-color: var(--orange); box-shadow: 6px 6px 0 var(--gold-on-navy); }
+.poll .btn:hover { box-shadow: 4px 4px 0 var(--gold-on-navy); }
+.poll .btn[disabled] { opacity: .55; cursor: not-allowed; transform: none; }
+.status { margin: 0; font-size: 16px; min-height: 1.5em; flex-basis: 100%; }
+.status.ok { color: var(--gold-on-navy); font-weight: 700; }
+.status.warn { color: var(--cream); background: var(--sock-red); padding: 8px 12px; font-weight: 500; }
+
+@media (max-width: 999px) {
+  .ballot { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .opt .name { font-size: 19px; }
+  .opt .desc { font-size: 14px; }
+}
+@media (max-height: 800px) and (min-width: 561px) {
+  .poll-page .masthead .wrap { padding-top: 14px; padding-bottom: 14px; }
+  .poll .wrap { padding-top: 20px; padding-bottom: 20px; }
+  .poll h1 { font-size: clamp(36px, 3.6vw, 48px); }
+  .poll-head { margin-bottom: 16px; }
+  .poll-head p { margin-top: 4px; }
+  .poll-head .ask { margin-top: 12px; padding-top: 12px; }
+  .opt .desc { margin-top: 4px; }
+  .opt svg { width: 32px; height: 32px; }
+  .opt label { gap: 8px; padding-top: 12px; padding-bottom: 12px; }
+  .poll .wrap { padding-top: 14px; padding-bottom: 14px; }
+  .poll-actions { margin-top: 16px; }
+  .poll-page .foot .wrap { padding-top: 14px; padding-bottom: 14px; }
+  .opt label { gap: 10px; padding-top: 14px; }
+}
+@media (max-width: 900px) {
+  .poll-head .ask { margin-top: 16px; padding-top: 14px; }
+  .ballot { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .opt label { gap: 8px; padding: 12px 14px; }
+  .opt svg { width: 40px; height: 40px; }
+}
+@media (max-width: 560px) {
+  .poll-page .masthead .wrap { padding-top: 12px; padding-bottom: 12px; }
+  .poll-page .masthead .logo img { width: 150px; }
+  .social-head span { display: none; }
+  .poll-page .foot .tag { display: none; }
+  .poll .wrap { padding-top: 20px; padding-bottom: 24px; }
+  .poll-head { margin-bottom: 18px; }
+  .poll-head p { margin-top: 6px; font-size: 15px; }
+  .poll h1 { font-size: 36px; }
+  .poll h2 { font-size: 22px; }
+  .ballot { gap: 8px; }
+  .opt label { padding: 10px 12px; gap: 6px; }
+  .opt svg { width: 32px; height: 32px; }
+  .opt .name { font-size: 17px; }
+  .opt .desc { font-size: 13px; line-height: 1.35; margin-top: 4px; }
+  .opt .box { font-size: 11px; letter-spacing: .12em; }
+  .opt .box::before { width: 16px; height: 16px; }
+  .poll-actions { margin-top: 18px; }
+  .poll .btn { width: 100%; }
+}
+</style>
+</head>
+<body class="poll-page">
+
+<div class="setup-note" id="setup-note" role="note">
+  <div class="wrap"><strong>Setup needed:</strong> poll votes are not being saved yet. Add an endpoint URL to <code>MR_POLL_ENDPOINT</code> in <code>thank-you/index.html</code> (see README).</div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="../" aria-label="Mountain Retro home">
+      <img src="../assets/img/mountain-retro-lockup-light-transparent.svg" alt="Mountain Retro" width="236" height="55">
+    </a>
+    <a class="social social-head" href="https://www.instagram.com/mountainretroco/" target="_blank" rel="noopener" aria-label="Mountain Retro on Instagram (opens in a new tab)">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>@mountainretroco</span>
+      </a>
+  </div>
+</header>
+
+<main>
+  <section class="poll" aria-labelledby="confirm-title">
+    <div class="wrap">
+      <div class="poll-head">
+        <div>
+          <h1 id="confirm-title">Confirmed</h1>
+          <p>You're on our list! We'll let you know as soon as the Heritage Trail Sock drops.</p>
+        </div>
+        <div class="ask">
+          <h2 id="poll-title">Help pick what's next.</h2>
+          <p>We've got a handful of ideas on the workbench. Which one should we bring to life first?</p>
+        </div>
+      </div>
+
+      <form id="poll" novalidate>
+        <fieldset class="ballot">
+          <legend>What should Mountain Retro make next?</legend>
+          <div class="opt">
+            <input type="radio" name="choice" id="c-tee" value="ringer-tee">
+            <label for="c-tee">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" aria-hidden="true"><path d="M17 8 7 14l4 7 5-2v21h16V19l5 2 4-7-10-6"/><path d="M17 8c2 4 12 4 14 0"/><path d="M8 16l3 4M40 16l-3 4"/></svg><span><span class="name">Ringer tee</span><span class="desc">Contrast collar and cuffs. Soft, broken-in cotton.</span></span>
+              <span class="box">Pick this</span>
+            </label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="choice" id="c-shorts" value="retro-trail-shorts">
+            <label for="c-shorts">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" aria-hidden="true"><path d="M11 10h26l4 28H29l-5-15-5 15H7Z"/><path d="M11 15h26"/></svg><span><span class="name">Retro trail shorts</span><span class="desc">Short inseam, old-school cut. Made for the trail.</span></span>
+              <span class="box">Pick this</span>
+            </label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="choice" id="c-socks" value="more-sock-designs">
+            <label for="c-socks">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" aria-hidden="true"><path d="M21 5h11v21l8 7a3.6 3.6 0 0 1-2.5 6.3H27"/><path d="M12 10h11v20l8 7a3.6 3.6 0 0 1-2.5 6.3H18l-6-6Z"/><path d="M12 15h11M12 19h11"/></svg><span><span class="name">More sock designs</span><span class="desc">New stripes, new colors. More of the first thing.</span></span>
+              <span class="box">Pick this</span>
+            </label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="choice" id="c-cap" value="trailhead-cap">
+            <label for="c-cap">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" aria-hidden="true"><path d="M8 31c0-11 7-18 16-18s15 7 15 18Z"/><path d="M39 31h7l-2 4H8"/><path d="M24 13v-2M24 13v18"/><path d="M30 33l9-2"/></svg><span><span class="name">Trailhead cap</span><span class="desc">Five panels, rope across the brim. Made for sun and switchbacks.</span></span>
+              <span class="box">Pick this</span>
+            </label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="choice" id="c-beanie" value="basecamp-beanie">
+            <label for="c-beanie">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" aria-hidden="true"><path d="M10 31c0-12 6-19 14-19s14 7 14 19"/><path d="M8 31h32v8H8Z"/><path d="M14 31v8M20 31v8M26 31v8M32 31v8"/><circle cx="24" cy="8" r="3"/></svg><span><span class="name">Basecamp beanie</span><span class="desc">Ribbed knit, fold-up cuff, stripe to match the socks.</span></span>
+              <span class="box">Pick this</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="poll-actions">
+          <button class="btn" type="submit" id="vote-btn">Submit</button>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <img src="../assets/img/mountain-retro-lockup-dark-transparent.svg" alt="Mountain Retro" width="180" height="42" loading="lazy">
+    <span class="label tag">Rugged never goes out of style.</span>
+    <div class="foot-end">
+      <a class="social" href="https://www.instagram.com/mountainretroco/" target="_blank" rel="noopener" aria-label="Follow along on Instagram (opens in a new tab)">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>Follow along on Instagram <span aria-hidden="true">&rarr;</span></span>
+      </a>
+      <small>&copy; <span id="yr">2026</span> Mountain Retro. Los Angeles, California.</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var ENDPOINT = (window.MR_POLL_ENDPOINT || '').trim();
+  var KEY = 'mr_poll_vote_v2';
+  var EMAIL_KEY = 'mr_email';
+  var form = document.getElementById('poll');
+  var btn = document.getElementById('vote-btn');
+  var status = document.getElementById('status');
+  var names = { 'ringer-tee': 'the ringer tee', 'retro-trail-shorts': 'retro trail shorts', 'more-sock-designs': 'more sock designs', 'trailhead-cap': 'the trailhead cap', 'basecamp-beanie': 'the basecamp beanie' };
+
+  function store(get, val) {
+    try { return get ? localStorage.getItem(KEY) : localStorage.setItem(KEY, val); } catch (e) { return null; }
+  }
+  // Who is voting: an email or Kit subscriber ID in the link (?email= / ?ck_subscriber_id=), else the
+  // address the landing page saved when they signed up in this browser. Kit IDs are saved as "kit:<id>".
+  var params = new URLSearchParams(location.search);
+  var voter = (params.get('email') || '').trim();
+  if (!voter) { try { voter = localStorage.getItem(EMAIL_KEY) || ''; } catch (e) {} }
+  if (!voter && params.get('ck_subscriber_id')) voter = 'kit:' + params.get('ck_subscriber_id').trim();
+  if (params.get('email')) { try { localStorage.setItem(EMAIL_KEY, voter); } catch (e) {} }
+  function say(msg, cls) { status.textContent = msg; status.className = 'status' + (cls ? ' ' + cls : ''); }
+  function lock(choice) {
+    var el = form.querySelector('input[value="' + choice + '"]');
+    if (el) el.checked = true;
+    form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
+    btn.disabled = true;
+    btn.textContent = 'Submitted!';
+  }
+
+  if (!ENDPOINT) document.getElementById('setup-note').classList.add('show');
+
+  // Already voted from this browser (only recorded after a confirmed save).
+  var prior = store(true);
+  if (prior && names[prior]) { lock(prior); say('You voted for ' + names[prior] + '. Thanks for weighing in.', 'ok'); }
+
+  var sending = false;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sending || btn.disabled) return; // one vote in flight at a time
+    var picked = form.querySelector('input[name="choice"]:checked');
+    if (!picked) { say('Pick one first.'); return; }
+    var choice = picked.value;
+
+    if (!ENDPOINT) {
+      say('Heads up: poll storage isn\'t connected yet, so this vote was not saved.', 'warn');
+      return;
+    }
+
+    sending = true;
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
+    say('');
+    // text/plain keeps this a "simple" request (no CORS preflight), which Google Apps Script accepts.
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ choice: choice, email: voter, submitted_at: new Date().toISOString(), page: location.pathname })
+    })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        // Only a confirmed save counts; the endpoint answers {"ok": true}.
+        if (!data || data.ok !== true) throw new Error('not saved');
+        store(false, choice);
+        lock(choice);
+        say('Vote counted. Thanks for helping us choose.', 'ok');
+        setTimeout(function () { location.href = '../'; }, 4000);
+      })
+      .catch(function () {
+        sending = false;
+        form.querySelectorAll('input').forEach(function (i) { i.disabled = false; });
+        btn.disabled = false;
+        btn.textContent = 'Submit';
+        say('That didn\'t go through, so your vote wasn\'t saved. Try again in a minute.', 'warn');
+      });
+  });
+})();
+</script>
+</body>
+</html>

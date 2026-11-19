@@ -31,15 +31,28 @@
       colors: ['sand', 'sea', 'sage'], fit: TOP_FIT,
       images: [U('1791779992382-a02b7b5afde7'), U('1695187101014-d34735a4a951'), U('1582394895085-82cd4fd55141'), U('1695187101014-d34735a4a951', { fp: [0.55, 0.62, 2.2] })],
       features: [
-        ['Sleeves end at your wrist.', 'Thumbholes land on your hand, not your knuckles.', U('1695187101014-d34735a4a951', { w: 720, h: 900, fp: [0.55, 0.62, 2.2] })],
-        ['Hood turns with your head.', 'Closer at the cheeks. Clear at the edges.', U('1695187101014-d34735a4a951', { w: 720, h: 900, fp: [0.35, 0.25, 2.0] })],
-        ['Room in the shoulders.', 'Cut short, not small.', U('1791779992382-a02b7b5afde7', { w: 720, h: 900, fp: [0.55, 0.45, 2.4] })],
-        ['Hem stays at your waist.', 'Under the hip belt. Not down your thighs.', U('1582394895085-82cd4fd55141', { w: 720, h: 900, fp: [0.5, 0.4, 2.0] })]
+        ['Thumbholes on your hand.', 'Sleeves are 2" shorter, taken out below the elbow. Fabric stays over the back of your hand.', U('1695187101014-d34735a4a951', { w: 720, h: 900, fp: [0.55, 0.62, 2.2] })],
+        ['A hood that turns with you.', '1" shorter at the crown. Closer at the cheeks, out of your peripheral vision.', U('1695187101014-d34735a4a951', { w: 720, h: 900, fp: [0.35, 0.25, 2.0] })],
+        ['Zipper never touches your neck.', 'A zipper garage at the top and a soft guard behind the whole zip.', U('1791779992382-a02b7b5afde7', { w: 720, h: 900, fp: [0.55, 0.3, 2.6] })],
+        ['A collar that keeps its shape.', 'Taped neckline, so it doesn\'t stretch out after a season.', U('1791779992382-a02b7b5afde7', { w: 720, h: 900, fp: [0.55, 0.4, 2.4] })],
+        ['No seam under your pack straps.', 'Shoulder seams sit just off the top of the shoulder.', U('1582394895085-82cd4fd55141', { w: 720, h: 900, fp: [0.45, 0.3, 2.2] })],
+        ['Hem stays under the hip belt.', 'About 3" shorter in the body, with a drop tail in back.', U('1582394895085-82cd4fd55141', { w: 720, h: 900, fp: [0.5, 0.5, 2.0] })]
       ],
+      // Size spec. XS is the sample spec; S to L are a proposed grade, confirmed on samples.
+      spec: {
+        sizes: ['XS', 'S', 'M', 'L'],
+        chest: [18.75, 19.75, 20.75, 21.75],   // flat, 1" below armhole
+        front: [26.5, 27, 27.5, 28],           // high point of shoulder to hem
+        sleeve: [30, 30.5, 31, 31.5],          // center back neck to cuff
+        body: ['Up to 38"', '38" to 40"', '40" to 42"', '42" to 44"'],
+        // A best-selling merino sun hoodie: XS and S front length from its published chart,
+        // M and L extended at the same step. Sleeve from a worn XS measured against ours.
+        regular: { front: [29.4, 30.1, 30.8, 31.5], sleeveExtra: 2 }
+      },
       details: {
-        Fit: 'Shorter in the body and sleeves than a standard size. Room in the chest and shoulders.',
-        Fabric: 'Lightweight stretch knit. Placeholder: final fabric picked after wear testing.',
-        Details: 'Quarter zip with a zipper garage. Thumbholes. Hood that sits close.',
+        Fit: 'Cut for men 5\'3" to 5\'8". About 3" shorter in the body and 2" shorter in the sleeves than a typical sun hoodie. Fitted through the chest and arms, with room for shoulders that lift.',
+        Fabric: 'Lightweight four-way stretch knit. Placeholder: the final fabric is picked after wear testing.',
+        Details: 'Quarter zip with a zipper garage and soft guard. Thumbholes. Taped neckline. Drop tail. Shoulder seams off the top of the shoulder.',
         Care: 'Machine wash cold. Hang dry.'
       }
     },
@@ -79,22 +92,22 @@
     },
     {
       id: 'rae-lakes-trail-short', name: 'Rae Lakes Trail Short', collection: 'bottoms', price: 58, badge: 'Best seller',
-      tagline: 'Pick your inseam: 5, 6 or 7 inches.',
-      colors: ['ink', 'sage', 'sand'], fit: BOTTOM_FIT, inseams: ['5"', '6"', '7"'],
+      tagline: 'Ends above the knee. No inseam math.',
+      colors: ['ink', 'sage', 'sand'], fit: BOTTOM_FIT, inseams: ['6"'], waists: ['S', 'M', 'L', 'XL'], waistHint: 'S 28-29, M 30-31, L 32-34, XL 35-37',
       images: [U('1667388624717-895854eea032'), U('1597892653980-3cec697283fe'), U('1739416729276-23deaf06a982')],
-      details: { Fit: 'Three inseams so the hem lands above the knee on a shorter leg.', Fabric: 'Stretch woven, quick drying (placeholder).', Details: 'Zip pocket. Liner optional.', Care: 'Machine wash cold. Hang dry.' }
+      details: { Fit: 'One 6" inseam, cut for a shorter leg, so the hem lands above the knee.', Fabric: 'Stretch woven, quick drying (placeholder).', Details: 'Zip pocket. Liner optional.', Care: 'Machine wash cold. Hang dry.' }
     },
     {
       id: 'kearsarge-pass-pant', name: 'Kearsarge Pass Pant', collection: 'bottoms', price: 98,
       tagline: 'A trail pant you don\'t have to hem.',
-      colors: ['granite', 'sand', 'pine'], fit: BOTTOM_FIT, inseams: ['27"', '28"', '29"'],
+      colors: ['granite', 'sand', 'pine'], fit: BOTTOM_FIT, inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
       images: [U('1784715595696-bb7cb69fdec1'), U('1505782388-8632b3423dbb')],
-      details: { Fit: 'Inseams from 27 to 29 inches. Knee placed for a shorter leg.', Fabric: 'Stretch woven (placeholder).', Care: 'Machine wash cold. Hang dry.' }
+      details: { Fit: 'Two inseams, 26" and 28". Knee placed for a shorter leg.', Fabric: 'Stretch woven (placeholder).', Care: 'Machine wash cold. Hang dry.' }
     },
     {
       id: 'charlotte-jogger', name: 'Charlotte Jogger', collection: 'bottoms', price: 88,
       tagline: 'The everyday jogger, cuffs at your ankle.',
-      colors: ['granite', 'ink'], fit: BOTTOM_FIT, inseams: ['26"', '27"', '28"'],
+      colors: ['granite', 'ink'], fit: BOTTOM_FIT, inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
       images: [U('1555412590-954a889ccb90'), U('1581382576286-b6c8f871fb07')],
       details: { Fit: 'Ankle cuffs that land at your ankle, not your shoe.', Fabric: 'Stretch knit (placeholder).', Care: 'Machine wash cold.' }
     },
@@ -117,7 +130,7 @@
   window.KG_SHOP = {
     U: U, COLORS: COLORS, COLLECTIONS: COLLECTIONS, PRODUCTS: PRODUCTS,
     HEIGHTS: ['5\'3"–5\'5"', '5\'6"–5\'8"'],
-    CHESTS: ['XS', 'S', 'M', 'L', 'XL'],
+    CHESTS: ['XS', 'S', 'M', 'L'],
     WAISTS: ['28', '29', '30', '31', '32', '34', '36'],
     GLOVES: ['S', 'M', 'L'],
     product: function (id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; },

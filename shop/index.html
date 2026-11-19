@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=3">
+<link rel="stylesheet" href="shop.css?v=4">
 </head>
 <body data-hero>
 <main>
@@ -21,7 +21,7 @@
       <p class="sub">Performance gear for men 5'8" and under.</p>
       <div class="ctas">
         <a class="btn" href="product.html?p=onion-valley-sun-hoodie">Shop the sun hoodie</a>
-        <a class="btn btn-ghost" href="#fit">Find your fit</a>
+        <a class="btn btn-ghost" href="#lineup">Find your size</a>
       </div>
     </div>
   </section>
@@ -38,28 +38,25 @@
     <div class="feature-copy">
       <p class="eyebrow">The one that started it</p>
       <h2>Onion Valley Sun Hoodie</h2>
-      <ul class="ticks">
-        <li>Sleeves end at your wrist.</li>
-        <li>Thumbholes land on your hand.</li>
-        <li>Hood turns with your head.</li>
-        <li>Hem stays at your waist.</li>
-      </ul>
+      <dl class="nums">
+        <div><dt>&minus;3"</dt><dd>Body. The hem stays under your hip belt.</dd></div>
+        <div><dt>&minus;2"</dt><dd>Sleeves. Thumbholes land on your hand.</dd></div>
+        <div><dt>&minus;1"</dt><dd>Hood. It turns with your head.</dd></div>
+        <div><dt>Same</dt><dd>Chest. We cut the length, not the room.</dd></div>
+      </dl>
+      <p class="fineprint" style="margin-top:-4px">Compared with a best-selling sun hoodie in XS.</p>
       <div><a class="btn" href="product.html?p=onion-valley-sun-hoodie">Shop it, $88</a></div>
     </div>
   </section>
 
-  <section class="fit" id="fit">
+  <section class="sec lineup-sec" id="lineup" aria-labelledby="lineup-h">
     <div class="wrap">
-      <div>
-        <h2>Two numbers. One fit.</h2>
-        <p class="sub">Pick your height. Pick your chest. That's your size, in everything we make.</p>
+      <div class="lineup-head">
+        <p class="eyebrow">No height charts</p>
+        <h2 id="lineup-h">One length. Four guys. Find yours.</h2>
+        <p class="sub">Everything is cut for 5'3" to 5'8", so you only pick a size. Here's the sun hoodie on four guys. Tap the one built like you.</p>
       </div>
-      <form class="finder on-dark" onsubmit="return false">
-        <div><label>Your height</label><div class="chips js-heights"></div></div>
-        <div><label>Your usual chest size</label><div class="chips js-chests"></div></div>
-        <p class="result js-result" aria-live="polite">Pick both to see your size.</p>
-        <a class="btn" href="collection.html">Shop your size</a>
-      </form>
+      <div class="js-lineup"></div>
     </div>
   </section>
 
@@ -98,8 +95,9 @@
   </section>
 </main>
 
-<script src="data.js?v=1"></script>
+<script src="data.js?v=2"></script>
 <script src="shop.js?v=1"></script>
+<script src="lineup.js?v=1"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI;
@@ -109,16 +107,16 @@
   var best = ['onion-valley-sun-hoodie', 'bullfrog-training-tee', 'rae-lakes-trail-short', 'pothole-fleece'];
   document.querySelector('.js-best').innerHTML = best.map(function (id) { return UI.card(S.product(id)); }).join('');
 
-  // Fit finder
-  var chip = function (name, v) { return '<label class="chip"><input type="radio" name="' + name + '" value="' + UI.esc(v) + '"><span>' + UI.esc(v) + '</span></label>'; };
-  document.querySelector('.js-heights').innerHTML = S.HEIGHTS.map(function (h) { return chip('h', h); }).join('');
-  document.querySelector('.js-chests').innerHTML = S.CHESTS.map(function (c) { return chip('c', c); }).join('');
-  var form = document.querySelector('.finder'), out = document.querySelector('.js-result');
-  form.addEventListener('change', function () {
-    var h = form.querySelector('[name=h]:checked'), c = form.querySelector('[name=c]:checked');
-    if (!h || !c) return;
-    try { localStorage.setItem('kg_mock_fit', JSON.stringify({ h: h.value, c: c.value })); } catch (e) {}
-    out.textContent = 'Your size: ' + c.value + ', ' + h.value + '.';
+  // Size lineup
+  var hoodie = S.product('onion-valley-sun-hoodie'), saved = {};
+  try { saved = JSON.parse(localStorage.getItem('kg_lineup') || '{}') || {}; } catch (e) {}
+  window.KG_LINEUP.mount(document.querySelector('.js-lineup'), {
+    product: hoodie, size: saved.size || 'XS', guy: saved.guy || 'marco', color: S.COLORS[hoodie.colors[0]].hex,
+    pickLabel: function (sz) { return 'Shop the hoodie in ' + sz; },
+    onPick: function (sz, guy) {
+      try { localStorage.setItem('kg_lineup', JSON.stringify({ size: sz, guy: guy.id, name: guy.name })); } catch (e) {}
+      location.href = 'product.html?p=' + hoodie.id + '&size=' + encodeURIComponent(sz);
+    }
   });
 
   document.querySelector('.js-news').addEventListener('submit', function (e) {

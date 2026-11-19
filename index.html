@@ -3,188 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kearsarge Gear Co. | Trail clothes cut for shorter men</title>
-<meta name="description" content="Outdoor clothing for men 5'3&quot; to 5'8&quot;. First up: a merino tee with a shorter body and shorter sleeves. Join the list for the first run.">
+<title>Kearsarge Gear Co. | Cut for men 5'3" to 5'8"</title>
+<meta name="description" content="Performance clothing cut for men 5'3&quot; to 5'8&quot;. Shorter in the body and sleeves, with room in the chest and arms. Join the list for launch pricing.">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&amp;family=Courier+Prime:wght@400;700&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
-<style>
-:root {
-  --white: #ffffff;
-  --paper: #f6f4ef;      /* soft off-white band */
-  --ink: #2b2622;        /* logo script color */
-  --ink-2: #4a443d;      /* body text */
-  --muted: #6b655c;      /* secondary text, 5.6:1 on white */
-  --brick: #b23a2e;      /* "Gear Co." red */
-  --brick-dark: #8a2b22;
-  --tan: #a8996f;        /* label border thread, decorative only */
-  --rule: #e4e0d6;
-  --navy: #1d2b44;       /* navy label ground */
-  --cream: #efe6cf;
-  --gold: #c9a24a;
-  --ph: #e2e0db;         /* placeholder gray */
-  --ph-text: #5d5953;
-  --sans: "Archivo", system-ui, sans-serif;
-  --mono: "Courier Prime", ui-monospace, monospace;
-  --script: "Pinyon Script", cursive;
-  --wrap: 1160px;
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--white); color: var(--ink-2); font-family: var(--sans); font-size: 17px; line-height: 1.6; }
-img { max-width: 100%; display: block; }
-a { color: var(--brick); }
-a:hover { color: var(--brick-dark); }
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
-h1, h2, h3 { color: var(--ink); font-family: var(--sans); margin: 0; letter-spacing: -0.015em; }
-h1 { font-weight: 800; font-size: clamp(40px, 5.6vw, 68px); line-height: 1.02; }
-h2 { font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; }
-h3 { font-weight: 700; font-size: 20px; line-height: 1.25; }
-p { margin: 0; }
-.eyebrow { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--brick); }
-.lede { font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 34em; }
-.skip { position: absolute; left: -9999px; }
-.skip:focus { left: 16px; top: 16px; background: var(--ink); color: #fff; padding: 10px 14px; z-index: 10; }
-
-/* ---------- Logo (V3 flat, built in type) ---------- */
-.logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--ink); line-height: 1; }
-.logo-script { font-family: var(--script); font-size: 44px; line-height: 1.05; padding: 0 6px; position: relative; z-index: 2; color: var(--ink);
-  filter: drop-shadow(0 0 1px var(--logo-ground, #fff)) drop-shadow(0 0 1px var(--logo-ground, #fff)); }
-.logo-swash { width: 142px; height: 12px; margin-top: -14px; position: relative; z-index: 1; fill: var(--ink); }
-.logo-co { font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .42em; padding-left: .42em; color: var(--brick); margin-top: 2px; }
-.logo.on-navy { --logo-ground: var(--navy); }
-.logo.on-navy .logo-script { color: var(--cream); }
-.logo.on-navy .logo-swash { fill: var(--cream); }
-.logo.on-navy .logo-co { color: var(--gold); }
-
-/* ---------- Header ---------- */
-.site-header { border-bottom: 1px solid var(--rule); background: var(--white); }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 92px; }
-.nav { display: flex; align-items: center; gap: 28px; }
-.nav a { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
-.nav a:hover { color: var(--brick); }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border: 2px solid var(--brick); background: var(--brick); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; cursor: pointer; border-radius: 0; }
-.btn:hover { background: var(--brick-dark); border-color: var(--brick-dark); color: #fff; }
-.btn:focus-visible, input:focus-visible, .nav a:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
-.btn-ghost { background: transparent; color: var(--brick); }
-.btn-ghost:hover { background: var(--brick); color: #fff; }
-.nav .btn { color: #fff; min-height: 44px; font-size: 13px; padding: 0 18px; white-space: nowrap; }
-.nav .btn:hover { color: #fff; }
-
-/* ---------- Placeholders ---------- */
-.ph { background: var(--ph); color: var(--ph-text); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; padding: 16px; font-family: var(--mono); }
-.ph { overflow: hidden; }
-.ph strong { font-size: 15px; letter-spacing: .2em; text-transform: uppercase; }
-.ph span { font-size: 13px; max-width: 26em; }
-.ph-hero { aspect-ratio: 4 / 5; }
-.ph-wide { aspect-ratio: 4 / 3; }
-.ph-sq { aspect-ratio: 1 / 1; }
-
-/* ---------- Hero ---------- */
-.hero { padding: 72px 0 80px; }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 64px; align-items: center; }
-.hero-copy { display: flex; flex-direction: column; gap: 24px; }
-.hero h1 em { font-style: normal; color: var(--brick); }
-
-/* ---------- Signup form ---------- */
-.signup { display: flex; flex-direction: column; gap: 10px; max-width: 480px; }
-.signup-row { display: flex; gap: 10px; }
-.signup label { font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
-.signup input[type=email] { flex: 1; min-width: 0; min-height: 48px; padding: 0 14px; border: 2px solid var(--ink); background: #fff; color: var(--ink); font-family: var(--sans); font-size: 16px; border-radius: 0; }
-.signup input::placeholder { color: var(--muted); }
-.signup .note { font-size: 14px; color: var(--muted); }
-.signup .status { font-size: 15px; font-weight: 500; color: var(--brick-dark); min-height: 1.4em; }
-
-/* ---------- Problem strip ---------- */
-.problem { background: var(--paper); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 64px 0; }
-.problem-head { display: flex; flex-direction: column; gap: 12px; max-width: 40em; margin-bottom: 40px; }
-.problem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
-.problem-item { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 3px solid var(--ink); }
-.num { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: .14em; color: var(--brick); }
-
-/* ---------- Product ---------- */
-.product { padding: 96px 0; }
-.product .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 64px; align-items: start; }
-.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.gallery .ph-wide { grid-column: 1 / -1; aspect-ratio: 1 / 1; }
-.product-info { display: flex; flex-direction: column; gap: 22px; position: sticky; top: 24px; }
-.price { font-family: var(--mono); font-weight: 700; font-size: 20px; color: var(--ink); }
-.specs { margin: 0; border-top: 1px solid var(--rule); }
-.specs div { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
-.specs dt { font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
-.specs dd { margin: 0; color: var(--ink); font-size: 16px; }
-
-/* ---------- Fit compare ---------- */
-.fit { padding: 0 0 96px; }
-.fit-head { display: flex; flex-direction: column; gap: 12px; max-width: 40em; margin-bottom: 36px; }
-.fit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 880px; }
-.fit .range { max-width: 880px; }
-.fit-card { display: flex; flex-direction: column; gap: 12px; }
-.fit-card .cap { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
-.fit-card .cap b { color: var(--brick); }
-.range { display: flex; align-items: center; gap: 16px; margin-top: 32px; font-family: var(--mono); font-weight: 700; color: var(--ink); font-size: 15px; letter-spacing: .08em; }
-.range-bar { flex: 1; height: 14px; position: relative; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 20%); border-bottom: 2px solid var(--ink); }
-
-/* ---------- Fabric ---------- */
-.fabric { background: var(--paper); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 88px 0; }
-.fabric-head { display: flex; flex-direction: column; gap: 12px; max-width: 40em; margin-bottom: 44px; }
-.fabric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
-.fabric-item { display: flex; flex-direction: column; gap: 14px; }
-.fabric-item .ph { aspect-ratio: 3 / 2; }
-
-/* ---------- Founder ---------- */
-.founder { padding: 96px 0; }
-.founder .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; align-items: center; }
-.founder-note { display: flex; flex-direction: column; gap: 20px; }
-.todo { border: 2px dashed #b9b4aa; padding: 20px 22px; font-family: var(--mono); font-size: 16px; color: var(--ph-text); background: #faf9f6; }
-.sig { font-family: var(--script); font-size: 40px; color: var(--ink); line-height: 1; }
-
-/* ---------- Closing band (navy, nods to the navy label) ---------- */
-.close { background: var(--navy); color: var(--cream); padding: 88px 0; }
-.close .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
-.close h2 { color: var(--cream); }
-.close .eyebrow { color: var(--gold); }
-.close .lede { color: var(--cream); }
-.close-copy { display: flex; flex-direction: column; gap: 18px; }
-.close .signup label { color: var(--cream); }
-.close .signup input[type=email] { border-color: var(--cream); }
-.close .signup .note { color: #cfc7b3; }
-.close .signup .status { color: var(--gold); }
-.close .btn { background: var(--gold); border-color: var(--gold); color: var(--navy); }
-.close .btn:hover { background: var(--cream); border-color: var(--cream); color: var(--navy); }
-.close .btn:focus-visible, .close input:focus-visible { outline-color: var(--gold); }
-
-/* ---------- Footer ---------- */
-.site-footer { padding: 48px 0 56px; }
-.site-footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.foot-meta { font-family: var(--mono); font-size: 14px; color: var(--muted); letter-spacing: .06em; text-align: right; }
-
-/* ---------- Small screens ---------- */
-@media (max-width: 900px) {
-  .hero .wrap, .product .wrap, .founder .wrap, .close .wrap { grid-template-columns: 1fr; gap: 40px; }
-  .hero { padding: 40px 0 56px; }
-  .hero-media { order: -1; }
-  .ph-hero { aspect-ratio: 4 / 3; }
-  .product-info { position: static; }
-  .problem-grid, .fabric-grid { grid-template-columns: 1fr; gap: 24px; }
-  .product, .founder { padding: 64px 0; }
-  .fabric, .close { padding: 64px 0; }
-}
-@media (max-width: 640px) {
-  .nav a:not(.btn) { display: none; }
-  .signup-row { flex-direction: column; }
-  .fit-grid { grid-template-columns: 1fr; }
-  .site-footer .wrap { flex-direction: column; }
-  .foot-meta { text-align: center; }
-  .specs div { grid-template-columns: 1fr; gap: 2px; }
-  .gallery .ph-sq strong { font-size: 11px; letter-spacing: .08em; }
-  .gallery .ph-sq span { display: none; }
-  .site-header .wrap { min-height: 80px; }
-  .logo-script { font-size: 38px; }
-  .logo-swash { width: 122px; }
-}
-</style>
+<link rel="stylesheet" href="assets/kearsarge.css?v=2">
+<script src="assets/kg-config.js?v=1"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -197,9 +23,8 @@ p { margin: 0; }
       <span class="logo-co">Gear Co.</span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="#tee">The tee</a>
       <a href="#fit">Fit</a>
-      <a href="#fabric">Fabric</a>
+      <a href="#product" data-k="navProduct">The hoodie</a>
       <a class="btn" href="#join">Join the list</a>
     </nav>
   </div>
@@ -207,106 +32,76 @@ p { margin: 0; }
 
 <main id="main">
 
-  <!-- Hero -->
+  <!-- Hero: copy swaps by test version (see VARIANTS in the script below) -->
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <p class="eyebrow">Outdoor clothing for men 5'3" to 5'8"</p>
-        <h1>Trail clothes cut for <em>shorter men.</em></h1>
-        <p class="lede">Most outdoor shirts are cut for a taller guy. On you, the hem hangs past your back pockets and the sleeves land at your elbows. Kearsarge takes the length out where you don't need it. First up: a merino tee.</p>
-        <form class="signup js-signup" novalidate>
-          <label for="email-hero">Get first access to the tee</label>
+        <p class="eyebrow" data-k="eyebrow">For men 5'3" to 5'8"</p>
+        <h1 data-k="h1" data-html>Small isn't the same as <em>short.</em></h1>
+        <p class="lede" data-k="lede">Most sun hoodies are cut for a taller guy. On you, the sleeves bunch at your wrists and the hem hangs low. Kearsarge takes out the length you don't need and keeps the room you do. First up: a lightweight sun hoodie for the trail and the gym.</p>
+        <form class="signup js-signup" method="post" novalidate>
+          <label for="email-hero" data-k="formLabel">Get launch pricing on the hoodie</label>
           <div class="signup-row">
-            <input id="email-hero" type="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+            <input id="email-hero" type="email" name="email_address" autocomplete="email" placeholder="you@email.com" required>
+            <input type="hidden" name="fields[kg_variant]" class="js-variant" value="">
             <button class="btn" type="submit">Join the list</button>
           </div>
-          <p class="note">One email when the first run is ready.</p>
+          <p class="note">Launch price: <strong class="js-price">$88</strong>. A few quick fit questions after you sign up.</p>
           <p class="status" role="status" aria-live="polite"></p>
         </form>
       </div>
       <div class="hero-media">
         <div class="ph ph-hero" role="img" aria-label="Placeholder image">
           <strong>Placeholder</strong>
-          <span>Hero: a shorter guy on a trail in the tee, hem sitting at the belt</span>
+          <span data-k="heroPhoto">Hero: a shorter guy in the hoodie, sleeves ending at the wrist</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Problem -->
+  <!-- Problem: item order swaps for the "who lift" version -->
   <section class="problem" aria-labelledby="problem-h">
     <div class="wrap">
       <div class="problem-head">
         <p class="eyebrow">Sound familiar?</p>
-        <h2 id="problem-h">Small isn't the same as short.</h2>
+        <h2 id="problem-h">Standard sizes assume you're taller.</h2>
       </div>
-      <div class="problem-grid">
-        <div class="problem-item">
+      <div class="problem-grid js-problems">
+        <div class="problem-item" data-p="length">
           <span class="num">01</span>
-          <h3>The hem hangs past your back pockets.</h3>
-          <p>Shirts are graded for height you don't have, so the extra length bunches under a hip belt.</p>
+          <h3>The hem hangs low.</h3>
+          <p>Extra length bunches at your waist and under a pack's hip belt.</p>
         </div>
-        <div class="problem-item">
+        <div class="problem-item" data-p="sleeve">
           <span class="num">02</span>
-          <h3>Sleeves land at your elbows.</h3>
-          <p>A short sleeve that reads as a three-quarter sleeve on you.</p>
+          <h3 data-k="sleeveHead">Sleeves run long.</h3>
+          <p data-k="sleeveBody">Long sleeves bunch at your wrists and cover half your hand.</p>
         </div>
-        <div class="problem-item">
+        <div class="problem-item" data-p="squeeze">
           <span class="num">03</span>
-          <h3>Sizing down squeezes your shoulders.</h3>
+          <h3>Sizing down squeezes your chest and arms.</h3>
           <p>An XS fixes the length and fits like a compression shirt everywhere else.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Product -->
-  <section class="product" id="tee" aria-labelledby="tee-h">
-    <div class="wrap">
-      <div class="gallery">
-        <div class="ph ph-wide" role="img" aria-label="Placeholder image">
-          <strong>Placeholder</strong>
-          <span>Product: tee laid flat, front</span>
-        </div>
-        <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>Back</span></div>
-        <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>Fabric close-up</span></div>
-        <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>On body, side</span></div>
-      </div>
-      <div class="product-info">
-        <p class="eyebrow">First up</p>
-        <h2 id="tee-h">The Merino Trail Tee</h2>
-        <p class="price">[PRICE]</p>
-        <p>A lightweight merino tee for long trail days and the gym days in between. Mostly merino for comfort and odor control, with a nylon core so it lasts. Cut about 2 inches shorter in the body and 1 inch shorter in the sleeve than a standard tee.</p>
-        <dl class="specs">
-          <div><dt>Fabric</dt><dd>Mostly merino wool, nylon core</dd></div>
-          <div><dt>Weight</dt><dd>Lightweight, 150 to 170 gsm</dd></div>
-          <div><dt>Body</dt><dd>About 2 in. shorter than standard</dd></div>
-          <div><dt>Sleeve</dt><dd>About 1 in. shorter than standard</dd></div>
-          <div><dt>Built for</dt><dd>5'3" to 5'8"</dd></div>
-          <div><dt>Sizes</dt><dd>[SIZES]</dd></div>
-          <div><dt>Colors</dt><dd>[COLORS]</dd></div>
-        </dl>
-        <a class="btn" href="#join">Get on the first-run list</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fit -->
-  <section class="fit" id="fit" aria-labelledby="fit-h">
+  <!-- Fit: moved above the product. Fit is the reason to buy. -->
+  <section class="fit" id="fit" aria-labelledby="fit-h" style="padding-top:96px">
     <div class="wrap">
       <div class="fit-head">
         <p class="eyebrow">The fit</p>
         <h2 id="fit-h">Shorter where it counts. Not tighter.</h2>
-        <p class="lede">Same chest and shoulders you'd get in your usual size. Less shirt below the belt and past the bicep.</p>
+        <p class="lede">Room in the chest, shoulders and arms. Less length in the body and sleeves.</p>
       </div>
       <div class="fit-grid">
         <figure class="fit-card" style="margin:0">
-          <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>Standard tee on a 5'6" guy</span></div>
-          <figcaption class="cap">A standard medium</figcaption>
+          <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span data-k="fitPhotoA">A standard small hoodie on a 5'5" guy</span></div>
+          <figcaption class="cap">A standard small</figcaption>
         </figure>
         <figure class="fit-card" style="margin:0">
-          <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>Kearsarge tee on the same guy</span></div>
-          <figcaption class="cap"><b>Kearsarge</b> medium</figcaption>
+          <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span data-k="fitPhotoB">The Kearsarge hoodie on the same guy</span></div>
+          <figcaption class="cap"><b>Kearsarge</b>, same guy</figcaption>
         </figure>
       </div>
       <div class="range" aria-label="Built for heights 5 foot 3 to 5 foot 8">
@@ -317,29 +112,33 @@ p { margin: 0; }
     </div>
   </section>
 
-  <!-- Fabric -->
-  <section class="fabric" id="fabric" aria-labelledby="fabric-h">
+  <!-- Product: name, copy, price and specs swap between hoodie and tee -->
+  <section class="product" id="product" aria-labelledby="product-h" style="padding-top:0">
     <div class="wrap">
-      <div class="fabric-head">
-        <p class="eyebrow">Why merino and nylon</p>
-        <h2 id="fabric-h">Merino comfort. Built to last.</h2>
+      <div class="gallery">
+        <div class="ph ph-wide" role="img" aria-label="Placeholder image">
+          <strong>Placeholder</strong>
+          <span data-k="galleryMain">Hoodie laid flat, front</span>
+        </div>
+        <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>Back</span></div>
+        <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span data-k="galleryDetail">Thumbhole and cuff</span></div>
+        <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>On body, side</span></div>
       </div>
-      <div class="fabric-grid">
-        <div class="fabric-item">
-          <div class="ph" role="img" aria-label="Placeholder image"><strong>Placeholder</strong></div>
-          <h3>Stays fresh</h3>
-          <p>Merino resists odor, so one shirt can carry you through a weekend trip.</p>
-        </div>
-        <div class="fabric-item">
-          <div class="ph" role="img" aria-label="Placeholder image"><strong>Placeholder</strong></div>
-          <h3>Holds up</h3>
-          <p>Pure merino pills and wears through. A nylon core gives the yarn strength so the tee lasts longer.</p>
-        </div>
-        <div class="fabric-item">
-          <div class="ph" role="img" aria-label="Placeholder image"><strong>Placeholder</strong></div>
-          <h3>Stays light</h3>
-          <p>Light enough for a summer climb, and it works as a base layer when the weather turns.</p>
-        </div>
+      <div class="product-info">
+        <p class="eyebrow">First up</p>
+        <h2 id="product-h" data-k="productName">The Sun Hoodie</h2>
+        <p class="price">Launch price <span class="js-price">$88</span></p>
+        <p data-k="productBody">A lightweight sun hoodie for long trail days and the gym days in between. Cut shorter in the body and sleeves for men 5'3" to 5'8", with room in the chest and arms.</p>
+        <dl class="specs js-specs">
+          <div><dt>Built for</dt><dd>5'3" to 5'8"</dd></div>
+          <div><dt>Body</dt><dd>Cut shorter, so the hem stays at your waist</dd></div>
+          <div><dt>Sleeves</dt><dd>Cut shorter, with thumbholes that land on your hand</dd></div>
+          <div><dt>Zip</dt><dd>Quarter zip with a zipper garage, so the zipper stays off your neck</dd></div>
+          <div><dt>Hood</dt><dd>Sits close and turns with your head</dd></div>
+          <div><dt>Fabric</dt><dd>Lightweight stretch. Final fabric picked after wear testing</dd></div>
+          <div><dt>Sizes</dt><dd>[SIZES]</dd></div>
+        </dl>
+        <a class="btn" href="#join">Get launch pricing</a>
       </div>
     </div>
   </section>
@@ -350,8 +149,8 @@ p { margin: 0; }
       <div class="ph ph-sq" role="img" aria-label="Placeholder image"><strong>Placeholder</strong><span>Founder on a trail</span></div>
       <div class="founder-note">
         <p class="eyebrow">Why Kearsarge</p>
-        <h2 id="founder-h">Made by a guy who got tired of tucking in.</h2>
-        <p class="todo">[FOUNDER NOTE: 2 to 3 sentences in your own words on why you started Kearsarge.]</p>
+        <h2 id="founder-h">Made by a 5'5" guy who got tired of sizing down.</h2>
+        <p class="todo">[FOUNDER NOTE: 2 to 3 sentences in your own words. Suggested angle: the hoodie you love that's still 2 inches too long in the sleeves, and XS being the only option.]</p>
         <p class="sig">Marek</p>
       </div>
     </div>
@@ -363,15 +162,16 @@ p { margin: 0; }
       <div class="close-copy">
         <p class="eyebrow">The first run is small</p>
         <h2 id="join-h">Get on the list.</h2>
-        <p class="lede">We'll email you once when the tee is ready, before it goes public. Then you can help pick what we make next.</p>
+        <p class="lede">You'll hear from us when it's ready, before it goes public, with launch pricing. Along the way we'll ask a few quick fit questions so we cut it right.</p>
       </div>
-      <form class="signup js-signup" novalidate>
+      <form class="signup js-signup" method="post" novalidate>
         <label for="email-close">Your email</label>
         <div class="signup-row">
-          <input id="email-close" type="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          <input id="email-close" type="email" name="email_address" autocomplete="email" placeholder="you@email.com" required>
+          <input type="hidden" name="fields[kg_variant]" class="js-variant" value="">
           <button class="btn" type="submit">Join the list</button>
         </div>
-        <p class="note">No spam. Unsubscribe anytime.</p>
+        <p class="note">Launch price: <strong class="js-price">$88</strong>. No spam. Unsubscribe anytime.</p>
         <p class="status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -386,25 +186,148 @@ p { margin: 0; }
       <svg class="logo-swash" viewBox="0 0 360 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C60,4 120,4 180,16 C240,28 300,26 360,8 C300,30 240,32 180,20 C120,8 60,8 2,20 Z"/></svg>
       <span class="logo-co">Gear Co.</span>
     </a>
-    <p class="foot-meta">Tailored activewear<br>Los Angeles, California<br>&copy; 2026 Kearsarge Gear Co.</p>
+    <p class="foot-meta">Cut for men 5'3" to 5'8"<br>Los Angeles, California<br>&copy; 2026 Kearsarge Gear Co.</p>
   </div>
 </footer>
 
 <script>
-// Signup isn't wired to Kit yet. Catch submits so the mockup doesn't navigate.
-document.querySelectorAll('.js-signup').forEach(function (form) {
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = form.querySelector('input[type=email]');
-    var status = form.querySelector('.status');
-    if (!input.value || !input.checkValidity()) {
-      status.textContent = 'Enter a valid email address.';
-      input.focus();
-      return;
+/* ---------------------------------------------------------------
+   TEST VERSIONS
+   Point each ad at its own link:
+     ?v=hoodie-short   hoodie, "built for shorter guys" (default)
+     ?v=hoodie-lift    hoodie, "built for shorter guys who lift"
+     ?v=tee-short      tee, "built for shorter guys"
+     ?v=tee-lift       tee, "built for shorter guys who lift"
+   The version travels to Kit (field kg_variant) and to the survey,
+   so results can be split by version.
+   --------------------------------------------------------------- */
+(function () {
+  var PRODUCT = {
+    hoodie: {
+      navProduct: 'The hoodie',
+      formLabel: 'Get launch pricing on the hoodie',
+      heroPhoto: 'Hero: a shorter guy in the hoodie, sleeves ending at the wrist',
+      sleeveHead: 'Sleeves run long.',
+      sleeveBody: 'Long sleeves bunch at your wrists and cover half your hand.',
+      fitPhotoA: 'A standard small hoodie on a 5\'5" guy',
+      fitPhotoB: 'The Kearsarge hoodie on the same guy',
+      galleryMain: 'Hoodie laid flat, front',
+      galleryDetail: 'Thumbhole and cuff',
+      productName: 'The Sun Hoodie',
+      productBody: 'A lightweight sun hoodie for long trail days and the gym days in between. Cut shorter in the body and sleeves for men 5\'3" to 5\'8", with room in the chest and arms.',
+      first: 'a lightweight sun hoodie for the trail and the gym',
+      category: 'sun hoodies',
+      specs: [
+        ['Built for', '5\'3" to 5\'8"'],
+        ['Body', 'Cut shorter, so the hem stays at your waist'],
+        ['Sleeves', 'Cut shorter, with thumbholes that land on your hand'],
+        ['Zip', 'Quarter zip with a zipper garage, so the zipper stays off your neck'],
+        ['Hood', 'Sits close and turns with your head'],
+        ['Fabric', 'Lightweight stretch. Final fabric picked after wear testing'],
+        ['Sizes', '[SIZES]']
+      ]
+    },
+    tee: {
+      navProduct: 'The tee',
+      formLabel: 'Get launch pricing on the tee',
+      heroPhoto: 'Hero: a shorter guy in the tee, hem sitting at the belt',
+      sleeveHead: 'Sleeves run long.',
+      sleeveBody: 'Short sleeves hang past mid-bicep instead of sitting above it.',
+      fitPhotoA: 'A standard small tee on a 5\'5" guy',
+      fitPhotoB: 'The Kearsarge tee on the same guy',
+      galleryMain: 'Tee laid flat, front',
+      galleryDetail: 'Collar and shoulder',
+      productName: 'The Training Tee',
+      productBody: 'A lightweight performance tee for the gym and the trail. Cut shorter in the body and sleeves for men 5\'3" to 5\'8", with room in the chest and arms.',
+      first: 'a performance tee for the gym and the trail',
+      category: 'performance tees',
+      specs: [
+        ['Built for', '5\'3" to 5\'8"'],
+        ['Body', 'Cut shorter, so the hem sits at your belt'],
+        ['Sleeves', 'Cut shorter for a shorter arm'],
+        ['Collar', 'Built to hold its shape'],
+        ['Fabric', 'Lightweight stretch, quick drying. Final fabric picked after wear testing'],
+        ['Sizes', '[SIZES]']
+      ]
     }
-    status.textContent = 'Mockup only: signup is not connected yet.';
+  };
+  var ANGLE = {
+    short: {
+      eyebrow: 'For men 5\'3" to 5\'8"',
+      h1: 'Small isn\'t the same as <em>short.</em>',
+      lede: function (p) { return 'Most ' + p.category + ' are cut for a taller guy. On you, the hem hangs low and the sleeves run long. Kearsarge takes out the length you don\'t need and keeps the room you do. First up: ' + p.first + '.'; },
+      order: ['length', 'sleeve', 'squeeze']
+    },
+    lift: {
+      eyebrow: 'For shorter guys who lift',
+      h1: 'XS too tight. S too long. <em>Fixed.</em>',
+      lede: function (p) { return 'An XS fits your height and squeezes your chest and arms. A small fits your build and hangs long everywhere else. Kearsarge is cut short with room for a lifter\'s chest, shoulders and arms. First up: ' + p.first + '.'; },
+      order: ['squeeze', 'length', 'sleeve']
+    }
+  };
+
+  var params = new URLSearchParams(location.search);
+  var v = (params.get('v') || '').toLowerCase();
+  if (!/^(hoodie|tee)-(short|lift)$/.test(v)) v = 'hoodie-short';
+  var productKey = v.split('-')[0], angleKey = v.split('-')[1];
+  var p = PRODUCT[productKey], a = ANGLE[angleKey];
+  var price = (window.KG && window.KG.PRICE && window.KG.PRICE[productKey]) || '';
+
+  var text = {
+    eyebrow: a.eyebrow, h1: a.h1, lede: a.lede(p),
+    navProduct: p.navProduct, formLabel: p.formLabel, heroPhoto: p.heroPhoto,
+    sleeveHead: p.sleeveHead, sleeveBody: p.sleeveBody,
+    fitPhotoA: p.fitPhotoA, fitPhotoB: p.fitPhotoB,
+    galleryMain: p.galleryMain, galleryDetail: p.galleryDetail,
+    productName: p.productName, productBody: p.productBody
+  };
+  document.querySelectorAll('[data-k]').forEach(function (el) {
+    var val = text[el.getAttribute('data-k')];
+    if (val == null) return;
+    if (el.hasAttribute('data-html')) el.innerHTML = val; else el.textContent = val;
   });
-});
+  document.querySelectorAll('.js-price').forEach(function (el) { el.textContent = price; });
+  document.querySelectorAll('.js-variant').forEach(function (el) { el.value = v; });
+
+  var specs = document.querySelector('.js-specs');
+  specs.innerHTML = '';
+  p.specs.forEach(function (row) {
+    var div = document.createElement('div');
+    var dt = document.createElement('dt'); dt.textContent = row[0];
+    var dd = document.createElement('dd'); dd.textContent = row[1];
+    div.appendChild(dt); div.appendChild(dd); specs.appendChild(div);
+  });
+
+  var grid = document.querySelector('.js-problems');
+  a.order.forEach(function (key, i) {
+    var item = grid.querySelector('[data-p="' + key + '"]');
+    item.querySelector('.num').textContent = '0' + (i + 1);
+    grid.appendChild(item);
+  });
+
+  // Remember the version and ad source so the survey page can save them with the answers.
+  var meta = { variant: v, utm_source: params.get('utm_source') || '', utm_campaign: params.get('utm_campaign') || '', utm_content: params.get('utm_content') || '' };
+  try { sessionStorage.setItem('kg_meta', JSON.stringify(meta)); } catch (e) {}
+
+  var KIT = ((window.KG && window.KG.KIT_FORM_ACTION) || '').trim();
+  document.querySelectorAll('.js-signup').forEach(function (form) {
+    if (KIT) form.action = KIT;
+    form.addEventListener('submit', function (e) {
+      var input = form.querySelector('input[type=email]');
+      var status = form.querySelector('.status');
+      if (!input.value || !input.checkValidity()) {
+        e.preventDefault();
+        status.textContent = 'Enter a valid email address.';
+        input.focus();
+        return;
+      }
+      try { localStorage.setItem('kg_email', input.value.trim()); } catch (err) {}
+      if (KIT) return; // Kit saves the email, then redirects to /thank-you/ (set in Kit).
+      e.preventDefault(); // Not connected yet: skip the save and go straight to the survey.
+      location.href = 'thank-you/?v=' + encodeURIComponent(v) + '&unsaved=1';
+    });
+  });
+})();
 </script>
 </body>
 </html>

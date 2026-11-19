@@ -1,54 +1,63 @@
-# Mountain Retro landing page
+# Kearsarge Gear Co. landing page
 
-Static site. No build step. Upload the whole folder to any static host (Netlify, Vercel, Cloudflare Pages, GitHub Pages, Shopify theme assets, etc.).
+Static site. No build step. GitHub Pages serves it from `main`.
 
 ```
-index.html            Landing page (Kit form embedded in the "First on the trail" coupon)
-thank-you/index.html  Post-signup page with the "What should we make next?" poll
-assets/site.css       Shared styles (brand tokens from the Mountain Retro design system)
-assets/fonts/         Jost (self-hosted, SIL Open Font License, see OFL-LICENSE.txt)
-assets/img/           Approved logo SVGs (unchanged) + web-sized hero, close-up and Field Notes photos
+index.html            Landing page (four test versions, picked by ?v=)
+thank-you/index.html  Post-signup fit survey + optional deposit box
+assets/kg-config.js   Settings: Kit form, prices, survey endpoint, deposit link
+assets/kearsarge.css  Shared styles
 ```
+
+The `assets/img`, `assets/fonts` and `assets/site.css` files are left over from Mountain Retro and aren't used by these pages.
+
+## Test versions (one link per ad)
+
+| Link | Product | Pitch |
+|---|---|---|
+| `/?v=hoodie-short` (also the default) | Sun hoodie | Built for shorter guys |
+| `/?v=hoodie-lift` | Sun hoodie | Built for shorter guys who lift |
+| `/?v=tee-short` | Training tee | Built for shorter guys |
+| `/?v=tee-lift` | Training tee | Built for shorter guys who lift |
+
+Add your usual `utm_source`, `utm_campaign` and `utm_content` to each ad link. The version and UTM tags are saved with each survey answer, and the version is sent to Kit as the custom field `kg_variant`.
 
 ## Before going live
 
-1. **Kit redirect.** In Kit, set the form's success action to redirect to `https://YOURDOMAIN/thank-you/`.
-2. **Kit form type.** The embed is placed inline inside the coupon. This only renders in place if form `367724b386` is an *inline* form in Kit. If it's a modal, slide-in or sticky bar, switch it to inline (or make a new inline form and swap the `data-uid`).
-3. **Kit form styling.** `index.html` restyles Kit's standard classes (`.formkit-input`, `.formkit-submit`, etc.) so the form matches the page. Check it once live; if Kit's template uses different markup, tweak the `#kit-form` rules.
-4. **Poll storage (required for votes to be saved).** See below. Until it's set up, the thank-you page shows a red "Setup needed" bar and tells voters their vote was not saved.
-5. **Social preview image.** `og:image` is a relative path. Change it to the full URL once the domain is set.
+1. **Kit form.** Create an inline form in Kit. From its HTML embed code, copy the `<form action="...">` URL into `KIT_FORM_ACTION` in `assets/kg-config.js`. Set the form's success action to redirect to `https://YOURDOMAIN/thank-you/`. Add a custom field named `kg_variant` in Kit so the test version is stored. Until this is done, emails are not saved and the survey page shows a red "Setup needed" bar.
+2. **Prices.** `PRICE` in `assets/kg-config.js` sets the launch price shown for each product. The survey asks whether they'd buy at that price.
+3. **Survey storage.** See below. Until it's set up, the survey page shows a red bar and says answers were not saved.
+4. **Deposit (optional).** Paste a Shopify or Stripe payment link into `DEPOSIT_URL`. The deposit box only appears after someone answers the survey. The page copy promises the deposit is refundable any time before shipping, so set up the checkout to match.
+5. **Founder note.** Replace the dashed placeholder in `index.html`.
+6. **Photos.** Every gray box is a placeholder. The before-and-after fit photos matter most.
 
-## Poll storage: Google Sheets in about 5 minutes
+## Survey storage: Google Sheets
 
-1. Create a Google Sheet. Add headers in row 1: `submitted_at | choice | email | page`.
+Use a **new** sheet for Kearsarge. Don't reuse the Mountain Retro poll endpoint.
+
+1. Create a Google Sheet. Row 1 headers:
+   `submitted_at | email | variant | utm_source | utm_campaign | utm_content | height | build | usual_size | problems | first_product | price_shown | price_check`
 2. Extensions > Apps Script. Replace the code with:
 
 ```js
-const ALLOWED = ['ringer-tee', 'retro-trail-shorts', 'more-sock-designs', 'trailhead-cap', 'basecamp-beanie'];
+const COLS = ['submitted_at','email','variant','utm_source','utm_campaign','utm_content','height','build','usual_size','problems','first_product','price_shown','price_check'];
 
 function doPost(e) {
-  let data = {};
-  try { data = JSON.parse(e.postData.contents); } catch (err) {}
-  if (!ALLOWED.includes(data.choice)) {
-    return ContentService.createTextOutput(JSON.stringify({ ok: false }))
-      .setMimeType(ContentService.MimeType.JSON);
+  let d = {};
+  try { d = JSON.parse(e.postData.contents); } catch (err) {}
+  if (!/^(hoodie|tee)-(short|lift)$/.test(d.variant || '')) {
+    return ContentService.createTextOutput(JSON.stringify({ ok: false })).setMimeType(ContentService.MimeType.JSON);
   }
-  SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]
-    .appendRow([new Date(), data.choice, String(data.email || '').slice(0, 254), String(data.page || '').slice(0, 100)]);
-  return ContentService.createTextOutput(JSON.stringify({ ok: true }))
-    .setMimeType(ContentService.MimeType.JSON);
+  const row = COLS.map(k => String(d[k] == null ? '' : d[k]).slice(0, 300));
+  SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow(row);
+  return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
-3. Deploy > New deployment > Web app. Execute as: Me. Who has access: Anyone. Copy the `/exec` URL.
-4. In `thank-you/index.html`, set `window.MR_POLL_ENDPOINT = "https://script.google.com/macros/s/.../exec";`
-5. Vote once on the live page and confirm a row lands in the sheet.
-
-Any endpoint that accepts a POST with a JSON body (sent as `text/plain`) and returns HTTP 200 works the same way.
+3. Deploy > New deployment > Web app. Execute as: Me. Who has access: Anyone. Copy the `/exec` URL into `SURVEY_ENDPOINT`.
+4. Fill in the survey once on the live page and confirm a row lands in the sheet.
 
 Notes:
-- A vote only shows "Vote counted" after the endpoint confirms the save. Failures say the vote wasn't saved.
-- Each vote is saved with who voted, in the `email` column. The page uses, in order: `?email=` in the link, the address the landing page saved when they signed up in the same browser, or `?ck_subscriber_id=` in the link (saved as `kit:<id>`, which you can look up in Kit). If none of these is available, the column is blank.
-- After a successful vote the button shows "Submitted!" and the page returns to the homepage.
-- The browser remembers a confirmed vote so the same visitor isn't asked twice. This is a soft limit, not fraud protection.
-- When you change the script, save it, then Deploy > Manage deployments > edit (pencil) > Version: New version > Deploy. This keeps the same `/exec` URL.
+- The survey only says "Got it" after the endpoint answers `{"ok": true}`.
+- The email saved with the answers comes from the address typed on the landing page in the same browser, or `?ck_subscriber_id=` in the link (saved as `kit:<id>`).
+- A browser that already sent answers isn't asked again. This is a soft limit, not fraud protection.

@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0b0b0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="../assets/kg-config.js?v=2"></script>
 <style>
 :root {
@@ -24,9 +24,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
 .site-header { display: flex; justify-content: center; padding: 22px 0 16px; border-bottom: 1px solid var(--line); }
-.logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
-.logo-script { font-family: var(--script); font-size: 52px; line-height: 1.05; padding: 0 6px; color: #fff; position: relative; z-index: 2; filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000); }
-.logo-swash { width: 168px; height: 13px; margin-top: -16px; fill: var(--hot); }
+.wordmark { font-family: var(--display); font-weight: 700; font-size: 34px; letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: #fff; text-decoration: none; line-height: 1; }
+.wordmark:hover { color: var(--hot); }
 
 /* Hero: text left, shirt photo right */
 .hero { display: grid; grid-template-columns: 1.05fr .95fr; min-height: min(92vh, 860px); }
@@ -68,6 +67,32 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 .card h3 { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; font-size: clamp(26px, 2.6vw, 34px); }
 .card h3 span { display: block; font-family: var(--sans); font-weight: 500; text-transform: none; font-size: 16px; color: #cfcfd3; margin-top: 8px; letter-spacing: 0; line-height: 1.35; }
 
+
+/* Feature close-up carousel */
+.closeups { padding: 88px 0 72px; }
+.car-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.car-btns { display: flex; gap: 10px; }
+.carousel { position: relative; }
+.car-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: max(24px, calc((100vw - 1160px) / 2 + 24px)); padding: 0 max(24px, calc((100vw - 1160px) / 2 + 24px)); scrollbar-width: none; }
+.car-track::-webkit-scrollbar { display: none; }
+.car-track:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.car-slide { flex: 0 0 clamp(250px, 28vw, 340px); margin: 0; scroll-snap-align: start; }
+.car-slide img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.car-slide figcaption { margin-top: 14px; }
+.car-slide b { display: block; }
+.car-slide span { display: block; margin-top: 4px; font-size: 16px; }
+.car-btns button { width: 48px; height: 48px; font-size: 22px; line-height: 1; cursor: pointer; }
+.car-btns button:disabled { opacity: .35; cursor: default; }
+@media (max-width: 760px) { .closeups { padding: 64px 0 56px; } .car-slide { flex-basis: 78vw; } }
+.closeups { border-top: 1px solid var(--line); }
+.closeups h2 { font-size: clamp(48px, 7vw, 88px); }
+.car-slide img { filter: grayscale(.4) contrast(1.08); }
+.car-slide b { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: 28px; color: #fff; line-height: 1; }
+.car-slide span { color: var(--muted); }
+.car-btns button { border: 2px solid #fff; background: transparent; color: #fff; }
+.car-btns button:not(:disabled):hover { background: var(--hot); border-color: var(--hot); color: #0b0b0c; }
+:root { --focus: var(--hot); }
+
 /* Moat: two numbers */
 .moat { background: var(--panel); padding: 96px 0; }
 .moat .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
@@ -89,7 +114,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 .foot { padding: 28px 0 40px; text-align: center; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); }
 
 @media (max-width: 760px) {
-  .logo-script { font-size: 44px; } .logo-swash { width: 142px; margin-top: -14px; }
+  .wordmark { font-size: 28px; }
   .hero { grid-template-columns: 1fr; min-height: 0; }
   .hero-img { order: -1; aspect-ratio: 4 / 3; }
   .hero-img::after { background: linear-gradient(180deg, rgba(11,11,12,0) 60%, var(--bg) 100%); }
@@ -109,10 +134,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 <body data-page="gym">
 
 <header class="site-header">
-  <a class="logo" href="./" aria-label="Kearsarge">
-    <span class="logo-script">Kearsarge</span>
-    <svg class="logo-swash" viewBox="0 0 360 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C60,4 120,4 180,16 C240,28 300,26 360,8 C300,30 240,32 180,20 C120,8 60,8 2,20 Z"/></svg>
-  </a>
+  <a class="wordmark" href="./" aria-label="Kearsarge">Kearsarge</a>
 </header>
 
 <main>
@@ -154,6 +176,24 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
     </div>
   </section>
 
+  <section class="closeups" aria-labelledby="closeups-h">
+    <div class="wrap">
+      <div class="car-head">
+        <h2 id="closeups-h">Up close.</h2>
+        <div class="car-btns"><button class="car-prev" type="button" aria-label="Previous">&#8592;</button><button class="car-next" type="button" aria-label="Next">&#8594;</button></div>
+      </div>
+    </div>
+    <div class="carousel" data-carousel>
+      <div class="car-track" tabindex="0" role="region" aria-label="Feature close-ups">
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1604897391146-c98ab268e252?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.75&amp;fp-z=2.0&amp;w=720&amp;h=900&amp;q=72" alt="Close-up of a fitted black tee across a man's chest" loading="lazy"><figcaption><b>Room in the chest.</b><span>No compression-shirt squeeze.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1790267461841-6b66de790590?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=72" alt="A man in a black tee seen from behind" loading="lazy"><figcaption><b>Room in the lats.</b><span>Hem stays down on pull-ups.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1604897391146-c98ab268e252?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.25&amp;fp-y=0.8&amp;fp-z=2.4&amp;w=720&amp;h=900&amp;q=72" alt="Close-up of a black tee sleeve on a man's arm" loading="lazy"><figcaption><b>Sleeves cut for a short arm.</b><span>They sit on the arm. They don't hang off it.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1791732604582-60dcebafcae4?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=72" alt="A man in a black tee, collar and shoulders in view" loading="lazy"><figcaption><b>Collar holds its shape.</b><span>Wash after wash.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1643313260651-9c335822ecde?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=72" alt="Close-up of a knit fabric texture" loading="lazy"><figcaption><b>Stretch where you move.</b><span>Final fabric picked after wear testing.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
   <section class="moat">
     <div class="wrap">
       <div>
@@ -187,5 +227,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 
 <footer class="foot">&copy; 2026 Kearsarge. Los Angeles, California.</footer>
 <script src="../assets/kg-signup.js?v=1"></script>
+<script src="../assets/kg-carousel.js?v=1"></script>
 </body>
 </html>

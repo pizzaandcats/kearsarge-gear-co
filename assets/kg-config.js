@@ -14,7 +14,7 @@
    --------------------------------------------------------------- */
 window.KG = {
   KIT_FORM_ACTION: "",
-  PRICE: { hoodie: "$88", tee: "$48" },
+  PRICE: { hoodie: "$88", tee: "$48", outdoors: "$88", gym: "$48", fitness: "$54" },
   SURVEY_ENDPOINT: "",
   DEPOSIT_URL: "",
   DEPOSIT_AMOUNT: "$10"

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&amp;family=Courier+Prime:wght@400;700&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/kearsarge.css?v=2">
-<script src="../assets/kg-config.js?v=1"></script>
+<script src="../assets/kg-config.js?v=2"></script>
 </head>
 <body class="survey-page">
 
@@ -144,9 +144,11 @@
   var meta = {};
   try { meta = JSON.parse(sessionStorage.getItem('kg_meta') || '{}'); } catch (e) {}
   var v = (params.get('v') || meta.variant || 'hoodie-short').toLowerCase();
-  if (!/^(hoodie|tee)-(short|lift)$/.test(v)) v = 'hoodie-short';
-  var productKey = v.split('-')[0];
-  var price = (KG.PRICE && KG.PRICE[productKey]) || '';
+  var VALID = /^((hoodie|tee)-(short|lift)|outdoors|gym|fitness)$/;
+  if (!VALID.test(v)) v = 'hoodie-short';
+  // lp-outdoors sells the sun hoodie; lp-gym and lp-fitness sell the tee.
+  var productKey = (v === 'outdoors' || v.indexOf('hoodie') === 0) ? 'hoodie' : 'tee';
+  var price = (KG.PRICE && (KG.PRICE[v] || KG.PRICE[productKey])) || '';
   document.querySelectorAll('.js-price').forEach(function (el) { el.textContent = price; });
   document.querySelectorAll('.js-product').forEach(function (el) { el.textContent = productKey === 'tee' ? 'tee' : 'hoodie'; });
   document.querySelectorAll('.js-deposit').forEach(function (el) { el.textContent = KG.DEPOSIT_AMOUNT || '$10'; });

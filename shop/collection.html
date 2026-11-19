@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop | Kearsarge</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6efe3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css?v=2">
+</head>
+<body>
+<main>
+  <section class="col-hero">
+    <img class="js-col-img" src="" alt="">
+    <div class="wrap">
+      <h1 class="js-col-title">Shop all</h1>
+      <p class="js-col-blurb">Performance gear for men 5'8" and under.</p>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="chips filters js-filters" aria-label="Collections"></div>
+      <label><span class="sr" style="position:absolute;left:-9999px">Sort</span>
+        <select class="js-sort" aria-label="Sort">
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+        </select>
+      </label>
+    </div>
+    <div class="grid js-grid" style="padding-bottom:96px"></div>
+  </div>
+</main>
+
+<script src="data.js?v=1"></script>
+<script src="shop.js?v=1"></script>
+<script>
+(function () {
+  var S = window.KG_SHOP, UI = window.KG_UI;
+  var id = new URLSearchParams(location.search).get('c');
+  var col = id ? S.collection(id) : null;
+  var img = document.querySelector('.js-col-img');
+  img.src = col ? col.image.replace(/w=\d+&h=\d+/, 'w=2200&h=900') : S.U('1505782388-8632b3423dbb', { w: 2200, h: 900 });
+  document.querySelector('.js-col-title').textContent = col ? col.name : 'Shop all';
+  document.querySelector('.js-col-blurb').textContent = col ? col.blurb : 'Performance gear for men 5\'8" and under.';
+  document.title = (col ? col.name : 'Shop all') + ' | Kearsarge';
+
+  var f = [{ id: '', name: 'All' }].concat(S.COLLECTIONS);
+  document.querySelector('.js-filters').innerHTML = f.map(function (c) {
+    var on = (c.id || null) === (id || null);
+    return '<a class="chip' + (on ? ' on' : '') + '" href="collection.html' + (c.id ? '?c=' + c.id : '') + '"' + (on ? ' aria-current="page"' : '') + '><span>' + UI.esc(c.name) + '</span></a>';
+  }).join('');
+
+  var grid = document.querySelector('.js-grid'), sort = document.querySelector('.js-sort');
+  function draw() {
+    var list = S.PRODUCTS.filter(function (p) { return !col || p.collection === col.id; }).slice();
+    if (sort.value === 'low') list.sort(function (a, b) { return a.price - b.price; });
+    if (sort.value === 'high') list.sort(function (a, b) { return b.price - a.price; });
+    grid.innerHTML = list.map(UI.card).join('');
+  }
+  sort.addEventListener('change', draw);
+  draw();
+})();
+</script>
+</body>
+</html>

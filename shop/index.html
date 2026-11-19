@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kearsarge | Fits like it was made for you</title>
+<meta name="description" content="Mock storefront. Performance gear for men 5'8&quot; and under.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6efe3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css?v=2">
+</head>
+<body data-hero>
+<main>
+  <section class="hero">
+    <img src="https://images.unsplash.com/photo-1791779992382-a02b7b5afde7?auto=format&fit=crop&w=2200&q=75" alt="A man in a hooded sun shirt fishing from the shore at golden hour">
+    <div class="wrap">
+      <h1>Fits like it was made for you.</h1>
+      <p class="sub">Performance gear for men 5'8" and under.</p>
+      <div class="ctas">
+        <a class="btn" href="product.html?p=onion-valley-sun-hoodie">Shop the sun hoodie</a>
+        <a class="btn btn-ghost" href="#fit">Find your fit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><h2>Shop by what you do.</h2><a href="collection.html">Shop all</a></div>
+      <div class="tiles js-tiles"></div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="feature-img"><img src="https://images.unsplash.com/photo-1695187101014-d34735a4a951?auto=format&fit=crop&w=1400&q=75" alt="A man in a light sun hoodie holding a fishing rod" loading="lazy"></div>
+    <div class="feature-copy">
+      <p class="eyebrow">The one that started it</p>
+      <h2>Onion Valley Sun Hoodie</h2>
+      <ul class="ticks">
+        <li>Sleeves end at your wrist.</li>
+        <li>Thumbholes land on your hand.</li>
+        <li>Hood turns with your head.</li>
+        <li>Hem stays at your waist.</li>
+      </ul>
+      <div><a class="btn" href="product.html?p=onion-valley-sun-hoodie">Shop it, $88</a></div>
+    </div>
+  </section>
+
+  <section class="fit" id="fit">
+    <div class="wrap">
+      <div>
+        <h2>Two numbers. One fit.</h2>
+        <p class="sub">Pick your height. Pick your chest. That's your size, in everything we make.</p>
+      </div>
+      <form class="finder on-dark" onsubmit="return false">
+        <div><label>Your height</label><div class="chips js-heights"></div></div>
+        <div><label>Your usual chest size</label><div class="chips js-chests"></div></div>
+        <p class="result js-result" aria-live="polite">Pick both to see your size.</p>
+        <a class="btn" href="collection.html">Shop your size</a>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><h2>Best sellers.</h2><a href="collection.html">Shop all</a></div>
+      <div class="grid js-best"></div>
+    </div>
+  </section>
+
+  <section class="places" aria-label="Where it goes">
+    <div class="place"><img src="https://images.unsplash.com/photo-1505782388-8632b3423dbb?auto=format&fit=crop&w=900&q=75" alt="A lone hiker crossing pale sand dunes" loading="lazy"><span>Desert.</span></div>
+    <div class="place"><img src="https://images.unsplash.com/photo-1506527115643-b3b387978fad?auto=format&fit=crop&w=900&q=75" alt="A sailor in a long-sleeve top on a small sailboat" loading="lazy"><span>Water.</span></div>
+    <div class="place"><img src="https://images.unsplash.com/photo-1553593155-9e0dc045405c?auto=format&fit=crop&w=900&q=75" alt="A man running along the shore at sunset" loading="lazy"><span>Shore.</span></div>
+  </section>
+
+  <section class="story" id="story">
+    <img src="https://images.unsplash.com/photo-1794264123830-985d9c8ef522?auto=format&fit=crop&w=2200&q=75" alt="A granite peak reflected in a clear Eastern Sierra lake" loading="lazy">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#f3c9a8">Our story</p>
+      <h2>Named for Kearsarge Pass.</h2>
+      <p>Every piece is named for a stop on the trail over Kearsarge Pass in California's Eastern Sierra. Gear for long days outside, cut for guys who never had a size made for them.</p>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="wrap">
+      <h2>First run is small.</h2>
+      <p style="margin-top:10px">Get on the list for launch pricing.</p>
+      <form class="js-news" novalidate>
+        <input type="email" aria-label="Email" placeholder="Your email" required>
+        <button class="btn" type="submit">Join the list</button>
+      </form>
+      <p class="status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<script src="data.js?v=1"></script>
+<script src="shop.js?v=1"></script>
+<script>
+(function () {
+  var S = window.KG_SHOP, UI = window.KG_UI;
+  document.querySelector('.js-tiles').innerHTML = S.COLLECTIONS.map(function (c) {
+    return '<a class="tile" href="collection.html?c=' + c.id + '"><img src="' + c.image + '" alt="" loading="lazy"><span>' + UI.esc(c.name) + '<small>' + UI.esc(c.blurb) + '</small></span></a>';
+  }).join('');
+  var best = ['onion-valley-sun-hoodie', 'bullfrog-training-tee', 'rae-lakes-trail-short', 'pothole-fleece'];
+  document.querySelector('.js-best').innerHTML = best.map(function (id) { return UI.card(S.product(id)); }).join('');
+
+  // Fit finder
+  var chip = function (name, v) { return '<label class="chip"><input type="radio" name="' + name + '" value="' + UI.esc(v) + '"><span>' + UI.esc(v) + '</span></label>'; };
+  document.querySelector('.js-heights').innerHTML = S.HEIGHTS.map(function (h) { return chip('h', h); }).join('');
+  document.querySelector('.js-chests').innerHTML = S.CHESTS.map(function (c) { return chip('c', c); }).join('');
+  var form = document.querySelector('.finder'), out = document.querySelector('.js-result');
+  form.addEventListener('change', function () {
+    var h = form.querySelector('[name=h]:checked'), c = form.querySelector('[name=c]:checked');
+    if (!h || !c) return;
+    try { localStorage.setItem('kg_mock_fit', JSON.stringify({ h: h.value, c: c.value })); } catch (e) {}
+    out.textContent = 'Your size: ' + c.value + ', ' + h.value + '.';
+  });
+
+  document.querySelector('.js-news').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.querySelector('.news .status').innerHTML = 'Mock store. <a href="../lp-outdoors/">Join the real list here.</a>';
+  });
+})();
+</script>
+<script src="../assets/kg-carousel.js?v=1"></script>
+</body>
+</html>

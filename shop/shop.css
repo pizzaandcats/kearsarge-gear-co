@@ -250,3 +250,14 @@ details p { margin-top: 10px; }
   .foot-cols { grid-template-columns: 1fr 1fr; }
   .car-slide { flex-basis: 78vw; }
 }
+
+/* Fit guide entry points (product page) */
+.fg-entry { display: flex; gap: 10px; flex-wrap: wrap; margin: -4px 0 4px; }
+.fg-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); font: 600 15px var(--sans); cursor: pointer; }
+.fg-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
+.fg-btn:hover { background: var(--ink); color: var(--bone); }
+.fg-btn-size { background: var(--sea); border-color: var(--sea); color: #fff; }
+.fg-btn-size:hover { background: var(--sea-dark); border-color: var(--sea-dark); color: #fff; }
+.your-fit b { color: var(--sea); }
+.fg-more { margin-top: 14px; font-size: 15px; }
+.fg-more button { border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: var(--sea); text-decoration: underline; cursor: pointer; }

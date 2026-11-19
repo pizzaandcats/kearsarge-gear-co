@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=2">
+<link rel="stylesheet" href="shop.css?v=3">
 </head>
 <body>
 <main>
@@ -26,6 +26,10 @@
         <p class="price js-price"></p>
         <div><p class="opt-label">Color <span class="js-color-name"></span></p><div class="chips js-colors"></div></div>
         <div class="js-opts"></div>
+        <div class="fg-entry">
+          <button class="fg-btn fg-btn-size" type="button" data-fg="size"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15 15 3l6 6L9 21z"/><path d="M7 11l2 2M10 8l2 2M13 5l2 2"/></svg>Find my size</button>
+          <button class="fg-btn" type="button" data-fg="ask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Ask a question</button>
+        </div>
         <p class="your-fit js-fit">Built for men 5'3" to 5'8". Shorter where it counts, not tighter.</p>
         <button class="btn btn-block" type="submit">Add to cart</button>
         <p class="status" role="status" aria-live="polite"></p>
@@ -56,6 +60,7 @@
 
 <script src="data.js?v=1"></script>
 <script src="shop.js?v=1"></script>
+<script src="fit-guide.js?v=1"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI, esc = UI.esc;
@@ -87,14 +92,6 @@
   if (p.fit === 'top') {
     opts.innerHTML = block('Height', 'Sets the length', 'h', S.HEIGHTS) + block('Chest', 'Your usual size', 'c', S.CHESTS);
     need = ['h', 'c'];
-    try { var saved = JSON.parse(localStorage.getItem('kg_mock_fit') || 'null'); if (saved) {
-      var a = Array.prototype.filter.call(opts.querySelectorAll('[name=h]'), function (x) { return x.value === saved.h; })[0];
-      var b = Array.prototype.filter.call(opts.querySelectorAll('[name=c]'), function (x) { return x.value === saved.c; })[0];
-      if (a && b) {
-        a.checked = true; b.checked = true;
-        document.querySelector('.js-fit').textContent = 'Your saved fit: ' + saved.c + ', ' + saved.h + '. Change it any time.';
-      }
-    } } catch (e) {}
   } else if (p.fit === 'bottom') {
     opts.innerHTML = block('Waist', 'Inches', 'w', S.WAISTS) + block('Inseam', 'Pick where it ends', 'i', p.inseams);
     need = ['w', 'i'];
@@ -103,12 +100,36 @@
     need = ['g'];
   }
 
+  var form = document.querySelector('.js-buy'), status = form.querySelector('.status');
+
+  // Fill the size pickers from the fit guide (or the home page fit finder)
+  var fitNote = document.querySelector('.js-fit');
+  function applySize(size, label, fromGuide) {
+    var ok = Object.keys(size).every(function (n) {
+      var r = Array.prototype.filter.call(opts.querySelectorAll('[name="' + n + '"]'), function (x) { return x.value === size[n]; })[0];
+      if (r) r.checked = true; return !!r;
+    });
+    if (!ok) return false;
+    fitNote.innerHTML = 'Your size: <b>' + esc(label) + '</b>. ' + (fromGuide ? 'From the fit guide.' : 'From your last size check.');
+    if (p.fit === 'top') try { localStorage.setItem('kg_mock_fit', JSON.stringify({ h: size.h, c: size.c })); } catch (e) {}
+    return true;
+  }
+  var known = window.KG_FIT.savedSize(p);
+  if (known) applySize(known.size, known.label, false);
+  else if (p.fit === 'top') try { var mf = JSON.parse(localStorage.getItem('kg_mock_fit') || 'null'); if (mf) applySize({ h: mf.h, c: mf.c }, mf.c + ' chest · ' + mf.h + ' length', false); } catch (e) {}
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-fg]'); if (!b) return;
+    window.KG_FIT.open(p, { mode: b.getAttribute('data-fg'), onSize: function (size, label) {
+      if (applySize(size, label, true)) { status.textContent = 'Size set. Add to cart when you\'re ready.'; form.querySelector('[type=submit]').focus(); }
+    } });
+  });
+
   // Details
   document.querySelector('.js-details').innerHTML = Object.keys(p.details).map(function (k, i) {
     return '<details' + (i === 0 ? ' open' : '') + '><summary>' + esc(k) + '</summary><p>' + esc(p.details[k]) + '</p></details>';
-  }).join('') + '<details><summary>Shipping and returns</summary><p>Mock store: nothing ships. Placeholder for free shipping over $100 and free exchanges on fit.</p></details>';
+  }).join('') + '<details><summary>Shipping and returns</summary><p>Mock store: nothing ships. Placeholder for free shipping over $100 and free exchanges on fit.</p></details>'
+    + '<p class="fg-more">Something else about the ' + esc(p.name) + '? <button type="button" data-fg="ask">Ask the fit guide</button></p>';
 
-  var form = document.querySelector('.js-buy'), status = form.querySelector('.status');
   form.addEventListener('change', function (e) {
     if (e.target.name === 'color') colorName.textContent = S.COLORS[e.target.value].name;
     status.textContent = '';

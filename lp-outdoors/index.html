@@ -25,15 +25,15 @@ h1, h2 { font-family: var(--display); color: var(--ink); font-weight: 800; lette
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
 /* Logo: Kearsarge + flourish, centered */
-.site-header { display: flex; justify-content: center; padding: 22px 0 18px; background: var(--bone); }
+.site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: flex; justify-content: center; padding: 22px 0 18px; }
 .logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
-.logo-script { font-family: var(--script); font-size: 52px; line-height: 1.05; padding: 0 6px; color: var(--ink); position: relative; z-index: 2; filter: drop-shadow(0 0 1px var(--bone)) drop-shadow(0 0 1px var(--bone)); }
-.logo-swash { width: 168px; height: 13px; margin-top: -16px; fill: var(--sun); }
+.logo-script { font-family: var(--script); font-size: 56px; line-height: 1.05; padding: 0 6px; color: #fff; position: relative; z-index: 2; text-shadow: 0 1px 14px rgba(0,0,0,.25); }
+.logo-swash { width: 178px; height: 13px; margin-top: -16px; fill: #fff; filter: drop-shadow(0 1px 8px rgba(0,0,0,.25)); }
 
 /* Hero */
 .hero { position: relative; min-height: min(88vh, 820px); display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
 .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31,85,104,0) 35%, rgba(30,24,18,.72) 100%); }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,30,34,.28) 0%, rgba(31,85,104,0) 22%, rgba(31,85,104,0) 40%, rgba(30,24,18,.72) 100%); }
 .hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 56px; }
 .hero h1 { color: #fff; font-size: clamp(54px, 9vw, 120px); max-width: 9ch; }
 .hero .sub { margin-top: 16px; font-size: clamp(18px, 2vw, 22px); max-width: 30ch; color: #fff6ea; }
@@ -63,6 +63,31 @@ h1, h2 { font-family: var(--display); color: var(--ink); font-weight: 800; lette
 .fix-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
 .fix-list li { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 2.6vw, 32px); color: var(--ink); line-height: 1.15; padding-left: 40px; position: relative; }
 .fix-list li::before { content: ""; position: absolute; left: 0; top: .32em; width: 22px; height: 22px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 6px rgba(217,98,43,.18); }
+
+
+/* Feature close-up carousel */
+.closeups { padding: 88px 0 72px; }
+.car-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.car-btns { display: flex; gap: 10px; }
+.carousel { position: relative; }
+.car-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: max(24px, calc((100vw - 1120px) / 2 + 24px)); padding: 0 max(24px, calc((100vw - 1120px) / 2 + 24px)); scrollbar-width: none; }
+.car-track::-webkit-scrollbar { display: none; }
+.car-track:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.car-slide { flex: 0 0 clamp(250px, 28vw, 340px); margin: 0; scroll-snap-align: start; }
+.car-slide img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.car-slide figcaption { margin-top: 14px; }
+.car-slide b { display: block; }
+.car-slide span { display: block; margin-top: 4px; font-size: 16px; }
+.car-btns button { width: 48px; height: 48px; font-size: 22px; line-height: 1; cursor: pointer; }
+.car-btns button:disabled { opacity: .35; cursor: default; }
+@media (max-width: 760px) { .closeups { padding: 64px 0 56px; } .car-slide { flex-basis: 78vw; } }
+.closeups h2 { font-size: clamp(40px, 6vw, 72px); max-width: 12ch; }
+.car-slide img { border-radius: 16px; }
+.car-slide b { font-family: var(--display); font-weight: 600; font-size: 26px; color: var(--ink); line-height: 1.15; }
+.car-slide span { color: var(--ink-2); }
+.car-btns button { border: 2px solid var(--ink); border-radius: 50%; background: transparent; color: var(--ink); }
+.car-btns button:not(:disabled):hover { background: var(--ink); color: var(--bone); }
+:root { --focus: var(--sun); }
 
 /* Moat: sized by height */
 .moat { background: var(--sea); color: #eaf2f1; padding: 88px 0; }
@@ -128,18 +153,20 @@ h1, h2 { font-family: var(--display); color: var(--ink); font-weight: 800; lette
     <div class="place"><img src="https://images.unsplash.com/photo-1553593155-9e0dc045405c?auto=format&fit=crop&w=900&q=75" alt="A man running along the shore at sunset" loading="lazy"><span>Shore.</span></div>
   </section>
 
-  <section class="fixes">
+  <section class="closeups" aria-labelledby="closeups-h">
     <div class="wrap">
-      <h2>Fits like it was made for you.</h2>
-      <div class="fix-grid">
-        <img src="https://images.unsplash.com/photo-1695187101014-d34735a4a951?auto=format&fit=crop&w=1000&q=75" alt="Close-up of a man in a light hooded sun shirt holding a fishing rod" loading="lazy">
-        <ul class="fix-list">
-          <li>Sleeves end at your wrist.</li>
-          <li>Thumbholes land on your hand.</li>
-          <li>Hem stays at your waist.</li>
-          <li>Hood turns with your head.</li>
-          <li>Zipper stays off your neck.</li>
-        </ul>
+      <div class="car-head">
+        <h2 id="closeups-h">Fits like it was made for you.</h2>
+        <div class="car-btns"><button class="car-prev" type="button" aria-label="Previous">&#8592;</button><button class="car-next" type="button" aria-label="Next">&#8594;</button></div>
+      </div>
+    </div>
+    <div class="carousel" data-carousel>
+      <div class="car-track" tabindex="0" role="region" aria-label="Feature close-ups">
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1695187101014-d34735a4a951?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.62&amp;fp-z=2.2&amp;w=720&amp;h=900&amp;q=72" alt="Close-up of a sun hoodie sleeve and hand on a fishing rod" loading="lazy"><figcaption><b>Sleeves end at your wrist.</b><span>Thumbholes land on your hand, not your knuckles.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1695187101014-d34735a4a951?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.35&amp;fp-y=0.25&amp;fp-z=2.0&amp;w=720&amp;h=900&amp;q=72" alt="Close-up of a hood on a man's head in the sun" loading="lazy"><figcaption><b>Hood turns with your head.</b><span>Closer at the cheeks. Clear at the edges.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1596832772762-78e213deff5f?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=72" alt="Close-up of a jacket zipper" loading="lazy"><figcaption><b>Zipper stays off your neck.</b><span>A zipper garage at the top. A soft guard behind.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1791779992382-a02b7b5afde7?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.45&amp;fp-z=2.4&amp;w=720&amp;h=900&amp;q=72" alt="Back of a man in a hooded sun shirt on the water" loading="lazy"><figcaption><b>Room in the shoulders.</b><span>Cut short, not small.</span></figcaption></figure>
+        <figure class="car-slide"><img src="https://images.unsplash.com/photo-1582394895085-82cd4fd55141?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.4&amp;fp-z=2.0&amp;w=720&amp;h=900&amp;q=72" alt="A man in a light hoodie, hem at the waist" loading="lazy"><figcaption><b>Hem stays at your waist.</b><span>Under the hip belt. Not down your thighs.</span></figcaption></figure>
       </div>
     </div>
   </section>
@@ -174,5 +201,6 @@ h1, h2 { font-family: var(--display); color: var(--ink); font-weight: 800; lette
 
 <footer class="foot">&copy; 2026 Kearsarge. Los Angeles, California.</footer>
 <script src="../assets/kg-signup.js?v=1"></script>
+<script src="../assets/kg-carousel.js?v=1"></script>
 </body>
 </html>

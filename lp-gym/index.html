@@ -23,19 +23,20 @@ h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: .01em; line-height: .95; color: #fff; }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
-.site-header { display: flex; justify-content: center; padding: 22px 0 16px; position: absolute; top: 0; left: 0; right: 0; z-index: 3; }
+.site-header { display: flex; justify-content: center; padding: 22px 0 16px; border-bottom: 1px solid var(--line); }
 .logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
 .logo-script { font-family: var(--script); font-size: 52px; line-height: 1.05; padding: 0 6px; color: #fff; position: relative; z-index: 2; filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000); }
 .logo-swash { width: 168px; height: 13px; margin-top: -16px; fill: var(--hot); }
 
-/* Hero */
-.hero { position: relative; min-height: min(94vh, 880px); display: flex; align-items: flex-end; overflow: hidden; }
-.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; filter: grayscale(.35) contrast(1.1); }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,.55) 0%, rgba(11,11,12,.15) 35%, rgba(11,11,12,.92) 100%); }
-.hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 56px; }
-.hero h1 { font-size: clamp(64px, 11vw, 150px); }
+/* Hero: text left, shirt photo right */
+.hero { display: grid; grid-template-columns: 1.05fr .95fr; min-height: min(92vh, 860px); }
+.hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 48px 64px max(24px, calc((100vw - 1160px) / 2 + 24px)); }
+.hero-img { position: relative; overflow: hidden; }
+.hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: contrast(1.08); }
+.hero-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(11,11,12,0) 22%); }
+.hero h1 { font-size: clamp(60px, 8.4vw, 132px); }
 .hero h1 span { color: var(--hot); }
-.hero .sub { margin-top: 18px; font-size: clamp(18px, 2vw, 22px); color: #d6d6d9; max-width: 34ch; }
+.hero .sub { margin-top: 18px; font-size: clamp(18px, 2vw, 22px); color: #d6d6d9; max-width: 30ch; }
 
 .signup { margin-top: 26px; max-width: 540px; }
 .signup-row { display: flex; gap: 0; }
@@ -89,6 +90,10 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 
 @media (max-width: 760px) {
   .logo-script { font-size: 44px; } .logo-swash { width: 142px; margin-top: -14px; }
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .hero-img { order: -1; aspect-ratio: 4 / 3; }
+  .hero-img::after { background: linear-gradient(180deg, rgba(11,11,12,0) 60%, var(--bg) 100%); }
+  .hero-text { padding: 8px 24px 48px; }
   .signup-row { flex-direction: column; gap: 8px; }
   .signup input[type=email] { border-right: 2px solid #fff; }
   .verdict .wrap { grid-template-columns: 1fr; }
@@ -112,8 +117,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
 
 <main>
   <section class="hero">
-    <img src="https://images.unsplash.com/photo-1604897391146-c98ab268e252?auto=format&fit=crop&w=2000&q=75" alt="A man in a fitted black t-shirt looking straight at the camera">
-    <div class="wrap">
+    <div class="hero-text">
       <h1>Short. Built.<br><span>Finally fits.</span></h1>
       <p class="sub">The training tee for men 5'3" to 5'8" who lift, ruck and do the work.</p>
       <form class="signup js-signup" method="post" novalidate>
@@ -125,6 +129,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-transform: uppe
         <p class="note">Launch price <strong class="js-price">$48</strong>. First run is small.</p>
         <p class="status" role="status" aria-live="polite"></p>
       </form>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1604897391146-c98ab268e252?auto=format&fit=crop&w=1400&q=75" alt="A man in a fitted black t-shirt looking straight at the camera">
     </div>
   </section>
 

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kearsarge | Your fit guide</title>
+<meta name="description" content="Mock AI-first storefront. Tell us your height and we size everything for you.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6efe3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bone: #f6efe3; --paper: #fbf7f0; --sand: #e9d9bf; --sun: #d9622b; --sun-dark: #b44c1c;
+  --sea: #1f5568; --ink: #2a2119; --ink-2: #4d4033; --muted: #7a6c5d; --rule: #e3d6c2;
+  --display: "Fraunces", Georgia, serif; --sans: "DM Sans", system-ui, sans-serif; --script: "Pinyon Script", cursive;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body { margin: 0; font-family: var(--sans); font-size: 16px; line-height: 1.45; color: var(--ink-2); background: #14232a url("https://images.unsplash.com/photo-1791779992382-a02b7b5afde7?auto=format&fit=crop&w=1600&q=50") center / cover fixed; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+h1, h2, h3, p { margin: 0; }
+
+/* App shell: a phone-width column, full screen on phones */
+.app { position: relative; max-width: 480px; height: 100dvh; margin: 0 auto; background: var(--bone); display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 0 60px rgba(0,0,0,.35); }
+.mock { background: var(--ink); color: var(--sand); font-size: 12px; text-align: center; padding: 5px 12px; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px; border-bottom: 1px solid var(--rule); background: var(--bone); }
+.logo { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; color: var(--ink); text-decoration: none; }
+.logo-script { font-family: var(--script); font-size: 32px; line-height: 1.05; }
+.logo-swash { width: 104px; height: 8px; margin-top: -9px; fill: var(--sun); }
+.pill { border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; max-width: 60%; overflow: hidden; text-overflow: ellipsis; }
+.pill.set { background: var(--ink); color: var(--bone); }
+
+.views { flex: 1; position: relative; overflow: hidden; }
+.view { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: none; }
+.view.on { display: block; }
+
+/* Chat */
+#ask { padding: 0 0 12px; }
+.intro { position: relative; height: 230px; color: #fff; overflow: hidden; }
+.intro img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.intro::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,30,34,.1) 30%, rgba(30,24,18,.75)); }
+.intro div { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; }
+.intro h1 { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; color: #fff; letter-spacing: -0.02em; }
+.intro p { margin-top: 6px; font-size: 15px; color: #fff4e6; }
+.thread { padding: 14px 14px 4px; display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 86%; padding: 10px 14px; border-radius: 18px; font-size: 16px; animation: pop .18s ease-out; }
+.msg.bot { align-self: flex-start; background: #fff; color: var(--ink); border-bottom-left-radius: 6px; box-shadow: 0 1px 0 var(--rule); }
+.msg.me { align-self: flex-end; background: var(--sea); color: #fff; border-bottom-right-radius: 6px; }
+.msg ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
+.typing { align-self: flex-start; background: #fff; border-radius: 18px; padding: 12px 14px; display: flex; gap: 4px; }
+.typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+@keyframes pop { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+.chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 14px 2px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: 0 0 auto; border: 1.5px solid var(--ink); background: transparent; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.chip:active { background: var(--ink); color: var(--bone); }
+
+/* Product cards in chat */
+.row { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 14px 4px; scrollbar-width: none; animation: pop .2s ease-out; }
+.row::-webkit-scrollbar { display: none; }
+.pc { flex: 0 0 72%; max-width: 270px; scroll-snap-align: start; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 0 var(--rule); }
+.pc button.img { display: block; width: 100%; padding: 0; border: 0; background: var(--sand); cursor: pointer; }
+.pc img { width: 100%; aspect-ratio: 4 / 4.2; object-fit: cover; }
+.pc .b { padding: 10px 12px 12px; display: grid; gap: 4px; }
+.pc .n { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; color: var(--ink); font-size: 15px; }
+.pc .sz { font-size: 13px; color: var(--sea); font-weight: 600; }
+.add { margin-top: 6px; min-height: 40px; border: 0; border-radius: 999px; background: var(--sun); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; }
+.add.done { background: var(--ink); }
+
+/* Composer */
+.composer { padding: 8px 10px calc(8px + var(--safe-b)); border-top: 1px solid var(--rule); background: var(--bone); display: none; }
+.composer.on { display: block; }
+.composer form { display: flex; gap: 8px; }
+.composer input { flex: 1; min-width: 0; min-height: 46px; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 16px; font: 500 16px var(--sans); background: #fff; color: var(--ink); }
+.send { width: 46px; height: 46px; border: 0; border-radius: 50%; background: var(--sun); color: #fff; font-size: 20px; cursor: pointer; }
+.demo { margin-top: 6px; text-align: center; font-size: 11px; color: var(--muted); }
+
+/* Shop feed */
+#shop { padding: 12px 0 18px; }
+#shop .chips { padding-bottom: 10px; }
+.chip.on { background: var(--ink); color: var(--bone); }
+.feed { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; padding: 0 14px; }
+.fc { background: transparent; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.fc img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; background: var(--sand); }
+.fc b { display: block; margin-top: 8px; font-size: 14px; color: var(--ink); }
+.fc span { display: block; font-size: 13px; }
+.fc .sz { color: var(--sea); font-weight: 600; }
+.nudge { margin: 0 14px 14px; padding: 12px 14px; border-radius: 14px; background: var(--sea); color: #eaf2f1; font-size: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.nudge button { border: 0; background: #fff; color: var(--sea); border-radius: 999px; padding: 8px 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+
+/* Bag */
+#bag { padding: 16px 14px 24px; }
+#bag h2, .sheet h2 { font-family: var(--display); font-weight: 800; color: var(--ink); font-size: 30px; letter-spacing: -0.02em; }
+.line { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+.line img { width: 64px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+.line b { display: block; color: var(--ink); font-size: 15px; }
+.line small { display: block; color: var(--muted); font-size: 13px; }
+.line .x { border: 0; background: transparent; color: var(--muted); font-size: 13px; text-decoration: underline; cursor: pointer; padding: 4px 0; }
+.total { display: flex; justify-content: space-between; margin: 16px 0 12px; font-size: 18px; color: var(--ink); font-weight: 700; }
+.big { width: 100%; min-height: 52px; border: 0; border-radius: 999px; background: var(--sun); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; }
+.note { margin-top: 10px; font-size: 14px; min-height: 1.3em; }
+
+/* Bottom tabs */
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); background: var(--paper); padding-bottom: var(--safe-b); }
+.tab { border: 0; background: transparent; padding: 10px 0 8px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.tab svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.tab.on { color: var(--ink); }
+.badge { position: absolute; transform: translate(12px, -4px); background: var(--sun); color: #fff; border-radius: 999px; font-size: 10px; min-width: 16px; padding: 0 4px; line-height: 16px; }
+
+/* Product sheet */
+.scrim { position: absolute; inset: 0; background: rgba(30,24,18,.45); z-index: 30; display: none; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; max-height: 88%; overflow-y: auto; background: var(--bone); border-radius: 20px 20px 0 0; z-index: 31; transform: translateY(100%); transition: transform .25s ease; padding-bottom: calc(16px + var(--safe-b)); }
+.sheet.on { transform: none; }
+.sheet .grab { width: 40px; height: 4px; border-radius: 4px; background: var(--rule); margin: 8px auto; }
+.sheet .gal { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 14px; scrollbar-width: none; }
+.sheet .gal img { flex: 0 0 82%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; scroll-snap-align: start; }
+.sheet .in { padding: 14px; display: grid; gap: 10px; }
+.sheet .tag { font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--ink-2); }
+.yourfit { background: #fff; border-radius: 14px; padding: 12px 14px; font-size: 14px; }
+.yourfit b { color: var(--sea); }
+.yourfit ul { margin: 6px 0 0; padding-left: 18px; }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="mock">Mock AI-first store. The fit guide is a scripted demo.</div>
+  <header class="top">
+    <a class="logo" href="./" aria-label="Kearsarge"><span class="logo-script">Kearsarge</span><svg class="logo-swash" viewBox="0 0 360 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C60,4 120,4 180,16 C240,28 300,26 360,8 C300,30 240,32 180,20 C120,8 60,8 2,20 Z"/></svg></a>
+    <button class="pill" id="pill" type="button" aria-label="Your fit profile">Set your fit</button>
+  </header>
+
+  <div class="views">
+    <section class="view on" id="ask" aria-label="Fit guide">
+      <div class="intro">
+        <img src="https://images.unsplash.com/photo-1791779992382-a02b7b5afde7?auto=format&fit=crop&w=900&h=480&q=70" alt="">
+        <div><h1>Fits like it was made for you.</h1><p>Tell me your height. I'll size everything.</p></div>
+      </div>
+      <div class="thread" id="thread" aria-live="polite"></div>
+    </section>
+    <section class="view" id="shop" aria-label="Shop"></section>
+    <section class="view" id="bag" aria-label="Bag"></section>
+    <div class="scrim" id="scrim"></div>
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Product"></div>
+  </div>
+
+  <div class="composer on" id="composer">
+    <form id="ask-form" autocomplete="off">
+      <input id="ask-input" type="text" enterkeyhint="send" placeholder="e.g. 5'5&quot;, I lift, XS is tight" aria-label="Ask the fit guide">
+      <button class="send" type="submit" aria-label="Send">&#8593;</button>
+    </form>
+    <p class="demo">Scripted demo, not a live AI. Built to plug a real model in later.</p>
+  </div>
+
+  <nav class="tabs" aria-label="Sections">
+    <button class="tab on" data-v="ask" type="button"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>Ask</button>
+    <button class="tab" data-v="shop" type="button"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Shop</button>
+    <button class="tab" data-v="bag" type="button" style="position:relative"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>Bag<span class="badge" id="badge" hidden>0</span></button>
+  </nav>
+</div>
+
+<script src="../shop/data.js?v=1"></script>
+<script src="guide.js?v=1"></script>
+<script>
+(function () {
+  var S = window.KG_SHOP, G = window.KG_GUIDE;
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var img = function (src, w, h) { return src.replace(/w=\d+&h=\d+/, 'w=' + w + '&h=' + h); };
+  var load = function (k, d) { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } };
+  var save = function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+  var profile = load('kg_ai_profile', { acts: [] });
+  var bag = load('kg_ai_bag', []);
+  var ready = function () { return profile.height && profile.size; };
+
+  /* ---------- Profile pill ---------- */
+  function renderPill() {
+    var p = $('#pill');
+    if (ready()) { p.textContent = G.fmtHeight(profile.height) + ' · ' + G.chestFor(profile) + ' chest'; p.classList.add('set'); }
+    else { p.textContent = 'Set your fit'; p.classList.remove('set'); }
+  }
+  $('#pill').addEventListener('click', function () { show('ask'); ask(ready() ? 'Start over' : ''); });
+
+  /* ---------- Bag ---------- */
+  function addToBag(prod) {
+    if (!ready()) { show('ask'); bot({ text: 'Tell me your height and usual size first, so I can size the ' + prod.name + ' for you.', chips: ['5\'4"', '5\'5"', '5\'6"', '5\'7"', '5\'8"'] }); return false; }
+    bag.push({ id: prod.id, color: prod.colors[0], size: G.cartSize(profile, prod) });
+    save('kg_ai_bag', bag); renderBadge(); return true;
+  }
+  function renderBadge() { var b = $('#badge'); b.hidden = !bag.length; b.textContent = bag.length; }
+  function renderBag() {
+    var total = 0;
+    var lines = bag.map(function (x, i) {
+      var p = S.product(x.id); total += p.price;
+      return '<div class="line"><img src="' + img(p.images[0], 160, 200) + '" alt=""><div><b>' + esc(p.name) + '</b><small>' + esc(S.COLORS[x.color].name) + ' · ' + esc(x.size) + '</small><button class="x" data-i="' + i + '" type="button">Remove</button></div><span>$' + p.price + '</span></div>';
+    }).join('');
+    $('#bag').innerHTML = '<h2>Your bag</h2>' + (bag.length ? lines + '<div class="total"><span>Total</span><span>$' + total + '</span></div><button class="big" id="checkout" type="button">Check out</button><p class="note" id="co-note" aria-live="polite"></p>'
+      : '<p style="margin-top:10px">Empty. Ask the fit guide for picks in your size.</p><button class="big" style="margin-top:16px" type="button" id="go-ask">Ask the fit guide</button>');
+  }
+  $('#bag').addEventListener('click', function (e) {
+    var x = e.target.closest('.x'); if (x) { bag.splice(+x.getAttribute('data-i'), 1); save('kg_ai_bag', bag); renderBadge(); renderBag(); }
+    if (e.target.id === 'checkout') $('#co-note').innerHTML = 'Mock store, so nothing is charged. <a href="../lp-outdoors/">Join the list</a> for launch.';
+    if (e.target.id === 'go-ask') show('ask');
+  });
+
+  /* ---------- Chat ---------- */
+  var thread = $('#thread');
+  function scrollDown() { var v = $('#ask'); v.scrollTop = v.scrollHeight; }
+  function me(text) { var d = document.createElement('div'); d.className = 'msg me'; d.textContent = text; thread.appendChild(d); scrollDown(); }
+  function card(p) {
+    var sz = ready() ? G.sizeLabel(profile, p) : 'Tell me your height for your size';
+    return '<div class="pc"><button class="img" type="button" data-open="' + p.id + '" aria-label="See ' + esc(p.name) + '"><img src="' + img(p.images[0], 560, 588) + '" alt="" loading="lazy"></button>' +
+      '<div class="b"><div class="n"><span>' + esc(p.name) + '</span><span>$' + p.price + '</span></div><div class="sz">Your size: ' + esc(sz) + '</div>' +
+      '<button class="add" type="button" data-add="' + p.id + '">Add to bag</button></div></div>';
+  }
+  function bot(r) {
+    var t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>'; thread.appendChild(t); scrollDown();
+    setTimeout(function () {
+      t.remove();
+      var d = document.createElement('div'); d.className = 'msg bot'; thread.appendChild(d);
+      var words = r.text.split(' '), i = 0;
+      (function stream() {
+        d.textContent = words.slice(0, ++i).join(' '); scrollDown();
+        if (i < words.length) return setTimeout(stream, 18);
+        if (r.why && r.why.length) { var ul = document.createElement('ul'); ul.innerHTML = r.why.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join(''); d.appendChild(ul); }
+        if (r.cards && r.cards.length) {
+          var row = document.createElement('div'); row.className = 'row'; row.innerHTML = r.cards.map(card).join('');
+          if (r.kit) row.setAttribute('data-kit', r.cards.map(function (c) { return c.id; }).join(','));
+          thread.appendChild(row);
+        }
+        if (r.chips && r.chips.length) {
+          var c = document.createElement('div'); c.className = 'chips';
+          c.innerHTML = r.chips.map(function (x) { return '<button class="chip" type="button">' + esc(x) + '</button>'; }).join('');
+          thread.appendChild(c);
+        }
+        scrollDown();
+      })();
+    }, 420);
+  }
+  function ask(text) {
+    if (text) me(text);
+    var r = G.reply(text || '', profile);
+    if (r.addKit) { G.kit(profile).forEach(addToBag); }
+    save('kg_ai_profile', profile); renderPill(); renderFeed();
+    bot(r);
+  }
+  $('#ask-form').addEventListener('submit', function (e) {
+    e.preventDefault(); var v = $('#ask-input').value.trim(); if (!v) return; $('#ask-input').value = ''; ask(v);
+  });
+  thread.addEventListener('click', function (e) {
+    var chip = e.target.closest('.chip'); if (chip) { chip.parentNode.remove(); ask(chip.textContent); return; }
+    var add = e.target.closest('[data-add]'); if (add) { if (addToBag(S.product(add.getAttribute('data-add')))) { add.textContent = 'Added'; add.classList.add('done'); } return; }
+    var op = e.target.closest('[data-open]'); if (op) openSheet(op.getAttribute('data-open'));
+  });
+
+  /* ---------- Shop feed ---------- */
+  var filter = '';
+  function renderFeed() {
+    var cols = [{ id: '', name: 'All' }].concat(S.COLLECTIONS);
+    var list = S.PRODUCTS.filter(function (p) { return !filter || p.collection === filter; });
+    $('#shop').innerHTML = (ready() ? '' : '<div class="nudge"><span>Sizes show once I know your height.</span><button type="button" id="nudge">Set my fit</button></div>') +
+      '<div class="chips">' + cols.map(function (c) { return '<button class="chip' + (c.id === filter ? ' on' : '') + '" type="button" data-f="' + c.id + '">' + esc(c.name) + '</button>'; }).join('') + '</div>' +
+      '<div class="feed">' + list.map(function (p) {
+        return '<button class="fc" type="button" data-open="' + p.id + '"><img src="' + img(p.images[0], 480, 600) + '" alt="" loading="lazy"><b>' + esc(p.name) + '</b><span>$' + p.price + '</span>' +
+          (ready() ? '<span class="sz">Your size: ' + esc(G.sizeLabel(profile, p)) + '</span>' : '') + '</button>';
+      }).join('') + '</div>';
+  }
+  $('#shop').addEventListener('click', function (e) {
+    var f = e.target.closest('[data-f]'); if (f) { filter = f.getAttribute('data-f'); renderFeed(); return; }
+    if (e.target.id === 'nudge') { show('ask'); return; }
+    var op = e.target.closest('[data-open]'); if (op) openSheet(op.getAttribute('data-open'));
+  });
+
+  /* ---------- Product sheet ---------- */
+  function openSheet(id) {
+    var p = S.product(id), sh = $('#sheet');
+    var fit = ready()
+      ? '<div class="yourfit">Your size: <b>' + esc(G.sizeLabel(profile, p)) + '</b><ul>' + G.why(profile, p).map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul></div>'
+      : '<div class="yourfit">Tell the fit guide your height and usual size, and this shows your size.</div>';
+    sh.innerHTML = '<div class="grab"></div><div class="gal">' + p.images.map(function (s) { return '<img src="' + img(s, 640, 800) + '" alt="" loading="lazy">'; }).join('') + '</div>' +
+      '<div class="in"><h2>' + esc(p.name) + '</h2><p class="tag">' + esc(p.tagline) + '</p><p style="font-weight:700;color:var(--ink)">$' + p.price + '</p>' + fit +
+      '<button class="big" type="button" data-add="' + p.id + '">' + (ready() ? 'Add to bag in my size' : 'Set my fit') + '</button>' +
+      '<button class="chip" type="button" data-askabout="' + p.id + '" style="justify-self:start">Ask about this</button></div>';
+    sh.classList.add('on'); $('#scrim').style.display = 'block';
+  }
+  function closeSheet() { $('#sheet').classList.remove('on'); $('#scrim').style.display = 'none'; }
+  $('#scrim').addEventListener('click', closeSheet);
+  $('#sheet').addEventListener('click', function (e) {
+    var add = e.target.closest('[data-add]');
+    if (add) { if (addToBag(S.product(add.getAttribute('data-add')))) { add.textContent = 'Added'; } else closeSheet(); return; }
+    var q = e.target.closest('[data-askabout]');
+    if (q) { closeSheet(); show('ask'); ask('Will the ' + S.product(q.getAttribute('data-askabout')).name + ' fit me?'); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
+
+  /* ---------- Tabs ---------- */
+  function show(v) {
+    document.querySelectorAll('.view').forEach(function (x) { x.classList.toggle('on', x.id === v); });
+    document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-v') === v); });
+    $('#composer').classList.toggle('on', v === 'ask');
+    if (v === 'bag') renderBag();
+    if (v === 'shop') renderFeed();
+    closeSheet();
+  }
+  document.querySelectorAll('.tab').forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('data-v')); }); });
+
+  /* ---------- Start ---------- */
+  renderPill(); renderBadge(); renderFeed();
+  if (ready()) bot({ text: 'Welcome back. You\'re ' + G.fmtHeight(profile.height) + ', ' + G.chestFor(profile) + ' chest. What are we shopping for?', chips: ['Something for the gym', 'Sun & trail', 'Shorts', 'Build me a kit', 'Start over'] });
+  else bot({ text: 'I\'m the Kearsarge fit guide. Tell me your height, your usual size and what you\'re into. I\'ll size everything for you.', chips: ['I\'m 5\'5" and I lift', 'I\'m 5\'7", I hike', 'I wear a Vuori S', 'Just show me the hoodie'] });
+})();
+</script>
+</body>
+</html>

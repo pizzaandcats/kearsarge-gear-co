@@ -1,12 +1,13 @@
 /* Kearsarge mock shop. Type rules: the script logo is the only decorative type.
-   Titles are a light, high-contrast serif (Fraunces 300-400, large optical size);
+   Titles are a classic, high-contrast serif (Cormorant Garamond 400-500) from the same
+   calligraphic tradition as the script logo;
    everything else is a quiet sans. Labels are small, tracked uppercase. */
 :root {
   --bone: #f5f1ea; --paper: #faf8f4; --stone: #ebe5db; --sand: #e4dccd;
   --ph: #d8d3cb; --ph-ink: #5f5a53;
   --sea: #2f4a55; --sun: #9a5a3a;
   --ink: #1f1c18; --ink-2: #48423b; --muted: #7a736b; --rule: #e0d9cd;
-  --display: "Fraunces", Georgia, serif; --sans: "DM Sans", system-ui, sans-serif; --script: "Pinyon Script", cursive;
+  --display: "Cormorant Garamond", "Cormorant", Garamond, Georgia, serif; --sans: "DM Sans", system-ui, sans-serif; --script: "Pinyon Script", cursive;
   --wrap: 1320px;
 }
 * { box-sizing: border-box; }
@@ -16,7 +17,7 @@ body.locked { overflow: hidden; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 h1, h2, h3, p { margin: 0; }
-h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; letter-spacing: -0.015em; line-height: 1.06; }
+h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 400; letter-spacing: 0; line-height: 1.04; }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
 .eyebrow, .label { font-weight: 600; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 .fineprint { margin-top: 18px; font-size: 13px; color: var(--muted); }
@@ -73,7 +74,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; f
 .hero .ph .ph-shot, .story .ph .ph-shot { max-width: 44ch; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 48%, rgba(0,0,0,.5) 100%); pointer-events: none; }
 .hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; }
-.hero h1 { color: #fff; font-size: clamp(52px, 7.4vw, 112px); font-weight: 300; max-width: 11ch; }
+.hero h1 { color: #fff; font-size: clamp(58px, 8.2vw, 124px); font-weight: 400; max-width: 11ch; }
 .hero .sub { margin-top: 20px; font-size: clamp(17px, 1.6vw, 20px); color: #fff; max-width: 40ch; }
 .hero .ctas { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -86,7 +87,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; f
 /* Statement */
 .manifesto { padding: 136px 0 120px; text-align: center; }
 .manifesto .eyebrow { margin-bottom: 26px; }
-.manifesto h2 { font-size: clamp(34px, 4.4vw, 60px); font-weight: 300; max-width: 22ch; margin: 0 auto; line-height: 1.14; }
+.manifesto h2 { font-size: clamp(34px, 4.4vw, 60px); font-weight: 400; max-width: 22ch; margin: 0 auto; line-height: 1.14; }
 .manifesto h2 em { font-style: italic; }
 .manifesto p { margin: 26px auto 0; max-width: 52ch; font-size: 17px; }
 
@@ -115,7 +116,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; f
 .feature-copy > p { max-width: 46ch; }
 .nums { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
 .nums div { border-top: 1px solid var(--rule); padding-top: 14px; }
-.nums dt { font-family: var(--display); font-weight: 300; font-size: 40px; color: var(--ink); line-height: 1; font-variation-settings: "opsz" 144; }
+.nums dt { font-family: var(--display); font-weight: 500; font-size: 46px; color: var(--ink); line-height: 1; }
 .nums dd { margin: 8px 0 0; font-size: 15px; }
 
 /* Editorial two-up */
@@ -132,7 +133,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; f
 .act .ph .ph-id { color: #fff; }
 .act::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.5)); pointer-events: none; }
 .act-copy { position: absolute; left: 32px; right: 32px; bottom: 32px; z-index: 1; }
-.act-copy h2 { color: #fff; font-size: clamp(40px, 4.4vw, 64px); font-weight: 300; }
+.act-copy h2 { color: #fff; font-size: clamp(40px, 4.4vw, 64px); font-weight: 400; }
 .act-copy p { margin: 10px 0 18px; max-width: 38ch; }
 .filter-sep { width: 1px; align-self: stretch; background: var(--rule); }
 
@@ -158,7 +159,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; f
 .story::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,0) 100%); pointer-events: none; }
 .story .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; }
 .story .eyebrow { color: #fff; }
-.story h2 { color: #fff; font-size: clamp(40px, 5vw, 72px); font-weight: 300; max-width: 12ch; margin-top: 14px; }
+.story h2 { color: #fff; font-size: clamp(40px, 5vw, 72px); font-weight: 400; max-width: 12ch; margin-top: 14px; }
 .story p { margin-top: 18px; font-size: 18px; max-width: 40ch; }
 
 /* Newsletter */
@@ -170,7 +171,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 350; f
 
 /* Collection page */
 .shop-head { padding: 72px 0 12px; text-align: center; }
-.shop-head h1 { font-size: clamp(42px, 5.4vw, 72px); font-weight: 300; }
+.shop-head h1 { font-size: clamp(42px, 5.4vw, 72px); font-weight: 400; }
 .shop-head p { margin: 12px auto 0; max-width: 52ch; }
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 32px; border-bottom: 1px solid var(--rule); margin-bottom: 40px; }
 .filters { display: flex; flex-wrap: wrap; gap: 6px 26px; }
@@ -223,7 +224,7 @@ details ul { padding-left: 18px; }
 .car-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: max(32px, calc((100vw - 1320px) / 2 + 32px)); padding: 0 max(32px, calc((100vw - 1320px) / 2 + 32px)); scrollbar-width: none; }
 .car-track::-webkit-scrollbar { display: none; }
 .car-slide { flex: 0 0 clamp(260px, 24vw, 340px); margin: 0; scroll-snap-align: start; }
-.car-slide b { display: block; margin-top: 16px; font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--ink); line-height: 1.2; }
+.car-slide b { display: block; margin-top: 16px; font-family: var(--display); font-weight: 500; font-size: 25px; color: var(--ink); line-height: 1.2; }
 .car-slide span { display: block; margin-top: 6px; font-size: 15px; }
 
 /* Bag drawer */
@@ -272,7 +273,7 @@ details ul { padding-left: 18px; }
 .cmp div { display: grid; grid-template-columns: 84px 74px 1fr; gap: 6px 14px; align-items: baseline; border-top: 1px solid var(--rule); padding-top: 16px; }
 .cmp dt { font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
 .cmp dd { margin: 0; font-size: 15px; }
-.cmp .cmp-n { font-family: var(--display); font-weight: 300; font-size: 30px; color: var(--ink); line-height: 1; }
+.cmp .cmp-n { font-family: var(--display); font-weight: 500; font-size: 34px; color: var(--ink); line-height: 1; }
 .compare-art svg { width: 100%; height: auto; max-height: 560px; }
 .art-key { display: flex; gap: 8px 16px; flex-wrap: wrap; justify-content: center; font-size: 13px; align-items: center; }
 .art-key span { display: inline-block; width: 18px; height: 12px; vertical-align: middle; margin-right: -8px; }

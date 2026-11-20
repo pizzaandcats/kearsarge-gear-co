@@ -25,7 +25,7 @@
     return '<div class="mockbar"><b>Pre-sale</b> Reserve from our first, limited run. Ships ' + esc(S.SHIP) + '. <a href="collection.html">Shop the pre-sale</a></div>' +
       '<header class="sh-header' + (over ? ' over' : '') + '">' +
       '<button class="icon-btn menu-btn" type="button" aria-label="Menu" aria-expanded="false">&#9776;</button>' +
-      '<nav class="nav-left" aria-label="Shop"><a href="collection.html">Shop</a><a href="collection.html?c=tops">Sun Hoodies</a><a href="index.html#fit">Fit</a></nav>' +
+      '<nav class="nav-left" aria-label="Shop"><a href="collection.html">Shop</a><a href="collection.html?a=trail">Trail</a><a href="collection.html?a=train">Train</a><a href="index.html#fit">Fit</a></nav>' +
       LOGO +
       '<div class="nav-right"><a href="index.html#story">Our Story</a>' +
       '<button class="cart-btn" type="button" aria-label="Open bag">Bag <span class="cart-count">0</span></button></div>' +
@@ -34,9 +34,9 @@
 
   function footer() {
     return '<footer class="sh-footer"><div class="wrap">' +
-      '<div class="foot-brand">' + LOGO + '<p>Fits like it was made for you.<br>Performance trail apparel for men 5\'8" and under.</p></div>' +
+      '<div class="foot-brand">' + LOGO + '<p>Fits like it was made for you.<br>Performance apparel for the trail and the gym,<br>cut for men 5\'8" and under.</p></div>' +
       '<div class="foot-cols">' +
-      '<div><b>Shop</b><a href="collection.html">The First Run</a>' + S.COLLECTIONS.map(function (c) { return '<a href="collection.html?c=' + c.id + '">' + esc(c.name) + '</a>'; }).join('') + '</div>' +
+      '<div><b>Shop</b><a href="collection.html">The First Run</a><a href="collection.html?a=trail">Trail</a><a href="collection.html?a=train">Train</a>' + S.COLLECTIONS.map(function (c) { return '<a href="collection.html?c=' + c.id + '">' + esc(c.name) + '</a>'; }).join('') + '</div>' +
       '<div><b>Help</b><a href="index.html#fit">Finding your size</a><a href="product.html?p=palisade-sun-hoodie#size-chart">Size chart</a><a href="#">Pre-orders and shipping</a><a href="#">Contact</a></div>' +
       '<div><b>Kearsarge</b><a href="index.html#story">Our story</a><a href="index.html#journal">Journal</a><a href="shots.html">Shot list</a></div>' +
       '</div></div><div class="wrap foot-meta">&copy; 2026 Kearsarge. Los Angeles, California. A mock storefront for a design test: nothing is for sale and gray boxes stand in for photos.</div></footer>';

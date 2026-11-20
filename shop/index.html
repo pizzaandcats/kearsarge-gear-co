@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kearsarge | Performance trail apparel for men 5'8" and under</title>
-<meta name="description" content="Mock storefront. Performance trail apparel for men 5'8&quot; and under.">
+<title>Kearsarge | Performance apparel for men 5'8" and under</title>
+<meta name="description" content="Mock storefront. Performance apparel for the trail and the gym, cut for men 5'8&quot; and under.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#f5f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=6">
+<link rel="stylesheet" href="shop.css?v=7">
 </head>
 <body data-hero>
 <main>
@@ -18,7 +18,7 @@
     <div class="js-hero-ph fill"></div>
     <div class="wrap">
       <h1>Fits like it was made for you.</h1>
-      <p class="sub">Performance trail apparel for men 5'8" and under. Sun hoodies, layers, trail pants and gloves, proportioned for hiking and backpacking.</p>
+      <p class="sub">Performance apparel for men 5'8" and under, built for the trail and the gym. Sun hoodies, tees, shorts, layers and pants, proportioned for a shorter frame.</p>
       <div class="ctas">
         <a class="btn btn-light" href="collection.html">Shop the pre-sale</a>
         <a class="btn btn-ghost" href="#fit">Find your size</a>
@@ -30,7 +30,7 @@
     <div class="wrap">
       <p class="eyebrow">Kearsarge</p>
       <h2>Every small out there is cut for a man who's 5'10". <em>Ours are cut for you.</em></h2>
-      <p>We make performance trail apparel for men 5'3" to 5'8". Shorter in the body, sleeves, inseam and fingers. Never smaller in the chest and shoulders.</p>
+      <p>We make performance apparel for men 5'3" to 5'8", for hiking, lifting and rucking. Shorter in the body, sleeves, inseam and fingers. Never smaller in the chest and shoulders.</p>
     </div>
   </section>
 
@@ -44,12 +44,16 @@
     </div>
   </section>
 
+  <section class="sec acts" style="padding-top:0" aria-label="Shop by activity">
+    <div class="wrap acts-grid js-acts"></div>
+  </section>
+
   <section class="feature">
     <div class="feature-img js-feature-ph"></div>
     <div class="feature-copy">
       <p class="eyebrow">The one that started it</p>
       <h2>Palisade Quarter-Zip Sun Hoodie</h2>
-      <p>A lightweight sun hoodie for long, exposed days above the trees, proportioned for a shorter frame from the hood to the hem.</p>
+      <p>A lightweight sun hoodie for long, exposed days above the trees and hard sessions in the gym, proportioned for a shorter frame from the hood to the hem.</p>
       <dl class="nums">
         <div><dt>&minus;3½"</dt><dd>Body. The hem stays under your hip belt.</dd></div>
         <div><dt>&minus;2"</dt><dd>Sleeves. Thumbholes land on your hand.</dd></div>
@@ -99,7 +103,7 @@
     <div class="wrap">
       <p class="eyebrow">Our story</p>
       <h2>Named for Kearsarge Pass.</h2>
-      <p>Every piece takes its name from the Sierra Nevada, starting with the pass over the Eastern Sierra crest. Clothes for long days outside, cut for men who never had a size made for them.</p>
+      <p>Every piece takes its name from the Sierra Nevada, starting with the pass over the Eastern Sierra crest. Clothes for long days on the trail and early mornings in the gym, cut for men who never had a size made for them.</p>
     </div>
   </section>
 
@@ -116,8 +120,8 @@
   </section>
 </main>
 
-<script src="data.js?v=4"></script>
-<script src="shop.js?v=3"></script>
+<script src="data.js?v=5"></script>
+<script src="shop.js?v=4"></script>
 <script src="lineup.js?v=3"></script>
 <script>
 (function () {
@@ -128,6 +132,10 @@
   put('.js-journal-ph', 'HOME-JOURNAL', { alt: 'Two hikers resting on granite' });
   put('.js-story-ph', 'HOME-STORY', { fill: true, alt: 'Kearsarge Pass in the Eastern Sierra' });
   document.querySelector('.js-all').innerHTML = S.PRODUCTS.map(UI.card).join('');
+  document.querySelector('.js-acts').innerHTML = S.ACTIVITIES.map(function (a) {
+    return '<a class="act" href="collection.html?a=' + a.id + '">' + UI.ph('HOME-' + a.id.toUpperCase(), { fill: true, brief: false, alt: a.name }) +
+      '<div class="act-copy"><h2>' + UI.esc(a.name) + '</h2><p>' + UI.esc(a.blurb) + '</p><span class="link">Shop ' + UI.esc(a.name.toLowerCase()) + '</span></div></a>';
+  }).join('');
 
   var hoodie = S.product('palisade-sun-hoodie'), saved = {};
   try { saved = JSON.parse(localStorage.getItem('kg_lineup2') || '{}') || {}; } catch (e) {}

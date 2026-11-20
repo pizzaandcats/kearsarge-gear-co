@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=6">
+<link rel="stylesheet" href="shop.css?v=7">
 </head>
 <body>
 <main>
@@ -17,7 +17,7 @@
     <div class="shop-head">
       <p class="eyebrow js-col-eyebrow">Pre-sale</p>
       <h1 class="js-col-title" style="margin-top:14px">The First Run</h1>
-      <p class="js-col-blurb">Seven pieces of performance trail apparel, proportioned for men 5'3" to 5'8". Pre-order now; ships <span class="js-ship"></span>.</p>
+      <p class="js-col-blurb">Seven pieces of performance apparel for the trail and the gym, proportioned for men 5'3" to 5'8". Pre-order now; ships <span class="js-ship"></span>.</p>
     </div>
     <div class="toolbar">
       <nav class="filters js-filters" aria-label="Categories"></nav>
@@ -34,13 +34,14 @@
   </div>
 </main>
 
-<script src="data.js?v=4"></script>
-<script src="shop.js?v=3"></script>
+<script src="data.js?v=5"></script>
+<script src="shop.js?v=4"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI;
-  var id = new URLSearchParams(location.search).get('c');
-  var col = id ? S.collection(id) : null;
+  var qs = new URLSearchParams(location.search), id = qs.get('c'), aid = qs.get('a');
+  var col = id ? S.collection(id) : aid ? S.activity(aid) : null;
+  var key = id ? 'c' : aid ? 'a' : '';
   document.querySelector('.js-ship').textContent = S.SHIP;
   if (col) {
     document.querySelector('.js-col-eyebrow').textContent = 'The First Run';
@@ -49,15 +50,15 @@
   }
   document.title = (col ? col.name : 'The First Run') + ' | Kearsarge';
 
-  var f = [{ id: '', name: 'All' }].concat(S.COLLECTIONS);
-  document.querySelector('.js-filters').innerHTML = f.map(function (c) {
-    var on = (c.id || null) === (id || null);
-    return '<a class="' + (on ? 'on' : '') + '" href="collection.html' + (c.id ? '?c=' + c.id : '') + '"' + (on ? ' aria-current="page"' : '') + '>' + UI.esc(c.name) + '</a>';
+  var f = [{ id: '', k: '', name: 'All' }].concat(S.ACTIVITIES.map(function (a) { return { id: a.id, k: 'a', name: a.name }; }), S.COLLECTIONS.map(function (c) { return { id: c.id, k: 'c', name: c.name }; }));
+  document.querySelector('.js-filters').innerHTML = f.map(function (c, i) {
+    var on = c.k === key && (c.id || '') === ((key === 'c' ? id : aid) || '');
+    return (i === 1 + S.ACTIVITIES.length ? '<span class="filter-sep" aria-hidden="true"></span>' : '') + '<a class="' + (on ? 'on' : '') + '" href="collection.html' + (c.id ? '?' + c.k + '=' + c.id : '') + '"' + (on ? ' aria-current="page"' : '') + '>' + UI.esc(c.name) + '</a>';
   }).join('');
 
   var grid = document.querySelector('.js-grid'), sort = document.querySelector('.js-sort');
   function draw() {
-    var list = S.PRODUCTS.filter(function (p) { return !col || p.collection === col.id; }).slice();
+    var list = S.PRODUCTS.filter(function (p) { return !col || (key === 'c' ? p.collection === col.id : p.acts.indexOf(col.id) > -1); }).slice();
     if (sort.value === 'low') list.sort(function (a, b) { return a.price - b.price; });
     if (sort.value === 'high') list.sort(function (a, b) { return b.price - a.price; });
     grid.innerHTML = list.map(UI.card).join('');

@@ -1,4 +1,4 @@
-/* Mock catalog for a design test. One world (the Eastern Sierra trail), one first run.
+/* Mock catalog for a design test. Two places it goes (the trail and the gym), one first run.
    Names follow one pattern: a Sierra place + the construction + the garment.
    Photos: every image slot is listed in PHOTOS with an ID, ratio and shot brief.
    Paste a URL into `src` and the gray placeholder becomes the photo. */
@@ -12,6 +12,12 @@
     tarn: { name: 'Tarn', hex: '#4c5d67' }
   };
 
+  // Shop by activity. Products list theirs in `acts`.
+  var ACTIVITIES = [
+    { id: 'trail', name: 'Trail', blurb: 'For hiking and backpacking: sun protection, layers and pants that end where you do.' },
+    { id: 'train', name: 'Train', blurb: 'For lifting, rucking and pull-ups: room in the chest and arms, nothing hanging past your belt.' }
+  ];
+
   var COLLECTIONS = [
     { id: 'tops', name: 'Sun Hoodies & Tees', blurb: 'Shorter in the body and sleeves. Never smaller.' },
     { id: 'layers', name: 'Fleece & Shells', blurb: 'Mid-layers and wind protection, cut to end at your waist.' },
@@ -22,9 +28,9 @@
   var PRODUCTS = [
     {
       id: 'palisade-sun-hoodie', code: 'PAL', name: 'Palisade Quarter-Zip Sun Hoodie', short: 'Palisade Sun Hoodie',
-      collection: 'tops', price: 88, badge: 'First run', colors: ['sagebrush', 'tufa', 'tarn'], fit: 'top',
-      blurb: 'Built for long, exposed days above the trees, the Palisade is a lightweight quarter-zip sun hoodie proportioned for men 5\'3" to 5\'8". Shorter in the body and sleeves, fitted through the chest and arms, with a hood that turns when you do.',
-      uses: ['Hiking', 'Backpacking', 'Desert days'],
+      collection: 'tops', acts: ['trail', 'train'], price: 88, badge: 'First run', colors: ['sagebrush', 'tufa', 'tarn'], fit: 'top',
+      blurb: 'Built for long, exposed days above the trees and just as at home in the gym, the Palisade is a lightweight quarter-zip sun hoodie proportioned for men 5\'3" to 5\'8". Shorter in the body and sleeves, fitted through the chest and arms, with a hood that turns when you do.',
+      uses: ['Hiking', 'Backpacking', 'Training'],
       features: [
         ['Thumbholes on your hand.', 'Sleeves are 2" shorter, taken out below the elbow. The fabric stays over the back of your hand.', 'cuff'],
         ['A hood that turns with you.', '1" shorter at the crown and closer at the cheeks, out of your peripheral vision.', 'hood'],
@@ -52,10 +58,10 @@
       }
     },
     {
-      id: 'tioga-trail-tee', code: 'TIO', name: 'Tioga Articulated Trail Tee', short: 'Tioga Trail Tee',
-      collection: 'tops', price: 48, colors: ['granite', 'tufa', 'tarn'], fit: 'top',
-      blurb: 'A technical tee for the trail and everything around it. Shorter in the body so the hem sits at your belt, with room through the chest and shoulders.',
-      uses: ['Hiking', 'Training', 'Travel'],
+      id: 'tioga-tee', code: 'TIO', name: 'Tioga Articulated Performance Tee', short: 'Tioga Tee',
+      collection: 'tops', acts: ['train', 'trail'], price: 48, colors: ['granite', 'tufa', 'tarn'], fit: 'top',
+      blurb: 'A technical tee for the gym and the trail. Room through the chest, shoulders and arms for lifting, with a shorter body so the hem sits at your belt instead of halfway down your zipper.',
+      uses: ['Lifting', 'Rucking', 'Hiking'],
       details: {
         'Design details': ['Shorter body, hem at the belt', 'Sleeves cut for a shorter arm', 'Collar that holds its shape'],
         'Fabric & care': ['Stretch performance knit (placeholder)', 'Machine wash cold, tumble dry low']
@@ -63,7 +69,7 @@
     },
     {
       id: 'rock-creek-fleece', code: 'RCK', name: 'Rock Creek Half-Zip Fleece', short: 'Rock Creek Fleece',
-      collection: 'layers', price: 118, colors: ['sagebrush', 'granite'], fit: 'top',
+      collection: 'layers', acts: ['trail'], price: 118, colors: ['sagebrush', 'granite'], fit: 'top',
       blurb: 'A light grid fleece for cold starts and high camp. Cut to end at your waist and sized to layer over the Palisade without bunching.',
       uses: ['Backpacking', 'Camp', 'Shoulder season'],
       details: {
@@ -73,7 +79,7 @@
     },
     {
       id: 'mono-wind-shell', code: 'MNO', name: 'Mono Hooded Wind Shell', short: 'Mono Wind Shell',
-      collection: 'layers', price: 128, colors: ['tarn', 'tufa'], fit: 'top',
+      collection: 'layers', acts: ['trail'], price: 128, colors: ['tarn', 'tufa'], fit: 'top',
       blurb: 'A featherweight shell for ridgelines and wind-scoured passes. The hood is sized to your head, not a taller man\'s, so it stays put when the weather turns.',
       uses: ['Hiking', 'Backpacking', 'Travel'],
       details: {
@@ -83,7 +89,7 @@
     },
     {
       id: 'whitney-trail-pant', code: 'WHT', name: 'Whitney Stretch Trail Pant', short: 'Whitney Trail Pant',
-      collection: 'bottoms', price: 98, colors: ['granite', 'tufa'], fit: 'bottom', inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
+      collection: 'bottoms', acts: ['trail'], price: 98, colors: ['granite', 'tufa'], fit: 'bottom', inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
       blurb: 'A trail pant you never have to hem. Two inseams, 26" and 28", with the knee placed for a shorter leg so it bends where you do.',
       uses: ['Hiking', 'Backpacking', 'Travel'],
       details: {
@@ -92,10 +98,10 @@
       }
     },
     {
-      id: 'kern-trail-short', code: 'KRN', name: 'Kern Trail Short', short: 'Kern Trail Short',
-      collection: 'bottoms', price: 58, colors: ['granite', 'sagebrush'], fit: 'bottom', inseams: ['6"'], waists: ['S', 'M', 'L', 'XL'], waistHint: 'S 28-29, M 30-31, L 32-34, XL 35-37',
-      blurb: 'One 6" inseam, cut for a shorter leg, so the hem lands above the knee. No inseam math.',
-      uses: ['Hiking', 'Training', 'Summer'],
+      id: 'kern-short', code: 'KRN', name: 'Kern Stretch Short', short: 'Kern Short',
+      collection: 'bottoms', acts: ['train', 'trail'], price: 58, colors: ['granite', 'sagebrush'], fit: 'bottom', inseams: ['6"'], waists: ['S', 'M', 'L', 'XL'], waistHint: 'S 28-29, M 30-31, L 32-34, XL 35-37',
+      blurb: 'A stretch short for squats and switchbacks. One 6" inseam, cut for a shorter leg, so the hem lands above the knee. No inseam math.',
+      uses: ['Lifting', 'Hiking', 'Summer'],
       details: {
         'Design details': ['6" inseam, cut for a shorter leg', 'Zip pocket', 'Drawcord waist'],
         'Fabric & care': ['Stretch woven, quick drying (placeholder)', 'Machine wash cold, hang dry']
@@ -103,7 +109,7 @@
     },
     {
       id: 'lamarck-sun-glove', code: 'LMK', name: 'Lamarck Sun Glove', short: 'Lamarck Sun Glove',
-      collection: 'gloves', price: 32, colors: ['tufa', 'granite'], fit: 'glove',
+      collection: 'gloves', acts: ['trail'], price: 32, colors: ['tufa', 'granite'], fit: 'glove',
       blurb: 'A light sun glove with a men\'s palm and shorter fingers. Most men\'s gloves run long in the fingers; most women\'s run narrow in the hand. This one doesn\'t.',
       uses: ['Hiking', 'Desert days', 'Scrambling'],
       details: {
@@ -122,6 +128,8 @@
   var PHOTOS = {
     'HOME-HERO': { ratio: '16:9', px: '2400×1350', shot: 'Eastern Sierra trail in early light: granite, pines, a high pass in the distance. A man around 5\'5" in the Palisade Sun Hoodie (Sagebrush) hikes toward camera with his dog, 3/4 body, relaxed stride. Leave calm space on the left for the headline. Also crop a 4:5 version for phones.' },
     'HOME-FEATURE': { ratio: '4:5', px: '2000×2500', shot: 'The Palisade Sun Hoodie on a man around 5\'5" at a granite trailhead, hood down, quarter zip half open, midday light. Waist up, slight 3/4 angle.' },
+    'HOME-TRAIL': { ratio: '4:5', px: '2000×2500', shot: 'Trail: a man around 5\'5" in the Palisade Sun Hoodie on an Eastern Sierra granite switchback, small pack, mid-stride, seen from slightly behind. Early light, muted color.' },
+    'HOME-TRAIN': { ratio: '4:5', px: '2000×2500', shot: 'Train: a man around 5\'5" with an athletic build in the Tioga Tee (Granite) and Kern Short, mid pull-up or holding a kettlebell in a quiet, minimal gym. Concrete and wood, natural window light, muted color. No logos.' },
     'HOME-STORY': { ratio: '3:2', px: '2400×1600', shot: 'Kearsarge Pass, Eastern Sierra: wide landscape of the switchbacks and the lakes below, late afternoon. No people, or one small figure for scale.' },
     'HOME-JOURNAL': { ratio: '3:2', px: '2400×1600', shot: 'Two hikers, one around 5\'5", taking a break on a granite slab with a dog. Packs off, candid, natural light. Muted color.' }
   };
@@ -139,12 +147,13 @@
   Object.keys(PHOTOS).forEach(function (k) { PHOTOS[k].src = PHOTOS[k].src || ''; });
 
   window.KG_SHOP = {
-    SHIP: SHIP, COLORS: COLORS, COLLECTIONS: COLLECTIONS, PRODUCTS: PRODUCTS, PHOTOS: PHOTOS,
+    SHIP: SHIP, COLORS: COLORS, ACTIVITIES: ACTIVITIES, COLLECTIONS: COLLECTIONS, PRODUCTS: PRODUCTS, PHOTOS: PHOTOS,
     CHESTS: ['XS', 'S', 'M', 'L', 'XL'],
     WAISTS: ['28', '30', '32', '34'],
     GLOVES: ['S', 'M', 'L'],
     product: function (id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; },
     collection: function (id) { return COLLECTIONS.filter(function (c) { return c.id === id; })[0]; },
+    activity: function (id) { return ACTIVITIES.filter(function (a) { return a.id === id; })[0]; },
     flat: function (p, c) { return p.code + '-FLAT-' + (c || p.colors[0]).toUpperCase(); }
   };
 })();

@@ -115,8 +115,8 @@
 
   /* ---------- Photo slots ---------- */
   var ART = {
-    flat: 'Studio flat lay, top-down, on warm off-white paper (#efe9df). Garment centered and neatly folded at the sleeves, soft even light, gentle shadow. No props, no logos.',
-    model: 'Studio, plain light gray seamless backdrop, soft directional light from the front left. Model about 5\'5" with an athletic build, calm expression, standing straight, 3/4 body. No logos.',
+    flat: 'Studio flat lay, top-down, on warm off-white paper (#efe9df). Garment centered and laid out neatly, soft even light, gentle shadow. No props, no logos.',
+    model: 'Studio, plain light gray seamless backdrop, soft directional light from the front left. Model about 5\'5" with an athletic build, calm expression, standing straight. No logos.',
     detail: 'Studio macro close-up on the garment, soft light, shallow depth of field, warm off-white or light gray background.'
   };
   var PHOTOS = {
@@ -129,8 +129,9 @@
     p.colors.forEach(function (c) {
       PHOTOS[p.code + '-FLAT-' + c.toUpperCase()] = { ratio: '4:5', px: '2000×2500', shot: p.short + ' in ' + COLORS[c].name + '. ' + ART.flat };
     });
-    PHOTOS[p.code + '-MODEL'] = { ratio: '4:5', px: '2000×2500', shot: p.short + ' in ' + COLORS[p.colors[0]].name + ', worn. ' + ART.model + (p.fit === 'bottom' ? ' Frame from the waist down to the shoes.' : p.fit === 'glove' ? ' Frame the hands and forearms.' : '') };
-    PHOTOS[p.code + '-BACK'] = { ratio: '4:5', px: '2000×2500', shot: p.short + ' in ' + COLORS[p.colors[0]].name + ', back view. ' + ART.model };
+    var frame = p.fit === 'bottom' ? ' Frame from the waist down to the shoes.' : p.fit === 'glove' ? ' Frame the hands and forearms.' : ' 3/4 body.';
+    PHOTOS[p.code + '-MODEL'] = { ratio: '4:5', px: '2000×2500', shot: p.short + ' in ' + COLORS[p.colors[0]].name + ', worn, front view. ' + ART.model + frame };
+    PHOTOS[p.code + '-BACK'] = { ratio: '4:5', px: '2000×2500', shot: p.short + ' in ' + COLORS[p.colors[0]].name + ', worn, ' + (p.fit === 'glove' ? 'palm side' : 'back view') + '. ' + ART.model + frame };
     (p.features || []).forEach(function (f) {
       PHOTOS[p.code + '-DETAIL-' + f[2].toUpperCase()] = { ratio: '4:5', px: '2000×2500', shot: p.short + ': ' + f[0].replace(/\.$/, '') + '. ' + f[1] + ' ' + ART.detail };
     });

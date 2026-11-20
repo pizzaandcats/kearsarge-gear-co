@@ -1,4 +1,4 @@
-/* Mock catalog for a design test. Two places it goes (the trail and the gym), one first run.
+/* Mock catalog for a design test. Two places it goes (the trail and training), one first run.
    Names follow one pattern: a Sierra place + the construction + the garment.
    Photos: every image slot is listed in PHOTOS with an ID, ratio and shot brief.
    Paste a URL into `src` and the gray placeholder becomes the photo. */

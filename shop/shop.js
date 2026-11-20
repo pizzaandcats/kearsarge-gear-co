@@ -34,7 +34,7 @@
 
   function footer() {
     return '<footer class="sh-footer"><div class="wrap">' +
-      '<div class="foot-brand">' + LOGO + '<p>Fits like it was made for you.<br>Performance apparel for the trail and the gym,<br>cut for men 5\'8" and under.</p></div>' +
+      '<div class="foot-brand">' + LOGO + '<p>Fits like it was made for you.<br>Performance apparel for the trail and training,<br>cut for men 5\'8" and under.</p></div>' +
       '<div class="foot-cols">' +
       '<div><b>Shop</b><a href="collection.html">The First Run</a><a href="collection.html?a=trail">Trail</a><a href="collection.html?a=train">Train</a>' + S.COLLECTIONS.map(function (c) { return '<a href="collection.html?c=' + c.id + '">' + esc(c.name) + '</a>'; }).join('') + '</div>' +
       '<div><b>Help</b><a href="index.html#fit">Finding your size</a><a href="product.html?p=palisade-sun-hoodie#size-chart">Size chart</a><a href="#">Pre-orders and shipping</a><a href="#">Contact</a></div>' +

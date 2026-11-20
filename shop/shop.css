@@ -67,6 +67,8 @@ h1, h2, h3, .nums dt, .cmp .cmp-n, .car-slide b, .lu-cta b { font-variant-numeri
 .logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; color: inherit; }
 .logo-script { font-family: var(--script); font-size: 44px; line-height: 1.05; padding: 0 6px; }
 .logo-swash { width: 142px; height: 10px; margin-top: -12px; fill: currentColor; }
+.sh-header .logo-script { font-size: 60px; }
+.sh-header .logo-swash { width: 194px; height: 13px; margin-top: -16px; }
 
 /* Hero */
 .hero { position: relative; min-height: min(94vh, 900px); display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
@@ -322,6 +324,7 @@ details ul { padding-left: 18px; }
 @media (max-width: 760px) {
   .wrap { padding: 0 20px; }
   .logo-script { font-size: 36px; } .logo-swash { width: 116px; margin-top: -10px; }
+  .sh-header .logo-script { font-size: 46px; } .sh-header .logo-swash { width: 148px; height: 10px; margin-top: -12px; }
   .nav-right a { display: none; }
   .mockbar a { display: none; }
   .sh-header.over { top: 58px; }

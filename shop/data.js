@@ -1,42 +1,32 @@
-/* Mock catalog. Everything here is dummy content for a design experiment.
-   Product names are stops on the trail over Kearsarge Pass (Eastern Sierra). */
+/* Mock catalog for a design test. One world (the trail), six pieces, four colors.
+   Product names are stops on the trail over Kearsarge Pass (Eastern Sierra).
+   Product images are drawn flat lays (art.js) until there's a real product shoot. */
 (function () {
-  var U = function (id, o) {
-    o = o || {};
-    var q = 'auto=format&fit=crop&q=72&w=' + (o.w || 900) + '&h=' + (o.h || 1125);
-    if (o.fp) q += '&crop=focalpoint&fp-x=' + o.fp[0] + '&fp-y=' + o.fp[1] + '&fp-z=' + o.fp[2];
-    return 'https://images.unsplash.com/photo-' + id + '?' + q;
-  };
-
   var COLORS = {
-    sand: { name: 'Sand', hex: '#d8c3a0' }, sea: { name: 'Sea', hex: '#1f5568' },
-    sage: { name: 'Sage', hex: '#8fa28a' }, sun: { name: 'Sunset', hex: '#d9622b' },
-    ink: { name: 'Ink', hex: '#2a2119' }, bone: { name: 'Bone', hex: '#efe6d6' },
-    granite: { name: 'Granite', hex: '#6f6a64' }, pine: { name: 'Pine', hex: '#33473a' }
+    sand: { name: 'Sand', hex: '#d4c2a1' },
+    sage: { name: 'Sage', hex: '#959e86' },
+    granite: { name: 'Granite', hex: '#78736b' },
+    slate: { name: 'Slate', hex: '#4e606a' }
   };
 
   var COLLECTIONS = [
-    { id: 'sun-trail', name: 'Sun & Trail', blurb: 'Sun hoodies and long sleeves for long days outside.', image: U('1791779992382-a02b7b5afde7', { w: 1200, h: 1500 }) },
-    { id: 'train', name: 'Train', blurb: 'Tees and tanks for lifting, rucking and pull-ups.', image: U('1604897391146-c98ab268e252', { w: 1200, h: 1500 }) },
-    { id: 'bottoms', name: 'Shorts & Pants', blurb: 'Inseams that end where your legs do.', image: U('1667388624717-895854eea032', { w: 1200, h: 1500 }) },
-    { id: 'layers', name: 'Layers', blurb: 'Fleece and shells cut short in the body and sleeves.', image: U('1762224691220-96a3335008a6', { w: 1200, h: 1500 }) }
+    { id: 'tops', name: 'Tops', blurb: 'Shorter in the body and sleeves. Never smaller.' },
+    { id: 'bottoms', name: 'Bottoms', blurb: 'Inseams that end where your legs do.' },
+    { id: 'layers', name: 'Layers', blurb: 'Fleece and wind, cut short in the body and sleeves.' }
   ];
-
-  var TOP_FIT = 'top', BOTTOM_FIT = 'bottom', GLOVE_FIT = 'glove';
 
   var PRODUCTS = [
     {
-      id: 'onion-valley-sun-hoodie', name: 'Onion Valley Sun Hoodie', collection: 'sun-trail', price: 88, badge: 'Best seller',
-      tagline: 'The sun hoodie, cut short.',
-      colors: ['sand', 'sea', 'sage'], fit: TOP_FIT,
-      images: [U('1791779992382-a02b7b5afde7'), U('1695187101014-d34735a4a951'), U('1582394895085-82cd4fd55141'), U('1695187101014-d34735a4a951', { fp: [0.55, 0.62, 2.2] })],
+      id: 'onion-valley-sun-hoodie', name: 'Onion Valley Sun Hoodie', collection: 'tops', price: 88, badge: 'The first one',
+      art: 'hoodie', tagline: 'The sun hoodie, cut short.',
+      colors: ['sand', 'sage', 'slate'], fit: 'top',
       features: [
-        ['Thumbholes on your hand.', 'Sleeves are 2" shorter, taken out below the elbow. Fabric stays over the back of your hand.', U('1695187101014-d34735a4a951', { w: 720, h: 900, fp: [0.55, 0.62, 2.2] })],
-        ['A hood that turns with you.', '1" shorter at the crown. Closer at the cheeks, out of your peripheral vision.', U('1695187101014-d34735a4a951', { w: 720, h: 900, fp: [0.35, 0.25, 2.0] })],
-        ['Zipper never touches your neck.', 'A zipper garage at the top and a soft guard behind the whole zip.', U('1791779992382-a02b7b5afde7', { w: 720, h: 900, fp: [0.55, 0.3, 2.6] })],
-        ['A collar that keeps its shape.', 'Taped neckline, so it doesn\'t stretch out after a season.', U('1791779992382-a02b7b5afde7', { w: 720, h: 900, fp: [0.55, 0.4, 2.4] })],
-        ['No seam under your pack straps.', 'Shoulder seams sit just off the top of the shoulder.', U('1582394895085-82cd4fd55141', { w: 720, h: 900, fp: [0.45, 0.3, 2.2] })],
-        ['Hem stays under the hip belt.', 'About 3" shorter in the body, with a drop tail in back.', U('1582394895085-82cd4fd55141', { w: 720, h: 900, fp: [0.5, 0.5, 2.0] })]
+        ['Thumbholes on your hand.', 'Sleeves are 2" shorter, taken out below the elbow. Fabric stays over the back of your hand.', 'cuff'],
+        ['A hood that turns with you.', '1" shorter at the crown. Closer at the cheeks, out of your peripheral vision.', 'hood'],
+        ['Zipper never touches your neck.', 'A zipper garage at the top and a soft guard behind the whole zip.', 'zip'],
+        ['A collar that keeps its shape.', 'Taped neckline, so it doesn\'t stretch out after a season.', 'collar'],
+        ['No seam under your pack straps.', 'Shoulder seams sit just off the top of the shoulder.', 'shoulder'],
+        ['Hem stays under the hip belt.', 'About 3" shorter in the body, with a drop tail in back.', 'hem']
       ],
       // Size spec. XS is the sample spec; S to L are a proposed grade, confirmed on samples.
       spec: {
@@ -57,82 +47,52 @@
       }
     },
     {
-      id: 'flower-lake-sun-crew', name: 'Flower Lake Sun Crew', collection: 'sun-trail', price: 72,
-      tagline: 'All the sun, none of the hood.',
-      colors: ['bone', 'sea'], fit: TOP_FIT,
-      images: [U('1506527115643-b3b387978fad'), U('1553593155-9e0dc045405c'), U('1505782388-8632b3423dbb')],
-      details: { Fit: 'Long sleeve crew, cut short in the body and sleeves.', Fabric: 'Lightweight stretch knit (placeholder).', Care: 'Machine wash cold. Hang dry.' }
-    },
-    {
-      id: 'golden-trout-sun-glove', name: 'Golden Trout Sun Glove', collection: 'sun-trail', price: 32, badge: 'New',
-      tagline: 'Men\'s palms. Shorter fingers.',
-      colors: ['sand', 'granite'], fit: GLOVE_FIT,
-      images: [U('1695187101014-d34735a4a951', { fp: [0.6, 0.6, 2.6] }), U('1791779992382-a02b7b5afde7')],
-      details: { Fit: 'A men\'s hand width with finger lengths cut for smaller hands.', Fabric: 'Stretch knit back, synthetic palm (placeholder).', Care: 'Hand wash. Hang dry.' }
-    },
-    {
-      id: 'bullfrog-training-tee', name: 'Bullfrog Training Tee', collection: 'train', price: 48, badge: 'Best seller',
-      tagline: 'XS too tight. S too long. Fixed.',
-      colors: ['ink', 'granite', 'sand'], fit: TOP_FIT,
-      images: [U('1604897391146-c98ab268e252'), U('1790267461841-6b66de790590'), U('1791732604582-60dcebafcae4')],
+      id: 'bullfrog-trail-tee', name: 'Bullfrog Trail Tee', collection: 'tops', price: 48,
+      art: 'tee', tagline: 'XS too tight. S too long. Fixed.',
+      colors: ['granite', 'sand', 'slate'], fit: 'top',
       features: [
-        ['Room in the chest.', 'No compression-shirt squeeze.', U('1604897391146-c98ab268e252', { w: 720, h: 900, fp: [0.5, 0.75, 2.0] })],
-        ['Room in the lats.', 'Hem stays down on pull-ups.', U('1790267461841-6b66de790590', { w: 720, h: 900 })],
-        ['Sleeves cut for a short arm.', 'They sit on the arm. They don\'t hang off it.', U('1604897391146-c98ab268e252', { w: 720, h: 900, fp: [0.25, 0.8, 2.4] })],
-        ['Collar holds its shape.', 'Wash after wash.', U('1791732604582-60dcebafcae4', { w: 720, h: 900 })]
+        ['Room in the chest.', 'Cut for shoulders and arms that work, not for a mannequin.', 'chest'],
+        ['Sleeves cut for a short arm.', 'They sit on the arm. They don\'t hang off it.', 'sleeve'],
+        ['A collar that holds its shape.', 'Wash after wash.', 'collar'],
+        ['Hem at your belt.', 'Not halfway down your zipper.', 'hem']
       ],
-      details: { Fit: 'Shorter body and sleeves. Room in the chest, lats and arms.', Fabric: 'Stretch performance knit (placeholder).', Care: 'Machine wash cold. Tumble dry low.' }
+      details: { Fit: 'Shorter body and sleeves. Room in the chest and arms.', Fabric: 'Stretch performance knit (placeholder).', Care: 'Machine wash cold. Tumble dry low.' }
     },
     {
-      id: 'gilbert-training-tank', name: 'Gilbert Training Tank', collection: 'train', price: 38,
-      tagline: 'Armholes that don\'t hang to your ribs.',
-      colors: ['ink', 'bone'], fit: TOP_FIT,
-      images: [U('1605296867304-46d5465a13f1'), U('1677165733273-dcc3724c00e8')],
-      details: { Fit: 'Shorter body. Armholes cut for a shorter torso.', Fabric: 'Stretch performance knit (placeholder).', Care: 'Machine wash cold.' }
-    },
-    {
-      id: 'rae-lakes-trail-short', name: 'Rae Lakes Trail Short', collection: 'bottoms', price: 58, badge: 'Best seller',
-      tagline: 'Ends above the knee. No inseam math.',
-      colors: ['ink', 'sage', 'sand'], fit: BOTTOM_FIT, inseams: ['6"'], waists: ['S', 'M', 'L', 'XL'], waistHint: 'S 28-29, M 30-31, L 32-34, XL 35-37',
-      images: [U('1667388624717-895854eea032'), U('1597892653980-3cec697283fe'), U('1739416729276-23deaf06a982')],
-      details: { Fit: 'One 6" inseam, cut for a shorter leg, so the hem lands above the knee.', Fabric: 'Stretch woven, quick drying (placeholder).', Details: 'Zip pocket. Liner optional.', Care: 'Machine wash cold. Hang dry.' }
+      id: 'rae-lakes-trail-short', name: 'Rae Lakes Trail Short', collection: 'bottoms', price: 58,
+      art: 'short', tagline: 'Ends above the knee. No inseam math.',
+      colors: ['granite', 'sage'], fit: 'bottom', inseams: ['6"'], waists: ['S', 'M', 'L', 'XL'], waistHint: 'S 28-29, M 30-31, L 32-34, XL 35-37',
+      details: { Fit: 'One 6" inseam, cut for a shorter leg, so the hem lands above the knee.', Fabric: 'Stretch woven, quick drying (placeholder).', Details: 'Zip pocket. Drawcord waist.', Care: 'Machine wash cold. Hang dry.' }
     },
     {
       id: 'kearsarge-pass-pant', name: 'Kearsarge Pass Pant', collection: 'bottoms', price: 98,
-      tagline: 'A trail pant you don\'t have to hem.',
-      colors: ['granite', 'sand', 'pine'], fit: BOTTOM_FIT, inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
-      images: [U('1784715595696-bb7cb69fdec1'), U('1505782388-8632b3423dbb')],
+      art: 'pant', tagline: 'A trail pant you don\'t have to hem.',
+      colors: ['granite', 'sand'], fit: 'bottom', inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
       details: { Fit: 'Two inseams, 26" and 28". Knee placed for a shorter leg.', Fabric: 'Stretch woven (placeholder).', Care: 'Machine wash cold. Hang dry.' }
     },
     {
-      id: 'charlotte-jogger', name: 'Charlotte Jogger', collection: 'bottoms', price: 88,
-      tagline: 'The everyday jogger, cuffs at your ankle.',
-      colors: ['granite', 'ink'], fit: BOTTOM_FIT, inseams: ['26"', '28"'], waists: ['28', '30', '32', '34'],
-      images: [U('1555412590-954a889ccb90'), U('1581382576286-b6c8f871fb07')],
-      details: { Fit: 'Ankle cuffs that land at your ankle, not your shoe.', Fabric: 'Stretch knit (placeholder).', Care: 'Machine wash cold.' }
-    },
-    {
-      id: 'pothole-fleece', name: 'Pothole Fleece', collection: 'layers', price: 118, badge: 'New',
-      tagline: 'A fleece that ends at your waist.',
-      colors: ['ink', 'pine', 'sand'], fit: TOP_FIT,
-      images: [U('1762224691220-96a3335008a6'), U('1762224690890-ab0283ca2900'), U('1762224691127-56e7b1dce731')],
-      details: { Fit: 'Shorter body and sleeves. Room to layer.', Fabric: 'Grid fleece (placeholder).', Care: 'Machine wash cold. Tumble dry low.' }
+      id: 'pothole-fleece', name: 'Pothole Fleece', collection: 'layers', price: 118,
+      art: 'fleece', tagline: 'A fleece that ends at your waist.',
+      colors: ['sage', 'granite'], fit: 'top',
+      details: { Fit: 'Shorter body and sleeves. Room to layer over the sun hoodie.', Fabric: 'Grid fleece (placeholder).', Care: 'Machine wash cold. Tumble dry low.' }
     },
     {
       id: 'independence-wind-shell', name: 'Independence Wind Shell', collection: 'layers', price: 128,
-      tagline: 'Packs into its own pocket. Fits like it was made for you.',
-      colors: ['sun', 'sea'], fit: TOP_FIT,
-      images: [U('1525721956353-b1a070c55a60'), U('1586399254847-02e1369bac88')],
-      details: { Fit: 'Shorter body and sleeves. Hood sized to your head, not a taller guy\'s.', Fabric: 'Lightweight ripstop (placeholder).', Care: 'Machine wash cold. Hang dry.' }
+      art: 'shell', tagline: 'A hood sized to your head, not a taller guy\'s.',
+      colors: ['slate', 'sand'], fit: 'top',
+      details: { Fit: 'Shorter body and sleeves. Hood sized for a shorter frame.', Fabric: 'Lightweight ripstop (placeholder).', Details: 'Full zip. Chest pocket.', Care: 'Machine wash cold. Hang dry.' }
     }
   ];
 
   window.KG_SHOP = {
-    U: U, COLORS: COLORS, COLLECTIONS: COLLECTIONS, PRODUCTS: PRODUCTS,
-    HEIGHTS: ['5\'3"–5\'5"', '5\'6"–5\'8"'],
+    COLORS: COLORS, COLLECTIONS: COLLECTIONS, PRODUCTS: PRODUCTS,
     CHESTS: ['XS', 'S', 'M', 'L'],
-    WAISTS: ['28', '29', '30', '31', '32', '34', '36'],
-    GLOVES: ['S', 'M', 'L'],
+    WAISTS: ['28', '30', '32', '34'],
+    // The only two photos in the store, both toned to match.
+    PHOTOS: {
+      hero: 'https://images.unsplash.com/photo-1791779992382-a02b7b5afde7?auto=format&fit=crop&w=2200&q=75',
+      pass: 'https://images.unsplash.com/photo-1794264123830-985d9c8ef522?auto=format&fit=crop&w=2200&q=75'
+    },
     product: function (id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; },
     collection: function (id) { return COLLECTIONS.filter(function (c) { return c.id === id; })[0]; }
   };

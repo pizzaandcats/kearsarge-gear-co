@@ -10,27 +10,25 @@
     '<svg class="logo-swash" viewBox="0 0 360 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C60,4 120,4 180,16 C240,28 300,26 360,8 C300,30 240,32 180,20 C120,8 60,8 2,20 Z"/></svg></a>';
 
   function header(over) {
-    var links = '<a href="collection.html">Shop all</a>' + S.COLLECTIONS.map(function (c) {
-      return '<a href="collection.html?c=' + c.id + '">' + esc(c.name) + '</a>';
-    }).join('');
+    var links = '<a href="collection.html">Shop</a><a href="product.html?p=onion-valley-sun-hoodie">Sun hoodie</a>';
     return '<div class="mockbar">Mock storefront for a design test. Nothing here is for sale.</div>' +
       '<header class="sh-header' + (over ? ' over' : '') + '">' +
       '<button class="icon-btn menu-btn" type="button" aria-label="Menu" aria-expanded="false">&#9776;</button>' +
       '<nav class="nav-left" aria-label="Shop">' + links + '</nav>' +
       LOGO +
-      '<div class="nav-right"><a href="index.html#fit">Fit guide</a>' +
+      '<div class="nav-right"><a href="index.html#lineup">Find your size</a>' +
       '<button class="cart-btn" type="button" aria-label="Open cart">Cart <span class="cart-count">0</span></button></div>' +
       '</header>';
   }
 
   function footer() {
     return '<footer class="sh-footer"><div class="wrap">' +
-      '<div class="foot-brand">' + LOGO + '<p>Fits like it was made for you.<br>Performance gear for men 5\'8" and under.</p></div>' +
+      '<div class="foot-brand">' + LOGO + '<p>Fits like it was made for you.<br>Trail clothes for men 5\'8" and under.</p></div>' +
       '<div class="foot-cols">' +
       '<div><b>Shop</b>' + S.COLLECTIONS.map(function (c) { return '<a href="collection.html?c=' + c.id + '">' + esc(c.name) + '</a>'; }).join('') + '</div>' +
-      '<div><b>Fit</b><a href="index.html#fit">Fit guide</a><a href="#">Sizing by height</a><a href="#">Inseam guide</a></div>' +
+      '<div><b>Fit</b><a href="index.html#lineup">Find your size</a><a href="product.html?p=onion-valley-sun-hoodie#size-chart">Size chart</a></div>' +
       '<div><b>Kearsarge</b><a href="index.html#story">Our story</a><a href="#">Shipping and returns</a><a href="#">Contact</a></div>' +
-      '</div></div><div class="wrap foot-meta">&copy; 2026 Kearsarge. Los Angeles, California. Mock storefront: photos from Unsplash.</div></footer>';
+      '</div></div><div class="wrap foot-meta">&copy; 2026 Kearsarge. Los Angeles, California. Mock storefront. Product drawings stand in for a product shoot; two photos from Unsplash.</div></footer>';
   }
 
   function drawer() {
@@ -63,7 +61,7 @@
     else {
       box.innerHTML = c.map(function (x, i) {
         var p = S.product(x.id); if (!p) return '';
-        return '<div class="cart-line"><img src="' + p.images[0].replace(/w=\d+&h=\d+/, 'w=180&h=225') + '" alt="">' +
+        return '<div class="cart-line"><div class="cart-art">' + window.KG_ART.svg(p, x.color, { label: '' }) + '</div>' +
           '<div><b>' + esc(p.name) + '</b><small>' + esc(S.COLORS[x.color].name) + ' · ' + esc(x.size) + '</small>' +
           '<div class="qty"><button type="button" data-i="' + i + '" data-d="-1" aria-label="One less">&minus;</button><span>' + x.qty + '</span>' +
           '<button type="button" data-i="' + i + '" data-d="1" aria-label="One more">+</button></div></div>' +
@@ -91,8 +89,7 @@
 
   function card(p) {
     return '<a class="card" href="product.html?p=' + p.id + '">' +
-      '<div class="card-img"><img src="' + p.images[0].replace(/w=\d+&h=\d+/, 'w=700&h=875') + '" alt="' + esc(p.name) + '" loading="lazy">' +
-      (p.images[1] ? '<img class="alt" src="' + p.images[1].replace(/w=\d+&h=\d+/, 'w=700&h=875') + '" alt="" loading="lazy">' : '') +
+      '<div class="card-img">' + window.KG_ART.svg(p, p.colors[0]) +
       (p.badge ? '<span class="badge">' + esc(p.badge) + '</span>' : '') + '</div>' +
       '<div class="card-body"><b>' + esc(p.name) + '</b><span class="price">' + money(p.price) + '</span></div>' +
       '<div class="dots">' + p.colors.map(function (k) { return '<i style="background:' + S.COLORS[k].hex + '" title="' + esc(S.COLORS[k].name) + '"></i>'; }).join('') + '</div></a>';

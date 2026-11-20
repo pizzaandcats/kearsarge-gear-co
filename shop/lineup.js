@@ -90,7 +90,7 @@
       var torso = [[x0 - neckW / 2 - 0.4, HSP - 0.2], [x0 - shW / 2 - 0.2, shY + 0.1], [x0 - chW / 2 - easeV, pitH], [x0 - waistHalf, navel], [x0 - hemW, r.hemH],
         [x0 + hemW, r.hemH], [x0 + waistHalf, navel], [x0 + chW / 2 + easeV, pitH], [x0 + shW / 2 + 0.2, shY + 0.1], [x0 + neckW / 2 + 0.4, HSP - 0.2]];
       var d = dash ? ' stroke-dasharray="1 0.8"' : '';
-      var s = '<polygon points="' + pts(torso) + '" fill="' + (dash ? 'rgba(217,98,43,.22)' : fill) + '"' + (stroke ? ' stroke="' + stroke + '" stroke-width="' + (dash ? 0.36 : 0.2) + '"' + d : '') + ' stroke-linejoin="round"/>';
+      var s = '<polygon points="' + pts(torso) + '" fill="' + (dash ? 'rgba(176,96,60,.22)' : fill) + '"' + (stroke ? ' stroke="' + stroke + '" stroke-width="' + (dash ? 0.36 : 0.2) + '"' + d : '') + ' stroke-linejoin="round"/>';
       [-1, 1].forEach(function (k) {
         var a = arm(k), dx = a.w[0] - a.e[0], dy = a.w[1] - a.e[1], len = Math.sqrt(dx * dx + dy * dy);
         var ux = dx / len, uy = dy / len;
@@ -99,11 +99,11 @@
         var wE = (g.musc ? 5 : 4.3) + Math.max(0, easeV - 0.6) * 0.6, wC = 3.3 + Math.max(0, easeV - 0.6) * 0.3;
         var sh = [x0 + k * (shW / 2 + 0.25), shY + 0.15], pit = [x0 + k * (chW / 2 + easeV - 0.4), pitH - 0.6];
         var poly = [sh, [a.e[0] + nx * wE / 2, a.e[1] + ny * wE / 2], [cuff[0] + nx * wC / 2, cuff[1] + ny * wC / 2], [cuff[0] - nx * wC / 2, cuff[1] - ny * wC / 2], [a.e[0] - nx * wE / 2, a.e[1] - ny * wE / 2], pit];
-        s += '<polygon points="' + pts(poly) + '" fill="' + (dash ? 'rgba(217,98,43,.22)' : fill) + '"' + (stroke ? ' stroke="' + stroke + '" stroke-width="' + (dash ? 0.36 : 0.2) + '"' + d : '') + ' stroke-linejoin="round"/>';
+        s += '<polygon points="' + pts(poly) + '" fill="' + (dash ? 'rgba(176,96,60,.22)' : fill) + '"' + (stroke ? ' stroke="' + stroke + '" stroke-width="' + (dash ? 0.36 : 0.2) + '"' + d : '') + ' stroke-linejoin="round"/>';
       });
       return s;
     };
-    if (rf) out += hoodie(rf, 'none', '#d9622b', true);
+    if (rf) out += hoodie(rf, 'none', '#b0603c', true);
     out += hoodie(f, color, shade(color, -0.18));
     if (f.chest[1] === 'Tight') { // strain lines
       for (var k = 0; k < 3; k++) out += '<path d="M' + (x0 - chW / 2 + 1).toFixed(2) + ',' + Y(pitH - 1 - k * 1.6) + ' q' + (chW / 2 - 1).toFixed(2) + ',-0.7 ' + (chW - 2).toFixed(2) + ',0" fill="none" stroke="' + shade(color, -0.3) + '" stroke-width="0.18"/>';

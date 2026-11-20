@@ -62,7 +62,7 @@
     return SIZES[i];
   }
   function waistFor(p) { return p.waist || { XS: 28, S: 30, M: 32, L: 34, XL: 36 }[chestFor(p) || 'M']; }
-  function inseamFor(p, prod) { if (!prod.inseams) return null; return p.height && p.height <= 65 ? prod.inseams[0] : prod.inseams[1]; }
+  function inseamFor(p, prod) { if (!prod.inseams) return null; return p.height && p.height <= 65 ? prod.inseams[0] : prod.inseams[Math.min(1, prod.inseams.length - 1)]; }
 
   function sizeLabel(p, prod) {
     if (prod.fit === 'top') return chestFor(p) + ' chest · ' + heightBand(p.height) + ' length';

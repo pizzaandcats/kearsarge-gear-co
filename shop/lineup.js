@@ -160,7 +160,7 @@
     el.innerHTML = '<div class="lu-top"><div class="lu-sizes" role="tablist" aria-label="Size">' + spec.sizes.map(function (s, i) { return '<button type="button" role="tab" data-i="' + i + '">' + s + '</button>'; }).join('') + '</div>' +
       '<label class="lu-toggle"><input type="checkbox"> <i></i> Compare a regular sun hoodie</label></div>' +
       '<div class="lu-stage"></div><div class="lu-names"></div><div class="lu-card" aria-live="polite"></div>' +
-      '<p class="lu-note">Drawn to scale from our size spec and each guy\'s measurements. The regular hoodie is a best-selling merino sun hoodie in the same size. XS is our sample spec; S to L are proposed and get confirmed on samples.</p>';
+      '<p class="lu-note">Drawn to scale from our size spec and each guy\'s measurements. The regular hoodie is a best-selling merino sun hoodie in the same size. S is our sample spec; the other sizes are a proposed grade, confirmed on samples.</p>';
 
     function render() {
       var gi = 0;

@@ -3,51 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop | Kearsarge</title>
+<title>The First Run | Kearsarge</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f6efe3">
+<meta name="theme-color" content="#f5f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css?v=6">
 </head>
 <body>
 <main>
   <div class="wrap">
     <div class="shop-head">
-      <h1 class="js-col-title">Shop</h1>
-      <p class="js-col-blurb">Six pieces for the trail, cut for men 5'3" to 5'8".</p>
+      <p class="eyebrow js-col-eyebrow">Pre-sale</p>
+      <h1 class="js-col-title" style="margin-top:14px">The First Run</h1>
+      <p class="js-col-blurb">Seven pieces of performance trail apparel, proportioned for men 5'3" to 5'8". Pre-order now; ships <span class="js-ship"></span>.</p>
     </div>
     <div class="toolbar">
-      <div class="chips filters js-filters" aria-label="Collections"></div>
-      <label><span class="sr" style="position:absolute;left:-9999px">Sort</span>
+      <nav class="filters js-filters" aria-label="Categories"></nav>
+      <div style="display:flex;align-items:center;gap:18px">
+        <span class="count js-count"></span>
         <select class="js-sort" aria-label="Sort">
           <option value="featured">Featured</option>
           <option value="low">Price: low to high</option>
           <option value="high">Price: high to low</option>
         </select>
-      </label>
+      </div>
     </div>
-    <div class="grid js-grid" style="padding-bottom:96px"></div>
+    <div class="grid js-grid" style="padding-bottom:112px"></div>
   </div>
 </main>
 
-<script src="data.js?v=3"></script>
-<script src="art.js?v=1"></script>
-<script src="shop.js?v=2"></script>
+<script src="data.js?v=4"></script>
+<script src="shop.js?v=3"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI;
   var id = new URLSearchParams(location.search).get('c');
   var col = id ? S.collection(id) : null;
-  document.querySelector('.js-col-title').textContent = col ? col.name : 'Shop';
-  if (col) document.querySelector('.js-col-blurb').textContent = col.blurb;
-  document.title = (col ? col.name : 'Shop') + ' | Kearsarge';
+  document.querySelector('.js-ship').textContent = S.SHIP;
+  if (col) {
+    document.querySelector('.js-col-eyebrow').textContent = 'The First Run';
+    document.querySelector('.js-col-title').textContent = col.name;
+    document.querySelector('.js-col-blurb').textContent = col.blurb;
+  }
+  document.title = (col ? col.name : 'The First Run') + ' | Kearsarge';
 
   var f = [{ id: '', name: 'All' }].concat(S.COLLECTIONS);
   document.querySelector('.js-filters').innerHTML = f.map(function (c) {
     var on = (c.id || null) === (id || null);
-    return '<a class="chip' + (on ? ' on' : '') + '" href="collection.html' + (c.id ? '?c=' + c.id : '') + '"' + (on ? ' aria-current="page"' : '') + '><span>' + UI.esc(c.name) + '</span></a>';
+    return '<a class="' + (on ? 'on' : '') + '" href="collection.html' + (c.id ? '?c=' + c.id : '') + '"' + (on ? ' aria-current="page"' : '') + '>' + UI.esc(c.name) + '</a>';
   }).join('');
 
   var grid = document.querySelector('.js-grid'), sort = document.querySelector('.js-sort');
@@ -56,6 +61,7 @@
     if (sort.value === 'low') list.sort(function (a, b) { return a.price - b.price; });
     if (sort.value === 'high') list.sort(function (a, b) { return b.price - a.price; });
     grid.innerHTML = list.map(UI.card).join('');
+    document.querySelector('.js-count').textContent = list.length + (list.length === 1 ? ' style' : ' styles');
   }
   sort.addEventListener('change', draw);
   draw();

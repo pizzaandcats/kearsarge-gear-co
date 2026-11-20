@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=17">
+<link rel="stylesheet" href="shop.css?v=18">
 </head>
 <body>
 <main>
@@ -41,10 +41,10 @@
     <div class="wrap">
       <div class="lineup-head">
         <p class="eyebrow">Finding your size</p>
-        <h2 id="lineup-h">Same hoodie. Four men.</h2>
-        <p class="sub">Pick a size and see where the hem and cuffs land on men from 5'3" to 5'8". Tap the one built like you.</p>
+        <h2 id="lineup-h">Same hoodie. Five men.</h2>
+        <p class="sub">Five builds from 5'3" to 5'8", shown at true height. We size by chest, so your height alone won't tell you your size. Tap the man built like you, or pick a size to see how it fits all five.</p>
       </div>
-      <div class="js-lineup"></div>
+      <div class="js-sizing"></div>
     </div>
   </section>
 
@@ -91,7 +91,7 @@
 
 <script src="data.js?v=5"></script>
 <script src="shop.js?v=4"></script>
-<script src="lineup.js?v=4"></script>
+<script src="sizing.js?v=1"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI, esc = UI.esc;
@@ -160,25 +160,32 @@
     return true;
   }
 
-  // Lineup module (products with a size spec)
+  // Size lineup (products with a size spec)
   var lineup;
   if (spec) {
-    var saved = {}; try { saved = JSON.parse(localStorage.getItem('kg_lineup2') || '{}') || {}; } catch (e) {}
+    var saved = {}; try { saved = JSON.parse(localStorage.getItem('kg_size') || '{}') || {}; } catch (e) {}
+    var yourSize = function (sz) { return 'Your size: <b>' + esc(sz) + '</b>. <a href="#fit">See it on five men</a>'; };
     var start = qs.get('size') || saved.size;
-    if (start && saved.guy) pickSize(start, 'Your size: <b>' + esc(start) + '</b>, built like ' + esc(saved.name) + '. <a href="#fit">Change</a>');
-    else if (start) pickSize(start);
-    lineup = window.KG_LINEUP.mount($('.js-lineup'), {
-      product: p, size: start, guy: saved.guy, color: S.COLORS[p.colors[0]].hex,
-      pickLabel: function (sz) { return val('c') === sz ? 'Pre-order in ' + sz : 'That\'s me: select ' + sz; },
-      onPick: function (sz, guy, btn) {
-        if (val('c') === sz) { form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true })); return; }
-        pickSize(sz, 'Your size: <b>' + esc(sz) + '</b>, built like ' + esc(guy.name) + '. <a href="#fit">Change</a>');
-        try { localStorage.setItem('kg_lineup2', JSON.stringify({ size: sz, guy: guy.id, name: guy.name })); } catch (e) {}
-        btn.textContent = 'Pre-order in ' + sz;
-        status.textContent = 'Size ' + sz + ' selected.'; status.classList.add('ok');
+    if (start) pickSize(start, yourSize(start));
+    document.querySelector('.lineup-sec').hidden = false;
+    lineup = window.KG_SIZING.mount($('.js-sizing'), {
+      size: start,
+      onSize: function (sz) {
+        pickSize(sz, yourSize(sz));
+        try { localStorage.setItem('kg_size', JSON.stringify({ size: sz })); } catch (e) {}
+        status.textContent = ''; status.classList.remove('ok');
+      },
+      cta: function (sz) {
+        if (sz === 'best') return '<p>Tap the man built like you to put everyone in his size.</p>';
+        return '<button class="btn js-szl-go" type="button">Pre-order in ' + esc(sz) + '</button>' +
+          '<p>' + esc(sz) + ' fits a ' + esc(spec.body[spec.sizes.indexOf(sz)]) + ' chest.</p>';
       }
     });
-    document.querySelector('.lineup-sec').hidden = false;
+    $('.js-sizing').addEventListener('click', function (e) {
+      if (!e.target.closest('.js-szl-go')) return;
+      form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true }));
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
 
     // Shorter where it counts
     var rows = [
@@ -236,8 +243,8 @@
   }).join('') + '<details><summary>Pre-orders &amp; shipping</summary><p>Pre-orders ship ' + esc(S.SHIP) + '. <span class="tbd">Placeholder: when you\'re charged, shipping cost and the exchange policy are still to be decided.</span></p></details>';
 
   form.addEventListener('change', function (e) {
-    if (e.target.name === 'color') { colorName.textContent = S.COLORS[e.target.value].name; drawGallery(e.target.value); if (lineup) lineup.setColor(S.COLORS[e.target.value].hex); }
-    if (e.target.name === 'c' && lineup) lineup.setSize(e.target.value);
+    if (e.target.name === 'color') { colorName.textContent = S.COLORS[e.target.value].name; drawGallery(e.target.value); }
+    if (e.target.name === 'c' && lineup) { lineup.setSize(e.target.value); if (!fitNote.hidden) fitNote.innerHTML = yourSize(e.target.value); }
     status.textContent = ''; status.classList.remove('ok');
   });
   form.addEventListener('submit', function (e) {

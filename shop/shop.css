@@ -296,6 +296,7 @@ details ul { padding-left: 18px; }
 
 /* Responsive */
 @media (max-width: 1080px) {
+  .hero .ph-shot, .story .ph-shot { display: none; }
   .sh-header { grid-template-columns: auto 1fr auto; padding: 10px 16px; }
   .menu-btn { display: inline-block; }
   .logo { justify-self: center; }

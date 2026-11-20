@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=13">
+<link rel="stylesheet" href="shop.css?v=14">
 </head>
 <body>
 <main>
@@ -120,7 +120,7 @@
   // The value prop, right under the name
   if (spec) {
     $('.js-uvp').innerHTML = '<ul class="uvp-pills">' +
-      '<li><b>&minus;' + half(spec.regular.front[si] - spec.front[si]) + '"</b> body</li><li><b>&minus;' + spec.regular.sleeveExtra + '"</b> sleeves</li><li><b>&minus;1"</b> hood</li><li><b>Same</b> chest room</li></ul>';
+      '<li>Body <b>' + half(spec.regular.front[si] - spec.front[si]) + '" shorter</b></li><li>Sleeves <b>' + spec.regular.sleeveExtra + '" shorter</b></li><li>Hood <b>1" shorter</b></li><li>Chest <b>same room</b></li></ul>';
     $('.js-uvp').hidden = false;
   }
 
@@ -182,10 +182,10 @@
 
     // Shorter where it counts
     var rows = [
-      ['Body', '&minus;' + half(spec.regular.front[si] - spec.front[si]) + '"', spec.front[si] + '" front length in ' + spec.sample + ', against ' + spec.regular.front[si] + '" on a best-selling sun hoodie in the same size. The hem stays under your hip belt, with a drop tail in back.'],
-      ['Sleeves', '&minus;' + spec.regular.sleeveExtra + '"', 'Taken out below the elbow, where the extra bunches. Thumbholes land on your hand, not past your knuckles.'],
-      ['Hood', '&minus;1"', 'Shorter at the crown and closer at the cheeks, so it turns with your head and stays out of your peripheral vision.'],
-      ['Chest', 'Same', 'Fitted through the chest and arms, with room for shoulders that lift. We cut the length, not the room.']
+      ['Body', half(spec.regular.front[si] - spec.front[si]) + '" shorter', spec.front[si] + '" front length in ' + spec.sample + ', against ' + spec.regular.front[si] + '" on a best-selling sun hoodie in the same size. The hem stays under your hip belt, with a drop tail in back.'],
+      ['Sleeves', spec.regular.sleeveExtra + '" shorter', 'Taken out below the elbow, where the extra bunches. Thumbholes land on your hand, not past your knuckles.'],
+      ['Hood', '1" shorter', 'Shorter at the crown and closer at the cheeks, so it turns with your head and stays out of your peripheral vision.'],
+      ['Chest', 'Same room', 'Fitted through the chest and arms, with room for shoulders that lift. We cut the length, not the room.']
     ];
     $('.js-compare-rows').innerHTML = '<dl class="cmp">' + rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd class="cmp-n">' + r[1] + '</dd><dd>' + r[2] + '</dd></div>'; }).join('') + '</dl>';
     $('.js-compare-note').textContent = 'Kearsarge numbers are our ' + spec.sample + ' sample spec. Body length compared with the other brand\'s published ' + spec.sample + ' chart. Sleeve, hood and chest compared with a worn XS of theirs measured the same way.';
@@ -225,8 +225,8 @@
       '<style>.reg{fill:rgba(176,96,60,.08);stroke:#b0603c;stroke-width:.28;stroke-dasharray:.9 .7}.ours{fill:#d8c3a0;stroke:#a88e66;stroke-width:.22}text{font:600 1.5px DM Sans,sans-serif;fill:#1f1c18;letter-spacing:.05px}.rl{fill:#b44c1c;font-weight:600}</style>' +
       draw(RL, sp.sleeve[si] + r.sleeveExtra, 12.5, 'reg') + draw(L, sp.sleeve[si], 11.5, 'ours') +
       '<line x1="0" y1="2" x2="0" y2="8" stroke="#8d7550" stroke-width=".2"/>' +
-      lab(0, L + 2.4, '&minus;' + half(RL - L) + '" body') + lab(0, RL + 2.3, 'Regular', 'rl') +
-      lab(21.5, 25.5, '&minus;' + r.sleeveExtra + '" sleeve') + lab(0, -13.2, '&minus;1" hood') +
+      lab(0, L + 2.4, half(RL - L) + '" shorter body') + lab(0, RL + 2.3, 'Regular', 'rl') +
+      lab(21.5, 25.5, r.sleeveExtra + '" shorter sleeve') + lab(0, -13.2, '1" shorter hood') +
       '</svg><p class="art-key"><span class="k-ours"></span>Kearsarge ' + sp.sample + ' <span class="k-reg"></span>Regular sun hoodie, ' + sp.sample + '</p>';
   }
 

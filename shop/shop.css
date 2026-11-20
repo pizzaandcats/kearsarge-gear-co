@@ -17,7 +17,7 @@ body.locked { overflow: hidden; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 h1, h2, h3, p { margin: 0; }
-h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 400; letter-spacing: 0; line-height: 1.04; }
+h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 400; letter-spacing: 0; line-height: 1.02; }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
 .eyebrow, .label { font-weight: 600; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 .fineprint { margin-top: 18px; font-size: 13px; color: var(--muted); }
@@ -74,8 +74,8 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 400; l
 .hero .ph .ph-shot, .story .ph .ph-shot { max-width: 44ch; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 48%, rgba(0,0,0,.5) 100%); pointer-events: none; }
 .hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; }
-.hero h1 { color: #fff; font-size: clamp(58px, 8.2vw, 124px); font-weight: 400; max-width: 11ch; }
-.hero .sub { margin-top: 20px; font-size: clamp(17px, 1.6vw, 20px); color: #fff; max-width: 40ch; }
+.hero h1 { color: #fff; font-size: clamp(56px, 7.6vw, 116px); font-weight: 400; line-height: .92; letter-spacing: -0.01em; max-width: 15ch; }
+.hero .sub { margin-top: 30px; font-size: clamp(17px, 1.6vw, 20px); color: #fff; max-width: 40ch; }
 .hero .ctas { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* Sections */
@@ -87,7 +87,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 400; l
 /* Statement */
 .manifesto { padding: 136px 0 120px; text-align: center; }
 .manifesto .eyebrow { margin-bottom: 26px; }
-.manifesto h2 { font-size: clamp(34px, 4.4vw, 60px); font-weight: 400; max-width: 22ch; margin: 0 auto; line-height: 1.14; }
+.manifesto h2 { font-size: clamp(34px, 4.4vw, 60px); font-weight: 400; max-width: 22ch; margin: 0 auto; line-height: 1.08; }
 .manifesto h2 em { font-style: italic; }
 .manifesto p { margin: 26px auto 0; max-width: 52ch; font-size: 17px; }
 
@@ -159,7 +159,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); font-weight: 400; l
 .story::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,0) 100%); pointer-events: none; }
 .story .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; }
 .story .eyebrow { color: #fff; }
-.story h2 { color: #fff; font-size: clamp(40px, 5vw, 72px); font-weight: 400; max-width: 12ch; margin-top: 14px; }
+.story h2 { color: #fff; font-size: clamp(40px, 5vw, 72px); font-weight: 400; line-height: .96; max-width: 12ch; margin-top: 14px; }
 .story p { margin-top: 18px; font-size: 18px; max-width: 40ch; }
 
 /* Newsletter */

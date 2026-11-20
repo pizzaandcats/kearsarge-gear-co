@@ -1,6 +1,7 @@
 /* Kearsarge size lineup: five men, one per size, at true relative height.
    Ported from the "Kearsarge Sun Hoody Size Lineup" prototype (spec: Size Lineup Module Spec v1).
-   KG_SIZING.mount(el, { base, size, onSize(size), cta(size) -> html })
+   KG_SIZING.mount(el, { base, size, notes, onSize(size), cta(size) -> html })
+     notes:  false hides the footnote under the chart
      size:   'best' or 'XS'..'XL' to start on
      onSize: called when the shopper picks a size (toggle or tapping a man)
      cta:    returns the HTML under the chart for the current size ('best' or a letter)
@@ -75,7 +76,7 @@
       '</div>' +
       '<p class="szl-swipe">Swipe to see all five.</p>' +
       '<div class="szl-cta" aria-live="polite"></div>' +
-      '<p class="szl-notes">Heights are shown in shoes, about 1" over barefoot height. Images are AI-generated stand-ins until real fit photos are shot.</p>';
+      (o.notes === false ? '' : '<p class="szl-notes">Heights are shown in shoes, about 1" over barefoot height. Images are AI-generated stand-ins until real fit photos are shot.</p>');
 
     var q = function (s) { return root.querySelector(s); };
     var qa = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };

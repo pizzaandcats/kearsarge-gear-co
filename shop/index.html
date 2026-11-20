@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=18">
+<link rel="stylesheet" href="shop.css?v=19">
 </head>
 <body data-hero>
 <main>
@@ -68,9 +68,9 @@
   <section class="sec lineup-sec" id="fit" aria-labelledby="lineup-h">
     <div class="wrap">
       <div class="lineup-head">
-        <p class="eyebrow">Finding your size</p>
-        <h2 id="lineup-h">One length. Find your size.</h2>
-        <p class="sub">Five men from 5'3" to 5'8", shown at true height in the Palisade Sun Hoodie. We size by chest, so tap the man built like you and see how each size fits.</p>
+        <p class="eyebrow">Fit you can see</p>
+        <h2 id="lineup-h">Every size, on every build.</h2>
+        <p class="sub">Most brands show you one tall model and a size chart. We show five men from 5'3" to 5'8" in every size, including the ones that don't fit, so you know how it fits before you order.</p>
       </div>
       <div class="js-sizing"></div>
     </div>
@@ -122,7 +122,7 @@
 
 <script src="data.js?v=5"></script>
 <script src="shop.js?v=4"></script>
-<script src="sizing.js?v=1"></script>
+<script src="sizing.js?v=2"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI;
@@ -141,11 +141,10 @@
   try { saved = JSON.parse(localStorage.getItem('kg_size') || '{}') || {}; } catch (e) {}
   window.KG_SIZING.mount(document.querySelector('.js-sizing'), {
     size: saved.size,
+    notes: false,
     onSize: function (sz) { try { localStorage.setItem('kg_size', JSON.stringify({ size: sz })); } catch (e) {} },
     cta: function (sz) {
-      if (sz === 'best') return '<p>Tap the man built like you to put everyone in his size.</p>';
-      return '<a class="btn" href="product.html?p=' + hoodie.id + '&amp;size=' + sz + '">Pre-order the Palisade in ' + sz + '</a>' +
-        '<p>' + sz + ' fits a ' + spec.body[spec.sizes.indexOf(sz)] + ' chest.</p>';
+      return sz === 'best' ? '' : '<a class="btn" href="product.html?p=' + hoodie.id + '&amp;size=' + sz + '">Pre-order the Palisade in ' + sz + '</a>';
     }
   });
 

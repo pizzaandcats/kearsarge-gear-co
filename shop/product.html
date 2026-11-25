@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kearsarge</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f6efe3">
+<meta name="theme-color" content="#f5f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css?v=20">
 </head>
 <body>
 <main>
@@ -19,30 +19,32 @@
       <div class="gallery js-gallery"></div>
       <form class="buy js-buy" novalidate>
         <div>
-          <p class="eyebrow js-col"></p>
-          <h1 class="js-name" style="margin-top:8px"></h1>
-          <p class="tag js-tag" style="margin-top:10px"></p>
+          <p class="eyebrow">Pre-order</p>
+          <h1 class="js-name" style="margin-top:12px"></h1>
+          <p class="price js-price"></p>
         </div>
         <div class="js-uvp" hidden></div>
-        <p class="price js-price"></p>
-        <div><p class="opt-label">Color <span class="js-color-name"></span></p><div class="chips js-colors"></div></div>
+        <div><p class="opt-label"><span><b>Color</b>&nbsp; <span class="js-color-name"></span></span></p><div class="chips js-colors"></div></div>
         <div class="js-opts"></div>
-        <p class="your-fit js-fit">Built for men 5'3" to 5'8". Shorter where it counts, not tighter.</p>
-        <button class="btn btn-block js-addbtn" type="submit">Add to cart</button>
+        <p class="your-fit js-fit" hidden></p>
+        <p class="pre"><b>Pre-order</b>Ships <span class="js-ship"></span>. First run, limited quantities.</p>
+        <button class="btn btn-block js-addbtn" type="submit">Pre-order</button>
         <p class="status" role="status" aria-live="polite"></p>
+        <p class="desc js-desc"></p>
+        <div class="uses js-uses"></div>
         <div class="js-details"></div>
       </form>
     </div>
   </div>
 
-  <section class="sec lineup-sec" id="lineup" aria-labelledby="lineup-h" hidden>
+  <section class="sec lineup-sec" id="fit" aria-labelledby="lineup-h" hidden>
     <div class="wrap">
       <div class="lineup-head">
-        <p class="eyebrow">Find your size</p>
-        <h2 id="lineup-h">Same hoodie. Four guys.</h2>
-        <p class="sub">Pick a size and see where the hem and cuffs land on guys from 5'3" to 5'8". Tap the one built like you.</p>
+        <p class="eyebrow">Finding your size</p>
+        <h2 id="lineup-h">Same hoodie. Five men.</h2>
+        <p class="sub">Five builds from 5'3" to 5'8", shown at true height. We size by chest, so your height alone won't tell you your size. Tap the man built like you, or pick a size to see how it fits all five.</p>
       </div>
-      <div class="js-lineup"></div>
+      <div class="js-sizing"></div>
     </div>
   </section>
 
@@ -61,36 +63,35 @@
   <section class="closeups js-closeups" aria-labelledby="closeups-h" hidden>
     <div class="wrap">
       <div class="car-head">
-        <h2 id="closeups-h" class="js-closeups-h">Fits like it was made for you.</h2>
+        <div><p class="eyebrow">Design details</p><h2 id="closeups-h" style="margin-top:12px">Considered, down to the cuff.</h2></div>
         <div class="car-btns"><button class="car-prev" type="button" aria-label="Previous">&#8592;</button><button class="car-next" type="button" aria-label="Next">&#8594;</button></div>
       </div>
     </div>
     <div class="carousel" data-carousel>
-      <div class="car-track js-track" tabindex="0" role="region" aria-label="Feature close-ups"></div>
+      <div class="car-track js-track" tabindex="0" role="region" aria-label="Design details"></div>
     </div>
   </section>
 
   <section class="sec chart-sec" id="size-chart" aria-labelledby="chart-h" hidden>
     <div class="wrap">
-      <h2 id="chart-h">Size chart.</h2>
-      <p class="sub" style="margin-top:10px">One length, cut for 5'3" to 5'8". Pick by chest.</p>
+      <p class="eyebrow">Size chart</p>
+      <h2 id="chart-h" style="margin-top:12px">One length. Pick by chest.</h2>
       <div class="chart-wrap"><table class="size-chart js-chart"></table></div>
-      <p class="fineprint">Garment measured flat, in inches. XS is our sample spec. S to L are a proposed grade, confirmed on samples before launch.</p>
+      <p class="fineprint js-chart-note"></p>
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head"><h2>Complete the kit.</h2><a href="collection.html">Shop all</a></div>
+      <div class="sec-head"><h2>You may also like</h2><a class="link" href="collection.html">Shop the first run</a></div>
       <div class="grid js-related"></div>
     </div>
   </section>
 </main>
 
-<script src="data.js?v=3"></script>
-<script src="art.js?v=1"></script>
-<script src="shop.js?v=2"></script>
-<script src="lineup.js?v=2"></script>
+<script src="data.js?v=5"></script>
+<script src="shop.js?v=4"></script>
+<script src="sizing.js?v=2"></script>
 <script>
 (function () {
   var S = window.KG_SHOP, UI = window.KG_UI, esc = UI.esc;
@@ -100,25 +101,26 @@
   var $ = function (s) { return document.querySelector(s); };
   document.title = p.name + ' | Kearsarge';
 
-  $('.js-crumbs').innerHTML = '<a href="index.html">Home</a> / <a href="collection.html?c=' + col.id + '">' + esc(col.name) + '</a> / ' + esc(p.name);
-  $('.js-col').textContent = col.name;
+  $('.js-crumbs').innerHTML = '<a href="collection.html">The First Run</a> / <a href="collection.html?c=' + col.id + '">' + esc(col.name) + '</a>';
   $('.js-name').textContent = p.name;
-  $('.js-tag').textContent = p.tagline;
   $('.js-price').textContent = UI.money(p.price);
-  // Gallery: the flat lay in the chosen color, plus two close-ups
-  var crops = Object.keys(window.KG_ART.CROPS[p.art] || {});
-  var zooms = (p.features ? p.features.map(function (f) { return f[2]; }) : crops).filter(function (c) { return crops.indexOf(c) > -1; }).slice(0, 2);
+  $('.js-ship').textContent = S.SHIP;
+  $('.js-desc').textContent = p.blurb;
+  $('.js-uses').innerHTML = (p.uses || []).map(function (u) { return '<span>' + esc(u) + '</span>'; }).join('');
+
+  // Gallery: on-model, flat lay in the chosen color, back, then the first details
+  var si = spec ? spec.sizes.indexOf(spec.sample) : 0;
+  var half = function (n) { return (Math.round(n * 2) / 2).toString().replace('.5', '½'); };
   function drawGallery(ck) {
-    $('.js-gallery').innerHTML = '<div class="art-box">' + window.KG_ART.svg(p, ck, { square: true }) + '</div>' +
-      zooms.map(function (z) { return '<div class="art-box">' + window.KG_ART.svg(p, ck, { crop: z, label: p.name + ', ' + z + ' detail' }) + '</div>'; }).join('');
+    var ids = [p.code + '-MODEL', S.flat(p, ck), p.code + '-BACK'].concat((p.features || []).slice(0, 3).map(function (f) { return p.code + '-DETAIL-' + f[2].toUpperCase(); }));
+    $('.js-gallery').innerHTML = ids.map(function (id, i) { return UI.ph(id, { eager: i < 2, alt: p.name }); }).join('');
   }
   drawGallery(p.colors[0]);
 
   // The value prop, right under the name
   if (spec) {
-    var dBody = spec.regular.front[0] - spec.front[0];
-    $('.js-uvp').innerHTML = '<p class="uvp-lead">Cut for men 5\'3" to 5\'8".</p><ul class="uvp-pills">' +
-      '<li><b>&minus;' + Math.round(dBody) + '"</b> body</li><li><b>&minus;' + spec.regular.sleeveExtra + '"</b> sleeves</li><li><b>&minus;1"</b> hood</li><li><b>Same</b> chest room</li></ul>';
+    $('.js-uvp').innerHTML = '<ul class="uvp-pills">' +
+      '<li>Body <b>' + half(spec.regular.front[si] - spec.front[si]) + '" shorter</b></li><li>Sleeves <b>' + spec.regular.sleeveExtra + '" shorter</b></li><li>Hood <b>1" shorter</b></li><li>Chest <b>same room</b></li></ul>';
     $('.js-uvp').hidden = false;
   }
 
@@ -132,16 +134,16 @@
 
   // Size options
   var chips = function (name, vals) { return '<div class="chips">' + vals.map(function (v) { return '<label class="chip"><input type="radio" name="' + name + '" value="' + esc(v) + '"><span>' + esc(v) + '</span></label>'; }).join('') + '</div>'; };
-  var block = function (label, hint, name, vals, extra) { return '<div style="margin-bottom:18px"><p class="opt-label">' + label + ' <span>' + hint + '</span></p>' + chips(name, vals) + (extra || '') + '</div>'; };
+  var block = function (label, hint, name, vals, extra) { return '<div style="margin-bottom:18px"><p class="opt-label"><b>' + label + '</b> <span>' + hint + '</span></p>' + chips(name, vals) + (extra || '') + '</div>'; };
   var opts = $('.js-opts'), need;
   if (p.fit === 'top') {
-    opts.innerHTML = block('Size', 'One length, cut short', 'c', spec ? spec.sizes : S.CHESTS,
-      spec ? '<p class="size-help"><a href="#lineup">Not sure? See each size on four guys</a> · <a href="#size-chart">Size chart</a></p>' : '');
+    opts.innerHTML = block('Size', spec ? '<a href="#fit">Find your size</a> · <a href="#size-chart">Size chart</a>' : 'One length, cut short', 'c', spec ? spec.sizes : S.CHESTS,
+      '<p class="model-line" style="margin-top:14px">One length, cut for 5\'3" to 5\'8". Shown on a 5\'5" model wearing S.</p>');
     need = ['c'];
   } else if (p.fit === 'bottom') {
     var one = p.inseams.length === 1;
     opts.innerHTML = block('Waist', p.waistHint || 'Inches', 'w', p.waists || S.WAISTS) +
-      (one ? '<p class="opt-label" style="margin-bottom:18px">Inseam <span>' + esc(p.inseams[0]) + ', cut for a shorter leg</span></p>' : block('Inseam', 'Pick where it ends', 'i', p.inseams));
+      (one ? '<p class="opt-label" style="margin-bottom:18px"><b>Inseam</b> <span>' + esc(p.inseams[0]) + ', cut for a shorter leg</span></p>' : block('Inseam', 'Pick where it ends', 'i', p.inseams));
     need = one ? ['w'] : ['w', 'i'];
   } else {
     opts.innerHTML = block('Size', 'Shorter fingers in every size', 'g', S.GLOVES);
@@ -154,87 +156,95 @@
     var r = Array.prototype.filter.call(opts.querySelectorAll('[name=c]'), function (x) { return x.value === sz; })[0];
     if (!r) return false;
     r.checked = true;
-    if (note) fitNote.innerHTML = note;
+    if (note) { fitNote.innerHTML = note; fitNote.hidden = false; }
     return true;
   }
 
-  // Lineup module (products with a size spec)
+  // Size lineup (products with a size spec)
   var lineup;
   if (spec) {
-    var saved = {}; try { saved = JSON.parse(localStorage.getItem('kg_lineup') || '{}') || {}; } catch (e) {}
+    var saved = {}; try { saved = JSON.parse(localStorage.getItem('kg_size') || '{}') || {}; } catch (e) {}
+    var yourSize = function (sz) { return 'Your size: <b>' + esc(sz) + '</b>. <a href="#fit">See it on five men</a>'; };
     var start = qs.get('size') || saved.size;
-    if (start && saved.guy && pickSize(start)) fitNote.innerHTML = 'Your size: <b>' + esc(start) + '</b>. Built like ' + esc(saved.name) + '. <a href="#lineup">Change</a>';
-    else if (start) pickSize(start);
-    lineup = window.KG_LINEUP.mount($('.js-lineup'), {
-      product: p, size: start, guy: saved.guy, color: S.COLORS[p.colors[0]].hex,
-      pickLabel: function (sz) { return val('c') === sz ? 'Add ' + sz + ' to cart' : 'That\'s me: select ' + sz; },
-      onPick: function (sz, guy, btn) {
-        if (val('c') === sz) { form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true })); return; }
-        pickSize(sz, 'Your size: <b>' + esc(sz) + '</b>. Built like ' + esc(guy.name) + '. <a href="#lineup">Change</a>');
-        try { localStorage.setItem('kg_lineup', JSON.stringify({ size: sz, guy: guy.id, name: guy.name })); } catch (e) {}
-        btn.textContent = 'Add ' + sz + ' to cart';
-        status.textContent = 'Size ' + sz + ' selected.'; status.classList.add('ok');
+    if (start) pickSize(start, yourSize(start));
+    document.querySelector('.lineup-sec').hidden = false;
+    lineup = window.KG_SIZING.mount($('.js-sizing'), {
+      size: start,
+      onSize: function (sz) {
+        pickSize(sz, yourSize(sz));
+        try { localStorage.setItem('kg_size', JSON.stringify({ size: sz })); } catch (e) {}
+        status.textContent = ''; status.classList.remove('ok');
+      },
+      cta: function (sz) {
+        if (sz === 'best') return '<p>Tap the man built like you to put everyone in his size.</p>';
+        return '<button class="btn js-szl-go" type="button">Pre-order in ' + esc(sz) + '</button>' +
+          '<p>' + esc(sz) + ' fits a ' + esc(spec.body[spec.sizes.indexOf(sz)]) + ' chest.</p>';
       }
     });
-    document.querySelector('.lineup-sec').hidden = false;
+    $('.js-sizing').addEventListener('click', function (e) {
+      if (!e.target.closest('.js-szl-go')) return;
+      form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true }));
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
 
     // Shorter where it counts
-    var dB = spec.regular.front[0] - spec.front[0];
     var rows = [
-      ['Body', '&minus;' + Math.round(dB) + '"', spec.front[0] + '" front length in XS, against ' + spec.regular.front[0] + '" on a best-selling sun hoodie. The hem stays under your hip belt, with a drop tail in back.'],
-      ['Sleeves', '&minus;' + spec.regular.sleeveExtra + '"', 'Taken out below the elbow, where the extra bunches. Thumbholes land on your hand, not past your knuckles.'],
-      ['Hood', '&minus;1"', 'Shorter at the crown and closer at the cheeks, so it turns with your head and stays out of your peripheral vision.'],
-      ['Chest', 'Same', 'Fitted through the chest and arms, with room for shoulders that lift. We cut the length, not the room.']
+      ['Body', half(spec.regular.front[si] - spec.front[si]) + '" shorter', spec.front[si] + '" front length in ' + spec.sample + ', against ' + spec.regular.front[si] + '" on a best-selling sun hoodie in the same size. The hem stays under your hip belt, with a drop tail in back.'],
+      ['Sleeves', spec.regular.sleeveExtra + '" shorter', 'Taken out below the elbow, where the extra bunches. Thumbholes land on your hand, not past your knuckles.'],
+      ['Hood', '1" shorter', 'Shorter at the crown and closer at the cheeks, so it turns with your head and stays out of your peripheral vision.'],
+      ['Chest', 'Same room', 'Fitted through the chest and arms, with room for shoulders that lift. We cut the length, not the room.']
     ];
     $('.js-compare-rows').innerHTML = '<dl class="cmp">' + rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd class="cmp-n">' + r[1] + '</dd><dd>' + r[2] + '</dd></div>'; }).join('') + '</dl>';
-    $('.js-compare-note').textContent = 'Kearsarge numbers are our XS sample spec. Body length compared with the other brand\'s published XS chart. Sleeve, hood and chest compared with a worn XS measured the same way.';
+    $('.js-compare-note').textContent = 'Kearsarge numbers are our ' + spec.sample + ' sample spec. Body length compared with the other brand\'s published ' + spec.sample + ' chart. Sleeve, hood and chest compared with a worn XS of theirs measured the same way.';
     $('.js-compare-art').innerHTML = flatSketch(spec);
     document.querySelector('.compare-sec').hidden = false;
 
     // Size chart
     var fr = function (n) { var w = Math.floor(n), f = n - w; return w + (f >= 0.7 ? '¾' : f >= 0.45 ? '½' : f >= 0.2 ? '¼' : ''); };
-    $('.js-chart').innerHTML = '<thead><tr><th scope="col">Size</th>' + spec.sizes.map(function (s) { return '<th scope="col">' + s + '</th>'; }).join('') + '</tr></thead><tbody>' +
-      '<tr><th scope="row">Fits chest</th>' + spec.body.map(function (b) { return '<td>' + b + '</td>'; }).join('') + '</tr>' +
-      '<tr><th scope="row">Chest, flat</th>' + spec.chest.map(function (n) { return '<td>' + fr(n) + '</td>'; }).join('') + '</tr>' +
-      '<tr><th scope="row">Front length</th>' + spec.front.map(function (n) { return '<td>' + fr(n) + '</td>'; }).join('') + '</tr>' +
-      '<tr><th scope="row">Sleeve, from center back neck</th>' + spec.sleeve.map(function (n) { return '<td>' + fr(n) + '</td>'; }).join('') + '</tr></tbody>';
+    var td = function (v, i) { return '<td' + (i === si ? ' class="sample"' : '') + '>' + v + '</td>'; };
+    $('.js-chart').innerHTML = '<thead><tr><th scope="col">Size</th>' + spec.sizes.map(function (s, i) { return '<th scope="col"' + (i === si ? ' class="sample"' : '') + '>' + s + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      '<tr><th scope="row">Fits chest</th>' + spec.body.map(td).join('') + '</tr>' +
+      '<tr><th scope="row">Chest, flat</th>' + spec.chest.map(function (n, i) { return td(fr(n), i); }).join('') + '</tr>' +
+      '<tr><th scope="row">Front length</th>' + spec.front.map(function (n, i) { return td(fr(n), i); }).join('') + '</tr>' +
+      '<tr><th scope="row">Sleeve, from center back neck</th>' + spec.sleeve.map(function (n, i) { return td(fr(n), i); }).join('') + '</tr></tbody>';
+    $('.js-chart-note').textContent = 'Garment measured flat, in inches. ' + spec.sample + ' is our sample spec; the other sizes are a proposed grade, confirmed on samples before launch.';
     document.querySelector('.chart-sec').hidden = false;
   }
 
   // Ours vs a regular sun hoodie, laid flat (inches; y grows down from the shoulder)
   function flatSketch(sp) {
-    var half = sp.chest[0] / 2, neck = 4.1;
+    var hw = sp.chest[si] / 2, neck = 4.1;
     var draw = function (len, sleeve, hood, cls) {
       var a = 58 * Math.PI / 180, dx = Math.cos(a), dy = Math.sin(a), nx = -dy, ny = dx;
-      var sh = 1.4, pit = 9.5, slen = sleeve - half - 0.6, cuff = 3.6;
+      var sh = 1.4, pit = 9.5, slen = sleeve - hw - 0.6, cuff = 3.6;
       var out = '';
       [-1, 1].forEach(function (s) {
-        var S0 = [s * half, sh], T = [S0[0] + s * dx * slen, S0[1] + dy * slen], B = [T[0] + s * nx * cuff * -1, T[1] + ny * cuff];
-        out += '<polygon class="' + cls + '" points="' + [S0, T, B, [s * half, pit]].map(function (q) { return q[0].toFixed(2) + ',' + q[1].toFixed(2); }).join(' ') + '"/>';
+        var S0 = [s * hw, sh], T = [S0[0] + s * dx * slen, S0[1] + dy * slen], B = [T[0] + s * nx * cuff * -1, T[1] + ny * cuff];
+        out += '<polygon class="' + cls + '" points="' + [S0, T, B, [s * hw, pit]].map(function (q) { return q[0].toFixed(2) + ',' + q[1].toFixed(2); }).join(' ') + '"/>';
       });
-      out += '<path class="' + cls + '" d="M' + (-neck) + ',0 L' + (-half) + ',' + sh + ' L' + (-half) + ',' + len + ' Q0,' + (len + 0.6) + ' ' + half + ',' + len + ' L' + half + ',' + sh + ' L' + neck + ',0 Z"/>';
+      out += '<path class="' + cls + '" d="M' + (-neck) + ',0 L' + (-hw) + ',' + sh + ' L' + (-hw) + ',' + len + ' Q0,' + (len + 0.6) + ' ' + hw + ',' + len + ' L' + hw + ',' + sh + ' L' + neck + ',0 Z"/>';
       out += '<path class="' + cls + '" d="M' + (-neck) + ',0 C' + (-neck - 1.4) + ',' + (-hood * 0.75) + ' ' + (-2.6) + ',' + (-hood) + ' 0,' + (-hood) + ' C2.6,' + (-hood) + ' ' + (neck + 1.4) + ',' + (-hood * 0.75) + ' ' + neck + ',0 Z"/>';
       return out;
     };
-    var r = sp.regular, L = sp.front[0], RL = r.front[0];
+    var r = sp.regular, L = sp.front[si], RL = r.front[si];
     var lab = function (x, y, t, cls) { return '<text x="' + x + '" y="' + y + '" text-anchor="middle"' + (cls ? ' class="' + cls + '"' : '') + '>' + t + '</text>'; };
-    return '<svg viewBox="-27 -15 54 49" role="img" aria-label="Our sun hoodie laid over a regular one: about 3 inches shorter in the body, 2 inches shorter in the sleeves, 1 inch shorter in the hood">' +
-      '<style>.reg{fill:rgba(176,96,60,.08);stroke:#b0603c;stroke-width:.28;stroke-dasharray:.9 .7}.ours{fill:#d8c3a0;stroke:#a88e66;stroke-width:.22}text{font:700 1.55px DM Sans,sans-serif;fill:#2a2119}.rl{fill:#b44c1c;font-weight:600}</style>' +
-      draw(RL, sp.sleeve[0] + r.sleeveExtra, 12.5, 'reg') + draw(L, sp.sleeve[0], 11.5, 'ours') +
+    return '<svg viewBox="-28 -15 56 51" role="img" aria-label="Our sun hoodie laid over a regular one: about 3 inches shorter in the body, 2 inches shorter in the sleeves, 1 inch shorter in the hood">' +
+      '<style>.reg{fill:rgba(176,96,60,.08);stroke:#b0603c;stroke-width:.28;stroke-dasharray:.9 .7}.ours{fill:#d8c3a0;stroke:#a88e66;stroke-width:.22}text{font:600 1.5px DM Sans,sans-serif;fill:#1f1c18;letter-spacing:.05px}.rl{fill:#b44c1c;font-weight:600}</style>' +
+      draw(RL, sp.sleeve[si] + r.sleeveExtra, 12.5, 'reg') + draw(L, sp.sleeve[si], 11.5, 'ours') +
       '<line x1="0" y1="2" x2="0" y2="8" stroke="#8d7550" stroke-width=".2"/>' +
-      lab(0, L + 2.4, '&minus;' + Math.round(RL - L) + '" body') + lab(0, RL + 2.3, 'Regular', 'rl') +
-      lab(21.5, 25.5, '&minus;' + r.sleeveExtra + '" sleeve') + lab(0, -13.2, '&minus;1" hood') +
-      '</svg><p class="art-key"><span class="k-ours"></span>Kearsarge XS <span class="k-reg"></span>Regular sun hoodie, XS</p>';
+      lab(0, L + 2.4, half(RL - L) + '" shorter body') + lab(0, RL + 2.3, 'Regular', 'rl') +
+      lab(21.5, 25.5, r.sleeveExtra + '" shorter sleeve') + lab(0, -13.2, '1" shorter hood') +
+      '</svg><p class="art-key"><span class="k-ours"></span>Kearsarge ' + sp.sample + ' <span class="k-reg"></span>Regular sun hoodie, ' + sp.sample + '</p>';
   }
 
   // Details
   $('.js-details').innerHTML = Object.keys(p.details).map(function (k, i) {
-    return '<details' + (i === 0 ? ' open' : '') + '><summary>' + esc(k) + '</summary><p>' + esc(p.details[k]) + '</p></details>';
-  }).join('') + '<details><summary>Shipping and returns</summary><p>Mock store: nothing ships. Placeholder for free shipping over $100 and free exchanges on fit.</p></details>';
+    return '<details' + (i === 0 ? ' open' : '') + '><summary>' + esc(k) + '</summary><ul>' + p.details[k].map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul></details>';
+  }).join('') + '<details><summary>Pre-orders &amp; shipping</summary><p>Pre-orders ship ' + esc(S.SHIP) + '. <span class="tbd">Placeholder: when you\'re charged, shipping cost and the exchange policy are still to be decided.</span></p></details>';
 
   form.addEventListener('change', function (e) {
-    if (e.target.name === 'color') { colorName.textContent = S.COLORS[e.target.value].name; drawGallery(e.target.value); if (lineup) lineup.setColor(S.COLORS[e.target.value].hex); }
-    if (e.target.name === 'c' && lineup) lineup.setSize(e.target.value);
+    if (e.target.name === 'color') { colorName.textContent = S.COLORS[e.target.value].name; drawGallery(e.target.value); }
+    if (e.target.name === 'c' && lineup) { lineup.setSize(e.target.value); if (!fitNote.hidden) fitNote.innerHTML = yourSize(e.target.value); }
     status.textContent = ''; status.classList.remove('ok');
   });
   form.addEventListener('submit', function (e) {
@@ -242,7 +252,7 @@
     var missing = need.filter(function (n) { return !val(n); });
     if (missing.length) {
       status.classList.remove('ok');
-      status.innerHTML = p.fit === 'top' && spec ? 'Pick a size first. <a href="#lineup">Not sure? See them on four guys.</a>' : 'Pick your ' + (p.fit === 'bottom' ? 'waist' + (need.length > 1 ? ' and inseam' : '') : 'size') + ' first.';
+      status.innerHTML = p.fit === 'top' && spec ? 'Pick a size first. <a href="#fit">Not sure? See each size on four men.</a>' : 'Pick your ' + (p.fit === 'bottom' ? 'waist' + (need.length > 1 ? ' and inseam' : '') : 'size') + ' first.';
       return;
     }
     var size = p.fit === 'top' ? val('c') : p.fit === 'bottom' ? val('w') + (p.waists && isNaN(+val('w')) ? '' : ' waist') + ' / ' + (val('i') || p.inseams[0]) + ' inseam' : val('g');
@@ -251,16 +261,15 @@
 
   // Close-up carousel
   if (p.features && p.features.length) {
-    if (spec) $('.js-closeups-h').textContent = 'The details.';
     $('.js-track').innerHTML = p.features.map(function (f) {
-      return '<figure class="car-slide"><div class="art-box">' + window.KG_ART.svg(p, p.colors[0], { crop: f[2], label: '' }) + '</div><figcaption><b>' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></figcaption></figure>';
+      return '<figure class="car-slide">' + UI.ph(p.code + '-DETAIL-' + f[2].toUpperCase(), { alt: f[0] }) + '<figcaption><b>' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></figcaption></figure>';
     }).join('');
     $('.js-closeups').hidden = false;
   }
 
   // Related: the next three pieces in the line
   var i0 = S.PRODUCTS.indexOf(p);
-  $('.js-related').innerHTML = [1, 2, 3].map(function (k) { return S.PRODUCTS[(i0 + k) % S.PRODUCTS.length]; }).map(UI.card).join('');
+  $('.js-related').innerHTML = [1, 2, 3, 4].map(function (k) { return S.PRODUCTS[(i0 + k) % S.PRODUCTS.length]; }).map(UI.card).join('');
 })();
 </script>
 <script src="../assets/kg-carousel.js?v=1"></script>

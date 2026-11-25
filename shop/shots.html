@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shot list | Kearsarge</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css?v=20">
+</head>
+<body>
+<main>
+  <div class="wrap" style="padding-bottom:112px">
+    <div class="shop-head" style="text-align:left">
+      <p class="eyebrow">Internal</p>
+      <h1 style="margin-top:14px">Shot list</h1>
+      <p style="margin:12px 0 0">Every photo slot in the mock store. To use a photo, paste its URL into <code>src</code> for that ID in <code>shop/data.js</code> (the <code>PHOTOS</code> list) and the gray box becomes the photo everywhere it appears.</p>
+    </div>
+    <div class="toolbar">
+      <nav class="filters js-filters" aria-label="Filter"></nav>
+      <span class="count js-count"></span>
+    </div>
+    <div class="shots js-shots"></div>
+  </div>
+</main>
+<script src="data.js?v=5"></script>
+<script src="shop.js?v=4"></script>
+<script>
+(function () {
+  var S = window.KG_SHOP, UI = window.KG_UI, esc = UI.esc;
+  var groups = [['all', 'All'], ['HOME', 'Home page'], ['PAL', 'Palisade (priority)']].concat(S.PRODUCTS.filter(function (p) { return p.code !== 'PAL'; }).map(function (p) { return [p.code, p.short]; }));
+  var f = 'all';
+  function draw() {
+    var ids = Object.keys(S.PHOTOS).filter(function (id) { return f === 'all' || id.indexOf(f + '-') === 0; });
+    document.querySelector('.js-filters').innerHTML = groups.map(function (g) { return '<a href="#" data-f="' + g[0] + '" class="' + (g[0] === f ? 'on' : '') + '">' + esc(g[1]) + '</a>'; }).join('');
+    document.querySelector('.js-count').textContent = ids.length + ' shots';
+    document.querySelector('.js-shots').innerHTML = ids.map(function (id) {
+      var x = S.PHOTOS[id];
+      return '<div class="shot">' + UI.ph(id, { brief: false }) + '<code>' + esc(id) + '</code><p><b>' + esc(x.ratio) + '</b> · ' + esc(x.px) + (x.src ? ' · <b>has photo</b>' : '') + '</p><p>' + esc(x.shot) + '</p></div>';
+    }).join('');
+  }
+  document.querySelector('.js-filters').addEventListener('click', function (e) { var a = e.target.closest('[data-f]'); if (!a) return; e.preventDefault(); f = a.getAttribute('data-f'); draw(); });
+  draw();
+})();
+</script>
+</body>
+</html>
